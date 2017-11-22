@@ -52,7 +52,7 @@ public class MainActivity extends BaseActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
-                        Intent intent = new Intent(mContext, MainActivity.class);
+                        Intent intent = new Intent(mContext, IndexActivity.class);
                         startActivity(intent);
 
                         Toast.makeText(mContext, "로그인성공", Toast.LENGTH_SHORT).show();
