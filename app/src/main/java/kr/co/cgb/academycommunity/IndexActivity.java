@@ -4,7 +4,11 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.ImageViewCompat;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -52,6 +56,21 @@ public class IndexActivity extends BaseActivity {
         tabLayout.getTabAt(1).setIcon(tabIcons[1]).setText("STUDENT");
         tabLayout.getTabAt(2).setIcon(tabIcons[2]).setText("MYPROFILE");
         tabLayout.getTabAt(3).setIcon(tabIcons[3]).setText("ETC");
+
+
+        String[] titles = {"TALK", "STUDENT", "MYPROFILE", "ETC"};
+
+
+        for (int i = 0; i < 4 ; i ++ ){
+            LayoutInflater inf = LayoutInflater.from(mContext);
+            View v = inf.inflate(R.layout.custom_tab, null);
+            TextView tv = (TextView) v.findViewById(R.id.customTabText);
+            tv.setText(titles[i]);
+            ImageView iv = (ImageView) v.findViewById(R.id.customTabImg);
+            iv.setImageResource(tabIcons[i]);
+            tabLayout.getTabAt(i).setCustomView(v);
+        }
+
 
 
 

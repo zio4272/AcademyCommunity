@@ -14,15 +14,46 @@
         android:layout_height="70dp">
 
         <LinearLayout
-            android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp">
 
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@mipmap/ic_launcher"/>
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:textSize="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="APP NAME"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/ic_launcher" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
+                android:src="@mipmap/ic_launcher" />
 
 
         </LinearLayout>
@@ -30,16 +61,14 @@
     </FrameLayout>
 
 
-
-
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"
-        app:tabIndicatorColor="#FFFF00"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:tabIndicatorColor="#FFFF00"
         app:tabMode="fixed"
-        app:tabTextColor="@color/unSelected"
-        app:tabSelectedTextColor="@color/selected"/>
+        app:tabSelectedTextColor="@color/selected"
+        app:tabTextColor="@color/unSelected" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/mainViewPager"
