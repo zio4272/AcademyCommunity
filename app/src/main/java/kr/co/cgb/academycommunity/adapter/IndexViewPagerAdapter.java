@@ -27,7 +27,7 @@ public class IndexViewPagerAdapter extends FragmentStatePagerAdapter {
             case 2:
                 return new PostFragment();
             case 3:
-                return new PostFragment();
+                return new UserFragment();
             default:
                 return null;
         }

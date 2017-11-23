@@ -39,7 +39,7 @@ public class UserAdapter extends ArrayAdapter<User> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View row = convertView;
         if (row == null) {
-            row = inf.inflate(R.layout.post_list_item, null);
+            row = inf.inflate(R.layout.user_list_item, null);
         }
         return row;
     }

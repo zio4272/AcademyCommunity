@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="lecture">
+        <item >강의를 선택 해주세요.</item>
         <item >자바(Java)기반 안드로이드 어플리케이션</item>
         <item >강의2</item>
         <item >강의3</item>

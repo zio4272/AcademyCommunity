@@ -4,12 +4,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <ListView
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="#E1E1E1"
+            android:entries="@array/lecture"
+            android:padding="10dp"
+            android:spinnerMode="dropdown" />
+
+
+    </ScrollView>
+
+    <GridView
         android:id="@+id/userListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </ListView>
+        android:layout_height="match_parent"
+        android:numColumns="3"
+        android:padding="5dp"
+        android:stretchMode="columnWidth"></GridView>
 
 </LinearLayout>
