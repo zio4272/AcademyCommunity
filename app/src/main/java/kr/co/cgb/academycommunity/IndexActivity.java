@@ -61,7 +61,7 @@ public class IndexActivity extends BaseActivity {
         String[] titles = {"TALK", "STUDENT", "MYPROFILE", "ETC"};
 
 
-        for (int i = 0; i < 4 ; i ++ ){
+        for (int i = 0; i < 4; i++) {
             LayoutInflater inf = LayoutInflater.from(mContext);
             View v = inf.inflate(R.layout.custom_tab, null);
             TextView tv = (TextView) v.findViewById(R.id.customTabText);
@@ -70,15 +70,6 @@ public class IndexActivity extends BaseActivity {
             iv.setImageResource(tabIcons[i]);
             tabLayout.getTabAt(i).setCustomView(v);
         }
-
-
-
-
-
-    }
-
-    private void setupTapIcons() {
-
 
     }
 

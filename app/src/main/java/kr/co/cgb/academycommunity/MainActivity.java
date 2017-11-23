@@ -43,7 +43,7 @@ public class MainActivity extends BaseActivity {
 
                 AlertDialog.Builder loginPopup = new AlertDialog.Builder(mContext);
                 LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-                View layout = inflater.inflate(R.layout.popup_login_item, (ViewGroup) findViewById(R.id.layout_root));
+                View layout = inflater.inflate(R.layout.popup_login_item, null);
 
                 loginPopup.setTitle("로그인하시겠습니까?");
                 loginPopup.setView(layout);
