@@ -4,7 +4,10 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.widget.Toast;
+
+import kr.co.cgb.academycommunity.adapter.IndexViewPagerAdapter;
 
 public class IndexActivity extends BaseActivity {
 
@@ -31,34 +34,13 @@ public class IndexActivity extends BaseActivity {
     @Override
     public void setValues() {
 
-
+        mainViewPager.setAdapter(new IndexViewPagerAdapter(getSupportFragmentManager()));
+        mainViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mainViewPager));
         tabLayout.addTab(tabLayout.newTab().setText("TAB 1"));
         tabLayout.addTab(tabLayout.newTab().setText("TAB 2"));
         tabLayout.addTab(tabLayout.newTab().setText("TAB 3"));
         tabLayout.addTab(tabLayout.newTab().setText("TAB 4"));
-
-
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tabs) {
-
-                Fragment fragment;
-                Toast.makeText(mContext, "선택된 탭 " + tabs.getPosition(), Toast.LENGTH_SHORT).show();
-
-
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-
-            }
-        });
 
 
     }

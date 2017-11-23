@@ -9,7 +9,9 @@
                 <shape>
                     <corners
                         android:topLeftRadius="10dp"
-                        android:topRightRadius="10dp"/>
+                        android:topRightRadius="10dp"
+                        android:bottomLeftRadius="10dp"
+                        android:bottomRightRadius="10dp"/>
                     <solid
                         android:color="#E8E8EA" />
                 </shape>
@@ -17,11 +19,14 @@
             <item
                 android:top="1dp"
                 android:right="1dp"
-                android:left="1dp">
+                android:left="1dp"
+                android:bottom="1dp">
                 <shape>
                     <corners
                         android:topLeftRadius="9dp"
-                        android:topRightRadius="9dp"/>
+                        android:topRightRadius="9dp"
+                        android:bottomLeftRadius="9dp"
+                        android:bottomRightRadius="9dp"/>
                     <solid
                         android:color="#FFFFFF" />
                 </shape>
@@ -38,7 +43,9 @@
                 <shape>
                     <corners
                         android:topLeftRadius="10dp"
-                        android:topRightRadius="10dp"/>
+                        android:topRightRadius="10dp"
+                        android:bottomLeftRadius="10dp"
+                        android:bottomRightRadius="10dp"/>
                     <solid
                         android:color="#E8E8EA" />
                 </shape>
@@ -46,11 +53,14 @@
             <item
                 android:top="1dp"
                 android:right="1dp"
-                android:left="1dp">
+                android:left="1dp"
+                android:bottom="1dp">
                 <shape>
                     <corners
                         android:topLeftRadius="9dp"
-                        android:topRightRadius="9dp"/>
+                        android:topRightRadius="9dp"
+                        android:bottomLeftRadius="9dp"
+                        android:bottomRightRadius="9dp"/>
                     <solid
                         android:color="#F5F5F5" />
                 </shape>
