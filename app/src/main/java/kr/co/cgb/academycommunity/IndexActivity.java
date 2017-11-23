@@ -37,9 +37,9 @@ public class IndexActivity extends BaseActivity {
         mainViewPager.setAdapter(new IndexViewPagerAdapter(getSupportFragmentManager()));
         mainViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mainViewPager));
-        tabLayout.addTab(tabLayout.newTab().setText("TAB 1"));
-        tabLayout.addTab(tabLayout.newTab().setText("TAB 2"));
-        tabLayout.addTab(tabLayout.newTab().setText("TAB 3"));
+        tabLayout.addTab(tabLayout.newTab().setText("TALK"));
+        tabLayout.addTab(tabLayout.newTab().setText("PROFILE"));
+        tabLayout.addTab(tabLayout.newTab().setText("MYINFO"));
         tabLayout.addTab(tabLayout.newTab().setText("TAB 4"));
 
 

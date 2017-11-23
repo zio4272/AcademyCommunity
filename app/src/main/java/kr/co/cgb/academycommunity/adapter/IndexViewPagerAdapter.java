@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import kr.co.cgb.academycommunity.fragment.PostFragment;
+import kr.co.cgb.academycommunity.fragment.UserFragment;
 
 /**
  * Created by PC on 2017-11-23.
@@ -22,7 +23,7 @@ public class IndexViewPagerAdapter extends FragmentStatePagerAdapter {
             case 0:
                 return new PostFragment();
             case 1:
-                return new PostFragment();
+                return new UserFragment();
             case 2:
                 return new PostFragment();
             case 3:
