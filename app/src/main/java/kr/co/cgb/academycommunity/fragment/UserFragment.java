@@ -1,11 +1,13 @@
 package kr.co.cgb.academycommunity.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
 
@@ -13,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.cgb.academycommunity.R;
+import kr.co.cgb.academycommunity.StudentDetailViewActivity;
 import kr.co.cgb.academycommunity.adapter.UserAdapter;
 import kr.co.cgb.academycommunity.data.User;
 
@@ -50,5 +53,13 @@ public class UserFragment extends Fragment {
     }
 
     private void setupEvents() {
+
+        userListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getContext(), StudentDetailViewActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
