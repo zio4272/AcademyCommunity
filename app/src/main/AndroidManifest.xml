@@ -19,8 +19,9 @@
         <activity android:name=".SignupActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".IndexActivity" />
-        <activity android:name=".PostPopupActivity"
-            android:theme="@style/Base.Theme.AppCompat.Light.Dialog.Alert"></activity>
+        <activity
+            android:name=".PostPopupActivity"
+            android:theme="@style/mytheme"></activity>
     </application>
 
 </manifest>
