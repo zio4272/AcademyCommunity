@@ -69,14 +69,14 @@ public class IndexActivity extends BaseActivity {
 //        tabLayout.addTab(tabLayout.newTab().setText("TAB 4"));
         tabLayout.getTabAt(0).setIcon(tabIcons[0]).setText("TALK");
         tabLayout.getTabAt(1).setIcon(tabIcons[1]).setText("STUDENT");
-        tabLayout.getTabAt(2).setIcon(tabIcons[2]).setText("MYPAGE");
-        tabLayout.getTabAt(3).setIcon(tabIcons[3]).setText("ETC");
+        tabLayout.getTabAt(2).setIcon(tabIcons[2]).setText("NOTIFY");
+//        tabLayout.getTabAt(3).setIcon(tabIcons[3]).setText("ETC");
 
 
-        String[] titles = {"TALK", "STUDENT", "MYPAGE", "ETC"};
+        String[] titles = {"TALK", "STUDENT", "NOTIFY", "ETC"};
 
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
             LayoutInflater inf = LayoutInflater.from(mContext);
             View v = inf.inflate(R.layout.custom_tab, null);
             TextView tv = (TextView) v.findViewById(R.id.customTabText);

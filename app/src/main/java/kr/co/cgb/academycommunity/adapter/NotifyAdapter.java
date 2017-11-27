@@ -28,7 +28,7 @@ public class NotifyAdapter extends ArrayAdapter<Notify> {
     LayoutInflater inf;
 
     public NotifyAdapter(Context context, List<Notify> list) {
-        super(context, R.layout.post_list_item, list);
+        super(context, R.layout.notify_list_item, list);
 
         mContext = context;
         mList = list;
@@ -41,12 +41,17 @@ public class NotifyAdapter extends ArrayAdapter<Notify> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View row = convertView;
         if (row == null) {
-            row = inf.inflate(R.layout.post_list_item, null);
+            row = inf.inflate(R.layout.notify_list_item, null);
 
 
 
 
         }
         return row;
+    }
+
+    @Override
+    public int getCount() {
+        return 5;
     }
 }

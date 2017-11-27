@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import kr.co.cgb.academycommunity.fragment.NotifyFragment;
 import kr.co.cgb.academycommunity.fragment.PostFragment;
 import kr.co.cgb.academycommunity.fragment.UserFragment;
 
@@ -25,9 +26,7 @@ public class IndexViewPagerAdapter extends FragmentStatePagerAdapter {
             case 1:
                 return new UserFragment();
             case 2:
-                return new PostFragment();
-            case 3:
-                return new UserFragment();
+                return new NotifyFragment();
             default:
                 return null;
         }
@@ -36,6 +35,6 @@ public class IndexViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 3;
     }
 }
