@@ -1,6 +1,7 @@
 package kr.co.cgb.academycommunity.data;
 
 import java.io.Serializable;
+import java.util.Calendar;
 
 /**
  * Created by PC on 2017-11-23.
@@ -10,23 +11,29 @@ public class User implements Serializable {
 
     private int id;
     private String userLoginId;
+    private String userLoginPw;
     private String userName;
     private String userPhoneNum;
     private int userGender; // 0 남자 , 1 여자
     private String userProfileUrl;
     private String userMyInfo;
+    private Calendar birthDay;
+    private boolean isTeacher;  // 강사인지 아닌지 여부 (추후 출결 관리)
 
     public User() {
     }
 
-    public User(int id, String userLoginId, String userName, String userPhoneNum, int userGender, String userProfileUrl, String userMyInfo) {
+    public User(int id, String userLoginId, String userLoginPw, String userName, String userPhoneNum, int userGender, String userProfileUrl, String userMyInfo, Calendar birthDay, boolean isTeacher) {
         this.id = id;
         this.userLoginId = userLoginId;
+        this.userLoginPw = userLoginPw;
         this.userName = userName;
         this.userPhoneNum = userPhoneNum;
         this.userGender = userGender;
         this.userProfileUrl = userProfileUrl;
         this.userMyInfo = userMyInfo;
+        this.birthDay = birthDay;
+        this.isTeacher = isTeacher;
     }
 
     public int getId() {
@@ -43,6 +50,14 @@ public class User implements Serializable {
 
     public void setUserLoginId(String userLoginId) {
         this.userLoginId = userLoginId;
+    }
+
+    public String getUserLoginPw() {
+        return userLoginPw;
+    }
+
+    public void setUserLoginPw(String userLoginPw) {
+        this.userLoginPw = userLoginPw;
     }
 
     public String getUserName() {
@@ -83,5 +98,21 @@ public class User implements Serializable {
 
     public void setUserMyInfo(String userMyInfo) {
         this.userMyInfo = userMyInfo;
+    }
+
+    public Calendar getBirthDay() {
+        return birthDay;
+    }
+
+    public void setBirthDay(Calendar birthDay) {
+        this.birthDay = birthDay;
+    }
+
+    public boolean isTeacher() {
+        return isTeacher;
+    }
+
+    public void setTeacher(boolean teacher) {
+        isTeacher = teacher;
     }
 }

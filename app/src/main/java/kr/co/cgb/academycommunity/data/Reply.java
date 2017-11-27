@@ -9,26 +9,19 @@ import java.util.Calendar;
 
 public class Reply implements Serializable {
 
-    int replyId;
-    int parentReplyId;
-    // 0이면 그냥 댓글. 1~그 외 : 대댓글.
-
-    String writerName;
-
-    String replyContent;
-    Calendar createdAt;
-
-//    정석적인 방법.
-//    UserData writerData;
-    // 댓글 작성자도 UserData형태로 저장해 두는것이 올바른 방법.
+    private int replyId;
+    private int replyType;  // 0 - 댓글 , 1 - 댓글의 댓글
+    private User userWriterData;
+    private String replyContent;
+    private Calendar createdAt;
 
     public Reply() {
     }
 
-    public Reply(int replyId, int parentReplyId, String writerName, String replyContent, Calendar createdAt) {
+    public Reply(int replyId, int replyType, User userWriterData, String replyContent, Calendar createdAt) {
         this.replyId = replyId;
-        this.parentReplyId = parentReplyId;
-        this.writerName = writerName;
+        this.replyType = replyType;
+        this.userWriterData = userWriterData;
         this.replyContent = replyContent;
         this.createdAt = createdAt;
     }
@@ -41,20 +34,20 @@ public class Reply implements Serializable {
         this.replyId = replyId;
     }
 
-    public int getParentReplyId() {
-        return parentReplyId;
+    public int getReplyType() {
+        return replyType;
     }
 
-    public void setParentReplyId(int parentReplyId) {
-        this.parentReplyId = parentReplyId;
+    public void setReplyType(int replyType) {
+        this.replyType = replyType;
     }
 
-    public String getWriterName() {
-        return writerName;
+    public User getUserWriterData() {
+        return userWriterData;
     }
 
-    public void setWriterName(String writerName) {
-        this.writerName = writerName;
+    public void setUserWriterData(User userWriterData) {
+        this.userWriterData = userWriterData;
     }
 
     public String getReplyContent() {
@@ -72,5 +65,4 @@ public class Reply implements Serializable {
     public void setCreatedAt(Calendar createdAt) {
         this.createdAt = createdAt;
     }
-
 }
