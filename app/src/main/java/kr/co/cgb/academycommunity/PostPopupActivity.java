@@ -6,7 +6,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -16,12 +19,13 @@ import kr.co.cgb.academycommunity.data.Post;
 import kr.co.cgb.academycommunity.data.Reply;
 import kr.co.cgb.academycommunity.data.User;
 import kr.co.cgb.academycommunity.util.GlobalData;
+import kr.co.cgb.academycommunity.util.TimeAgoUtil;
 
 public class PostPopupActivity extends BaseActivity {
 
     ReplyAdapter mAdapter;
     List<Reply> replyList = new ArrayList<>();
-    List<Post> postList = new ArrayList<>();
+
     private android.widget.ImageView profileImg;
     private android.widget.TextView lectureNameTxt;
     private android.widget.TextView writerNameTxt;
@@ -54,9 +58,13 @@ public class PostPopupActivity extends BaseActivity {
         mAdapter = new ReplyAdapter(mContext, replyList);
         replyListView.setAdapter(mAdapter);
 
-        listenLectureTxt.setText(position.getUserWriterData().);
+//       TODO - 이미지가 없을 경우 NO IMAGE 출력
+        Glide.with(mContext).load(position.getUserWriterData().getUserProfileUrl()).into(profileImg);
+//        listenLectureTxt.setText(position.getUserWriterData().); TODO - 서버 연동 후 작업
         writerNameTxt.setText(position.getUserWriterData().getUserName());
         contentTxt.setText(position.getPostContent());
+        String minuteAge = TimeAgoUtil.getTimeAgoString(position.getCreatedAt());
+        writeTimeTxt.setText(minuteAge);
 
 
     }

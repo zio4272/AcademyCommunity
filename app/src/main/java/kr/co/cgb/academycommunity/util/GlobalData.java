@@ -30,8 +30,8 @@ public class GlobalData {
                 null, "안녕기모찌..", Calendar.getInstance(), false));
 
         posts.clear();
-        posts.add(new Post(0, "안녕하세여", Calendar.getInstance(), users.get(0)));
-        posts.add(new Post(1, "아 왜..", Calendar.getInstance(), users.get(1)));
+        posts.add(new Post(0, "타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~", 4, users.get(0)));
+        posts.add(new Post(1, "아 왜..", 5, users.get(1)));
 
     }
 }

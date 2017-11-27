@@ -22,6 +22,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import kr.co.cgb.academycommunity.R;
 import kr.co.cgb.academycommunity.data.Post;
 import kr.co.cgb.academycommunity.util.GlobalData;
+import kr.co.cgb.academycommunity.util.TimeAgoUtil;
 
 /**
  * Created by the on 2017-11-22.
@@ -65,6 +66,9 @@ public class PostAdapter extends ArrayAdapter<Post> {
 
             writerNameTxt.setText(data.getUserWriterData().getUserName());
             contentTxt.setText(data.getPostContent());
+
+            String minuteAgo = TimeAgoUtil.getTimeAgoString(data.getCreatedAt());
+            writeTimeTxt.setText(minuteAgo);
 
         }
         return row;

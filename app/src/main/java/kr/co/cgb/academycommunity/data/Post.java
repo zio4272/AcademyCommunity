@@ -12,7 +12,7 @@ public class Post implements Serializable {
 
     private int id;
     private String postContent;
-    private Calendar createdAt;
+    private int createdAt;
 
     private User userWriterData;
 
@@ -22,7 +22,7 @@ public class Post implements Serializable {
     public Post() {
     }
 
-    public Post(int id, String postContent, Calendar createdAt, User userWriterData) {
+    public Post(int id, String postContent, int createdAt, User userWriterData) {
         this.id = id;
         this.postContent = postContent;
         this.createdAt = createdAt;
@@ -45,11 +45,11 @@ public class Post implements Serializable {
         this.postContent = postContent;
     }
 
-    public Calendar getCreatedAt() {
+    public int getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Calendar createdAt) {
+    public void setCreatedAt(int createdAt) {
         this.createdAt = createdAt;
     }
 
