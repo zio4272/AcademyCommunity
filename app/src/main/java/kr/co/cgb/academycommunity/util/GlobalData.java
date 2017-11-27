@@ -19,10 +19,13 @@ public class GlobalData {
 
 
     public static void initData() {
-        posts.clear();
-        posts.add(new Post(0, "안녕하세여", Calendar.getInstance(), users.get(0)));
 
-        users.clear();
-        users.add(new User(0, "test", "1234", "천고바", "010-1111-1111", 0, null, "내소개를시작하지..", Calendar.getInstance(), false));
+
+
+
+        users.add(new User(0, "test", "1234", "천고바", "010-1111-1111", 0,
+                null, "내소개를시작하지..", Calendar.getInstance(), false));
+
+        posts.add(new Post(0, "안녕하세여", Calendar.getInstance(), users.get(0)));
     }
 }

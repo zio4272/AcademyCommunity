@@ -18,6 +18,7 @@ import kr.co.cgb.academycommunity.R;
 import kr.co.cgb.academycommunity.StudentDetailViewActivity;
 import kr.co.cgb.academycommunity.adapter.UserAdapter;
 import kr.co.cgb.academycommunity.data.User;
+import kr.co.cgb.academycommunity.util.GlobalData;
 
 /**
  * Created by PC on 2017-11-23.
@@ -45,9 +46,11 @@ public class UserFragment extends Fragment {
 
         setupEvents();
         setValues();
+        GlobalData.initData();
     }
 
     private void setValues() {
+        userList = GlobalData.users;
         mAdapter = new UserAdapter(getContext(), userList);
         userListView.setAdapter(mAdapter);
     }

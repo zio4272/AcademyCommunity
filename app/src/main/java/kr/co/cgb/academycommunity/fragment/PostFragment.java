@@ -47,9 +47,11 @@ public class PostFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         setupEvents();
         setValues();
+        GlobalData.initData();
     }
 
     private void setValues() {
+        postList = GlobalData.posts;
         mAdapter = new PostAdapter(getContext(), postList);
         postListView.setAdapter(mAdapter);
     }
