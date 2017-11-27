@@ -25,7 +25,8 @@
         <activity
             android:name=".StudentDetailViewActivity"
             android:theme="@style/mytheme" />
-        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".SettingActivity"></activity>
     </application>
 
 </manifest>

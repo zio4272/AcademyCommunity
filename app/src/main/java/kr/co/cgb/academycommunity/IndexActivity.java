@@ -17,6 +17,7 @@ public class IndexActivity extends BaseActivity {
     private ViewPager mainViewPager;
     private int[] tabIcons = {R.mipmap.ic_launcher, R.mipmap.ic_launcher_round, R.mipmap.ic_launcher, R.mipmap.ic_launcher_round};
     private ImageView searchImg;
+    private ImageView settingImg;
 
 
     @Override
@@ -37,6 +38,14 @@ public class IndexActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        settingImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, SettingActivity.class);
                 startActivity(intent);
             }
         });
@@ -84,6 +93,7 @@ public class IndexActivity extends BaseActivity {
     public void bindViews() {
         this.mainViewPager = (ViewPager) findViewById(R.id.mainViewPager);
         this.tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        this.settingImg = (ImageView) findViewById(R.id.settingImg);
         this.searchImg = (ImageView) findViewById(R.id.searchImg);
     }
 }
