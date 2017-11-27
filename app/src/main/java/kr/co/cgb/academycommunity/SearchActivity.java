@@ -7,7 +7,7 @@ import android.widget.ImageView;
 
 public class SearchActivity extends BaseActivity {
 
-    private android.widget.ImageView backLayoutBtn;
+    private android.widget.ImageView backBtn;
     private android.widget.EditText searchEdt;
 
     @Override
@@ -22,7 +22,7 @@ public class SearchActivity extends BaseActivity {
     @Override
     public void setupEvents() {
 
-        backLayoutBtn.setOnClickListener(new View.OnClickListener() {
+        backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
@@ -39,8 +39,8 @@ public class SearchActivity extends BaseActivity {
     @Override
     public void bindViews() {
 
-        this.searchEdt = (EditText) findViewById(R.id.searchEdt);
-        this.backLayoutBtn = (ImageView) findViewById(R.id.backLayoutBtn);
+        this.searchEdt = (EditText) findViewById(R.id.serchEdt);
+        this.backBtn = (ImageView) findViewById(R.id.backBtn);
 
     }
 }

@@ -53,11 +53,13 @@ public class PostAdapter extends ArrayAdapter<Post> {
 
             LinearLayout postLayout = (LinearLayout) row.findViewById(R.id.postLayout);
             CircleImageView profileImg = (CircleImageView) row.findViewById(R.id.profileImg);
+            ImageView profileINoImg = (ImageView) row.findViewById(R.id.profileINoImg);
             TextView writerNameTxt = (TextView) row.findViewById(R.id.writerNameTxt);
             TextView writeTimeTxt = (TextView) row.findViewById(R.id.writeTimeTxt);
             TextView contentTxt = (TextView) row.findViewById(R.id.contentTxt);
 
             Post data = mList.get(position);
+
 
             Glide.with(mContext).load(data.getUserWriterData().getUserProfileUrl()).into(profileImg);
 

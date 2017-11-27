@@ -61,6 +61,7 @@ public class PostFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getActivity(), PostPopupActivity.class);
+                intent.putExtra("postdata", GlobalData.posts.get(i));
                 startActivity(intent);
             }
         });

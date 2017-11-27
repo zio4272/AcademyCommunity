@@ -28,6 +28,14 @@
                 app:civ_border_width="1dp"
                 app:civ_border_color="#E1E1E1"/>
 
+            <ImageView
+                android:id="@+id/profileINoImg"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/noimage"
+                android:visibility="gone"/>
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

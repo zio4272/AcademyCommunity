@@ -17,6 +17,8 @@ public class Reply implements Serializable {
     private String replyContent;
     private Calendar createdAt;
 
+    public Post post; // 어떤 게시물의 댓글인지 파악.
+
     public List<Reply> replies;
 
     public Reply() {

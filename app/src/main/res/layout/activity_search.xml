@@ -5,31 +5,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#E1E1E1"
     tools:context="kr.co.cgb.academycommunity.SearchActivity">
 
+
     <LinearLayout
+        android:background="#FFFFFF"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/backLayoutBtn"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/search_back_icon"/>
 
-        <EditText
-            android:layout_marginRight="20dp"
-            android:id="@+id/searchEdt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFFFF"
-            android:hint="검색"/>
+
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:id="@+id/backBtn"
+                android:layout_gravity="center_vertical"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/search_back_icon"/>
+
+
+            <EditText
+                android:id="@+id/serchEdt"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="검색어를 입력 하세요."/>
+
+
 
     </LinearLayout>
+
+
+
+    <LinearLayout
+        android:background="#FFFFFF"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    </LinearLayout>
+
+
+
+
 
 
 </LinearLayout>
