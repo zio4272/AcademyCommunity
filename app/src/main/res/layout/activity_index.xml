@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="APP NAME"
-                android:textColor="#FFFFFF" />
+                android:textColor="#0097D3" />
 
 
 
@@ -50,14 +50,14 @@
                 android:id="@+id/searchImg"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@drawable/search1" />
 
             <ImageView
                 android:id="@+id/settingImg"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="5dp"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@drawable/setting1" />
 
 
         </LinearLayout>
@@ -73,10 +73,16 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabIndicatorColor="#FFFF00"
+        app:tabIndicatorColor="#0097D3"
+        app:tabIndicatorHeight="3dp"
         app:tabMode="fixed"
         app:tabSelectedTextColor="@color/selected"
         app:tabTextColor="@color/unSelected" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E1E1E1"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/mainViewPager"

@@ -15,7 +15,7 @@ public class IndexActivity extends BaseActivity {
 
     private android.support.design.widget.TabLayout tabLayout;
     private ViewPager mainViewPager;
-    private int[] tabIcons = {R.mipmap.ic_launcher, R.mipmap.ic_launcher_round, R.mipmap.ic_launcher, R.mipmap.ic_launcher_round};
+    private int[] tabIcons = { R.drawable.talk, R.drawable.student,  R.drawable.notify, R.drawable.setting3};
     private ImageView searchImg;
     private ImageView settingImg;
 
@@ -67,20 +67,20 @@ public class IndexActivity extends BaseActivity {
 //        tabLayout.addTab(tabLayout.newTab().setText("PROFILE"));
 //        tabLayout.addTab(tabLayout.newTab().setText("MYINFO"));
 //        tabLayout.addTab(tabLayout.newTab().setText("TAB 4"));
-        tabLayout.getTabAt(0).setIcon(tabIcons[0]).setText("TALK");
-        tabLayout.getTabAt(1).setIcon(tabIcons[1]).setText("STUDENT");
-        tabLayout.getTabAt(2).setIcon(tabIcons[2]).setText("NOTIFY");
+//        tabLayout.getTabAt(0).setIcon(tabIcons[0]).setText("TALK");
+//        tabLayout.getTabAt(1).setIcon(tabIcons[1]).setText("STUDENT");
+//        tabLayout.getTabAt(2).setIcon(tabIcons[2]).setText("NOTIFY");
 //        tabLayout.getTabAt(3).setIcon(tabIcons[3]).setText("ETC");
 
 
         String[] titles = {"TALK", "STUDENT", "NOTIFY", "ETC"};
 
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             LayoutInflater inf = LayoutInflater.from(mContext);
             View v = inf.inflate(R.layout.custom_tab, null);
-            TextView tv = (TextView) v.findViewById(R.id.customTabText);
-            tv.setText(titles[i]);
+//            TextView tv = (TextView) v.findViewById(R.id.customTabText);
+//            tv.setText(titles[i]);
             ImageView iv = (ImageView) v.findViewById(R.id.customTabImg);
             iv.setImageResource(tabIcons[i]);
             tabLayout.getTabAt(i).setCustomView(v);

@@ -27,6 +27,8 @@ public class IndexViewPagerAdapter extends FragmentStatePagerAdapter {
                 return new UserFragment();
             case 2:
                 return new NotifyFragment();
+            case 3:
+                return new NotifyFragment();
             default:
                 return null;
         }
@@ -35,6 +37,6 @@ public class IndexViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
 }

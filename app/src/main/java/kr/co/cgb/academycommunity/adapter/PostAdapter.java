@@ -59,6 +59,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
             TextView writeTimeTxt = (TextView) row.findViewById(R.id.writeTimeTxt);
             TextView contentTxt = (TextView) row.findViewById(R.id.contentTxt);
 
+
             Post data = mList.get(position);
 
 
@@ -69,6 +70,9 @@ public class PostAdapter extends ArrayAdapter<Post> {
 
             String minuteAgo = TimeAgoUtil.getTimeAgoString(data.getCreatedAt());
             writeTimeTxt.setText(minuteAgo);
+
+
+
 
         }
         return row;
