@@ -19,6 +19,7 @@ import kr.co.cgb.academycommunity.PostPopupActivity;
 import kr.co.cgb.academycommunity.R;
 import kr.co.cgb.academycommunity.adapter.PostAdapter;
 import kr.co.cgb.academycommunity.data.Post;
+import kr.co.cgb.academycommunity.util.GlobalData;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
@@ -44,7 +45,6 @@ public class PostFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         setupEvents();
         setValues();
     }
@@ -58,11 +58,6 @@ public class PostFragment extends Fragment {
         postListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                AlertDialog.Builder postPopup = new AlertDialog.Builder(getContext());
-//                LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-//                View layout = inflater.inflate(R.layout.activity_post_popup, null);
-//                postPopup.setView(layout);
-//                postPopup.show();
                 Intent intent = new Intent(getActivity(), PostPopupActivity.class);
                 startActivity(intent);
             }

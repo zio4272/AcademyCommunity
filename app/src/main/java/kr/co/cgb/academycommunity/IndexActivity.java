@@ -1,16 +1,13 @@
 package kr.co.cgb.academycommunity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.ImageViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
 import kr.co.cgb.academycommunity.adapter.IndexViewPagerAdapter;
 
@@ -19,6 +16,7 @@ public class IndexActivity extends BaseActivity {
     private android.support.design.widget.TabLayout tabLayout;
     private ViewPager mainViewPager;
     private int[] tabIcons = {R.mipmap.ic_launcher, R.mipmap.ic_launcher_round, R.mipmap.ic_launcher, R.mipmap.ic_launcher_round};
+    private ImageView searchImg;
 
 
     @Override
@@ -34,6 +32,14 @@ public class IndexActivity extends BaseActivity {
 
     @Override
     public void setupEvents() {
+
+        searchImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -54,11 +60,11 @@ public class IndexActivity extends BaseActivity {
 //        tabLayout.addTab(tabLayout.newTab().setText("TAB 4"));
         tabLayout.getTabAt(0).setIcon(tabIcons[0]).setText("TALK");
         tabLayout.getTabAt(1).setIcon(tabIcons[1]).setText("STUDENT");
-        tabLayout.getTabAt(2).setIcon(tabIcons[2]).setText("MYPROFILE");
+        tabLayout.getTabAt(2).setIcon(tabIcons[2]).setText("MYPAGE");
         tabLayout.getTabAt(3).setIcon(tabIcons[3]).setText("ETC");
 
 
-        String[] titles = {"TALK", "STUDENT", "MYPROFILE", "ETC"};
+        String[] titles = {"TALK", "STUDENT", "MYPAGE", "ETC"};
 
 
         for (int i = 0; i < 4; i++) {
@@ -78,5 +84,6 @@ public class IndexActivity extends BaseActivity {
     public void bindViews() {
         this.mainViewPager = (ViewPager) findViewById(R.id.mainViewPager);
         this.tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        this.searchImg = (ImageView) findViewById(R.id.searchImg);
     }
 }

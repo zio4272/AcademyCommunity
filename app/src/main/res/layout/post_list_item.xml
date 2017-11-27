@@ -12,6 +12,7 @@
 
 
         <LinearLayout
+            android:id="@+id/postLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/round_background"
@@ -40,6 +41,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/writerNameTxt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="천고바"
@@ -48,6 +50,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/writeTimeTxt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
@@ -63,6 +66,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/contentTxt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"

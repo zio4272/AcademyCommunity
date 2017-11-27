@@ -36,6 +36,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:textSize="10dp"
                     android:id="@+id/lectureNameTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
