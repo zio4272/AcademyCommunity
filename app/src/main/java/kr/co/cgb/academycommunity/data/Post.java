@@ -2,6 +2,7 @@ package kr.co.cgb.academycommunity.data;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * Created by the on 2017-11-22.
@@ -14,6 +15,9 @@ public class Post implements Serializable {
     private Calendar createdAt;
 
     private User userWriterData;
+
+    public List<Post> postList;
+
 
     public Post() {
     }

@@ -1,7 +1,9 @@
 package kr.co.cgb.academycommunity.data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * Created by PC on 2017-11-23.
@@ -19,6 +21,7 @@ public class User implements Serializable {
     private String userMyInfo;
     private Calendar birthDay;
     private boolean isTeacher;  // 강사인지 아닌지 여부 (추후 출결 관리)
+    public List<Lecture> listenLecture = new ArrayList<>();
 
     public User() {
     }
