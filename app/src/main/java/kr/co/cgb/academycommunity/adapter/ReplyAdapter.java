@@ -100,21 +100,21 @@ public class ReplyAdapter extends ArrayAdapter<Reply> {
             if (data.getUserWriterData() != null) {
                 subReplyTagNameTxt.setText(data.getTagUserName().getUserName());
             }
-        }
 
-        subReplyAddTxt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int subReply = data.getReplyId();
-                Log.d("서브", subReply + "");
-                subReplyTagNameTxt.setText(data.getTagUserName().getUserName());
+            subReplyAddTxt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int subReply = data.getReplyId();
+                    Log.d("서브", subReply + "");
 //                subReplyTagNameTxt.setText(data.post.getUserWriterData().getUserName());
 //                subReplyTagNameTxt.setVisibility(View.VISIBLE);
-                ((PostPopupActivity) mContext).tagUser =  data.getUserWriterData();
-                ((PostPopupActivity) mContext).selectSubReply = subReply;
+                    ((PostPopupActivity) mContext).tagUser =  data.getUserWriterData();
+                    ((PostPopupActivity) mContext).selectSubReply = subReply;
 
-            }
-        });
+                }
+            });
+        }
+
         return row;
     }
 

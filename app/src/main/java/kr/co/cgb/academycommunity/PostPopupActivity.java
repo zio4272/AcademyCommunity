@@ -70,6 +70,7 @@ public class PostPopupActivity extends BaseActivity {
                     for (Reply reply : position.replyList) {
                         if (reply.getReplyId() == selectedReply) {
                             reply.replies.add(new Reply(nextId, selectedReply, GlobalData.loginUserData, input, Calendar.getInstance(), position, tagUser));
+
                         }
 
                     }
