@@ -7,6 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -39,6 +44,49 @@ public class ReplyAdapter extends ArrayAdapter<Reply> {
         View row = convertView;
         if (row == null) {
             row = inf.inflate(R.layout.reply_list_item, null);
+
+            final Reply data = mList.get(position);
+
+            LinearLayout mainReplyLayout = (LinearLayout) row.findViewById(R.id.mainReplyLayout);
+            ImageView mainReplyProfileImg = (ImageView) row.findViewById(R.id.mainReplyProfileImg);
+            TextView mainReplyUserNameTxt = (TextView) row.findViewById(R.id.mainReplyUserNameTxt);
+            TextView mainReplyContentTxt = (TextView) row.findViewById(R.id.mainReplyContentTxt);
+            TextView mainReplyTimeTxt = (TextView) row.findViewById(R.id.mainReplyTimeTxt);
+            TextView mainReplyLikeTxt = (TextView) row.findViewById(R.id.mainReplyLikeTxt);
+            TextView mainReplyAddTxt = (TextView) row.findViewById(R.id.mainReplyAddTxt);
+
+            LinearLayout subReplyLayout = (LinearLayout) row.findViewById(R.id.subReplyLayout);
+            ImageView subReplyProfileImg = (ImageView) row.findViewById(R.id.subReplyProfileImg);
+            TextView subReplyUserNameTxt = (TextView) row.findViewById(R.id.subReplyUserNameTxt);
+            TextView subReplyContentTxt = (TextView) row.findViewById(R.id.subReplyContentTxt);
+            TextView subReplyTimeTxt = (TextView) row.findViewById(R.id.subReplyTimeTxt);
+            TextView subReplyLikeTxt = (TextView) row.findViewById(R.id.subReplyLikeTxt);
+            TextView subReplyAddTxt = (TextView) row.findViewById(R.id.subReplyAddTxt);
+
+            if (data.getParentId() == 0) {
+                // 댓글인 경우
+                mainReplyLayout.setVisibility(View.VISIBLE);
+                subReplyLayout.setVisibility(View.GONE);
+
+                mainReplyUserNameTxt.setText(data.getUserWriterData().getUserName());
+                mainReplyContentTxt.setText(data.getReplyContent());
+
+                mainReplyAddTxt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        int originalReplyNum = data.getReplyId();
+
+                    }
+                });
+            }
+
+
+
+
+
+
+
+
         }
         return row;
     }

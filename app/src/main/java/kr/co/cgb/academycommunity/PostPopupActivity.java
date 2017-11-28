@@ -1,6 +1,7 @@
 package kr.co.cgb.academycommunity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -13,11 +14,9 @@ import java.util.Calendar;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import kr.co.cgb.academycommunity.adapter.PostAdapter;
 import kr.co.cgb.academycommunity.adapter.ReplyAdapter;
 import kr.co.cgb.academycommunity.data.Post;
 import kr.co.cgb.academycommunity.data.Reply;
-import kr.co.cgb.academycommunity.data.User;
 import kr.co.cgb.academycommunity.util.GlobalData;
 import kr.co.cgb.academycommunity.util.TimeAgoUtil;
 
@@ -51,6 +50,36 @@ public class PostPopupActivity extends BaseActivity {
     @Override
     public void setupEvents() {
 
+        sendBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String inputString = replyEdt.getText().toString();
+
+                int parentId = Integer.parseInt(replyEdt.getText().toString());
+
+                int index = replyList.size();
+
+                if (parentId != 0) {
+
+
+                    for (int i = 0; i < replyList.size(); i++) {
+                        Reply data  = replyList.get(i);
+                        if (parentId == data.getReplyId()){
+                            index = i;
+                        }
+                        else if (parentId == data.getParentId()) {
+                            index = i;
+                        }
+                    }
+                }
+
+                if (parentId == 0){
+                    replyList.add(index, new Reply(replyList.size() + 1, parentId, GlobalData.loginUserData.getUserName(), inputString, Calendar.getInstance(),));
+                }
+
+            }
+        });
+
     }
 
     @Override
@@ -79,6 +108,5 @@ public class PostPopupActivity extends BaseActivity {
         this.writerNameTxt = (TextView) findViewById(R.id.writerNameTxt);
         this.listenLectureTxt = (TextView) findViewById(R.id.listenLectureTxt);
         this.profileImg = (CircleImageView) findViewById(R.id.profileImg);
-
     }
 }

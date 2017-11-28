@@ -11,7 +11,7 @@ import java.util.List;
 public class Reply implements Serializable {
 
     private int replyId;
-    private int replyType;  // 0 - 댓글 , 1 - 댓글의 댓글
+//    private int replyType;  // 0 - 댓글 , 1 - 댓글의 댓글
     private int parentId = -1; // -1은 게시물에 달린 댓글 , 그외는 replyId 0~ 댓글에 달린 댓글
     private User userWriterData;
     private String replyContent;
@@ -24,12 +24,14 @@ public class Reply implements Serializable {
     public Reply() {
     }
 
-    public Reply(int replyId, int replyType, User userWriterData, String replyContent, Calendar createdAt) {
+    public Reply(int replyId, int parentId, User userWriterData, String replyContent, Calendar createdAt, Post post, List<Reply> replies) {
         this.replyId = replyId;
-        this.replyType = replyType;
+        this.parentId = parentId;
         this.userWriterData = userWriterData;
         this.replyContent = replyContent;
         this.createdAt = createdAt;
+        this.post = post;
+        this.replies = replies;
     }
 
     public int getReplyId() {
@@ -40,12 +42,12 @@ public class Reply implements Serializable {
         this.replyId = replyId;
     }
 
-    public int getReplyType() {
-        return replyType;
+    public int getParentId() {
+        return parentId;
     }
 
-    public void setReplyType(int replyType) {
-        this.replyType = replyType;
+    public void setParentId(int parentId) {
+        this.parentId = parentId;
     }
 
     public User getUserWriterData() {
@@ -70,5 +72,21 @@ public class Reply implements Serializable {
 
     public void setCreatedAt(Calendar createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
+
+    public List<Reply> getReplies() {
+        return replies;
+    }
+
+    public void setReplies(List<Reply> replies) {
+        this.replies = replies;
     }
 }

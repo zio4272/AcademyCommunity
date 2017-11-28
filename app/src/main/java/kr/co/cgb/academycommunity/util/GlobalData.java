@@ -14,6 +14,8 @@ import kr.co.cgb.academycommunity.data.User;
 
 public class GlobalData {
 
+    public static User loginUserData = null;
+
     public static List<Post> posts = new ArrayList<>();
     public static List<User> users = new ArrayList<>();
 
@@ -21,6 +23,9 @@ public class GlobalData {
     public static void initData() {
 
 
+
+        loginUserData = new User(0, "test", "1234", "천고바", "010-1111-1111", 0,
+                null, "내소개를시작하지..", Calendar.getInstance(), false);
 
         users.clear();
         users.add(new User(0, "test", "1234", "천고바", "010-1111-1111", 0,
