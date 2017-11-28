@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import kr.co.cgb.academycommunity.data.Post;
+import kr.co.cgb.academycommunity.data.Reply;
 import kr.co.cgb.academycommunity.data.User;
 
 
@@ -30,6 +31,11 @@ public class GlobalData {
         users.clear();
         users.add(new User(0, "test", "1234", "천고바", "010-1111-1111", 0,
                 null, "내소개를시작하지..", Calendar.getInstance(), false));
+
+        posts.get(0).replyList.add(new Reply(1, -1, users.get(0), "타이완 남바완", Calendar.getInstance(), posts.get(0) ));
+        posts.get(0).replyList.add(new Reply(2, -1, users.get(0), "타이완 남바뚜", Calendar.getInstance(), posts.get(0) ));
+        posts.get(0).replyList.add(new Reply(3, -1, users.get(0), "타이완 남바뜨리", Calendar.getInstance(), posts.get(0) ));
+
 
         users.add(new User(1, "test1", "1234", "고바형", "010-2222-2222", 0,
                 null, "안녕기모찌..", Calendar.getInstance(), false));

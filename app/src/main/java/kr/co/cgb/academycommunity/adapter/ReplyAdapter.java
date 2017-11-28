@@ -44,55 +44,49 @@ public class ReplyAdapter extends ArrayAdapter<Reply> {
         View row = convertView;
         if (row == null) {
             row = inf.inflate(R.layout.reply_list_item, null);
+        }
 
-            final Reply data = mList.get(position);
+        final Reply data = mList.get(position);
 
-            LinearLayout mainReplyLayout = (LinearLayout) row.findViewById(R.id.mainReplyLayout);
-            ImageView mainReplyProfileImg = (ImageView) row.findViewById(R.id.mainReplyProfileImg);
-            TextView mainReplyUserNameTxt = (TextView) row.findViewById(R.id.mainReplyUserNameTxt);
-            TextView mainReplyContentTxt = (TextView) row.findViewById(R.id.mainReplyContentTxt);
-            TextView mainReplyTimeTxt = (TextView) row.findViewById(R.id.mainReplyTimeTxt);
-            TextView mainReplyLikeTxt = (TextView) row.findViewById(R.id.mainReplyLikeTxt);
-            TextView mainReplyAddTxt = (TextView) row.findViewById(R.id.mainReplyAddTxt);
+        LinearLayout mainReplyLayout = (LinearLayout) row.findViewById(R.id.mainReplyLayout);
+        ImageView mainReplyProfileImg = (ImageView) row.findViewById(R.id.mainReplyProfileImg);
+        TextView mainReplyUserNameTxt = (TextView) row.findViewById(R.id.mainReplyUserNameTxt);
+        TextView mainReplyContentTxt = (TextView) row.findViewById(R.id.mainReplyContentTxt);
+        TextView mainReplyTimeTxt = (TextView) row.findViewById(R.id.mainReplyTimeTxt);
+        TextView mainReplyLikeTxt = (TextView) row.findViewById(R.id.mainReplyLikeTxt);
+        TextView mainReplyAddTxt = (TextView) row.findViewById(R.id.mainReplyAddTxt);
 
-            LinearLayout subReplyLayout = (LinearLayout) row.findViewById(R.id.subReplyLayout);
-            ImageView subReplyProfileImg = (ImageView) row.findViewById(R.id.subReplyProfileImg);
-            TextView subReplyUserNameTxt = (TextView) row.findViewById(R.id.subReplyUserNameTxt);
-            TextView subReplyContentTxt = (TextView) row.findViewById(R.id.subReplyContentTxt);
-            TextView subReplyTimeTxt = (TextView) row.findViewById(R.id.subReplyTimeTxt);
-            TextView subReplyLikeTxt = (TextView) row.findViewById(R.id.subReplyLikeTxt);
-            TextView subReplyAddTxt = (TextView) row.findViewById(R.id.subReplyAddTxt);
+        LinearLayout subReplyLayout = (LinearLayout) row.findViewById(R.id.subReplyLayout);
+        ImageView subReplyProfileImg = (ImageView) row.findViewById(R.id.subReplyProfileImg);
+        TextView subReplyUserNameTxt = (TextView) row.findViewById(R.id.subReplyUserNameTxt);
+        TextView subReplyContentTxt = (TextView) row.findViewById(R.id.subReplyContentTxt);
+        TextView subReplyTimeTxt = (TextView) row.findViewById(R.id.subReplyTimeTxt);
+        TextView subReplyLikeTxt = (TextView) row.findViewById(R.id.subReplyLikeTxt);
+        TextView subReplyAddTxt = (TextView) row.findViewById(R.id.subReplyAddTxt);
 
-            if (data.getParentId() == 0) {
-                // 댓글인 경우
-                mainReplyLayout.setVisibility(View.VISIBLE);
-                subReplyLayout.setVisibility(View.GONE);
+        if (data.getParentId() == -1) {
+            // 댓글인 경우
+            mainReplyLayout.setVisibility(View.VISIBLE);
+            subReplyLayout.setVisibility(View.GONE);
 
-                mainReplyUserNameTxt.setText(data.getUserWriterData().getUserName());
-                mainReplyContentTxt.setText(data.getReplyContent());
+            mainReplyUserNameTxt.setText(data.getUserWriterData().getUserName());
+            mainReplyContentTxt.setText(data.getReplyContent());
 
-                mainReplyAddTxt.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        int originalReplyNum = data.getReplyId();
+            mainReplyAddTxt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int originalReplyNum = data.getReplyId();
 
-                    }
-                });
-            }
+                }
+            });
+        }
 
-
-
-
-
-
-
-
+        else {
+            mainReplyLayout.setVisibility(View.GONE);
+            subReplyLayout.setVisibility(View.VISIBLE);
         }
         return row;
     }
 
-    @Override
-    public int getCount() {
-        return 5;
-    }
+
 }

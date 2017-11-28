@@ -59,7 +59,7 @@ public class PostPopupActivity extends BaseActivity {
 
                 int index = replyList.size();
 
-                if (parentId != 0) {
+                if (parentId != -1) {
 
 
                     for (int i = 0; i < replyList.size(); i++) {
@@ -73,8 +73,8 @@ public class PostPopupActivity extends BaseActivity {
                     }
                 }
 
-                if (parentId == 0){
-                    replyList.add(index, new Reply(replyList.size() + 1, parentId, GlobalData.loginUserData.getUserName(), inputString, Calendar.getInstance(),));
+                if (parentId == -1){
+//                    replyList.add(index, new Reply(replyList.size() + 1, parentId, GlobalData.loginUserData.getUserName(), inputString, Calendar.getInstance(),));
                 }
 
             }
@@ -84,6 +84,8 @@ public class PostPopupActivity extends BaseActivity {
 
     @Override
     public void setValues() {
+
+        replyList.addAll(position.replyList);
         mAdapter = new ReplyAdapter(mContext, replyList);
         replyListView.setAdapter(mAdapter);
 

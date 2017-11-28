@@ -1,6 +1,7 @@
 package kr.co.cgb.academycommunity.data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -16,7 +17,8 @@ public class Post implements Serializable {
 
     private User userWriterData;
 
-    public List<Post> postList;
+    public List<Reply> replyList = new ArrayList<>();
+
 
 
     public Post() {
@@ -59,5 +61,12 @@ public class Post implements Serializable {
 
     public void setUserWriterData(User userWriterData) {
         this.userWriterData = userWriterData;
+    }
+    public List<Reply> getReplyList() {
+        return replyList;
+    }
+
+    public void setReplyList(List<Reply> replyList) {
+        this.replyList = replyList;
     }
 }

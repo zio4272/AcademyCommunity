@@ -1,6 +1,7 @@
 package kr.co.cgb.academycommunity.data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -18,13 +19,13 @@ public class Reply implements Serializable {
     private Calendar createdAt;
 
     public Post post; // 어떤 게시물의 댓글인지 파악.
+    public List<Reply> replies = new ArrayList<>();
 
-    public List<Reply> replies;
 
     public Reply() {
     }
 
-    public Reply(int replyId, int parentId, User userWriterData, String replyContent, Calendar createdAt, Post post, List<Reply> replies) {
+    public Reply(int replyId, int parentId, User userWriterData, String replyContent, Calendar createdAt, Post post) {
         this.replyId = replyId;
         this.parentId = parentId;
         this.userWriterData = userWriterData;
@@ -33,6 +34,7 @@ public class Reply implements Serializable {
         this.post = post;
         this.replies = replies;
     }
+
 
     public int getReplyId() {
         return replyId;
