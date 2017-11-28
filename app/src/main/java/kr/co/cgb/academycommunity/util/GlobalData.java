@@ -32,9 +32,7 @@ public class GlobalData {
         users.add(new User(0, "test", "1234", "천고바", "010-1111-1111", 0,
                 null, "내소개를시작하지..", Calendar.getInstance(), false));
 
-        posts.get(0).replyList.add(new Reply(1, -1, users.get(0), "타이완 남바완", Calendar.getInstance(), posts.get(0) ));
-        posts.get(0).replyList.add(new Reply(2, -1, users.get(0), "타이완 남바뚜", Calendar.getInstance(), posts.get(0) ));
-        posts.get(0).replyList.add(new Reply(3, -1, users.get(0), "타이완 남바뜨리", Calendar.getInstance(), posts.get(0) ));
+
 
 
         users.add(new User(1, "test1", "1234", "고바형", "010-2222-2222", 0,
@@ -43,6 +41,15 @@ public class GlobalData {
         posts.clear();
         posts.add(new Post(0, "타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~", 4, users.get(0)));
         posts.add(new Post(1, "아 왜..", 5, users.get(1)));
+
+        posts.get(0).replyList.add(new Reply(1, -1, users.get(0), "타이완 남바완", Calendar.getInstance(), posts.get(0) ));
+
+        posts.get(0).replyList.get(0).replies.add(new Reply(4, 0, users.get(1), "대댓글입니당1.", Calendar.getInstance(), posts.get(0)));
+        posts.get(0).replyList.get(0).replies.add(new Reply(5, 0, users.get(1), "대댓글입니당2.", Calendar.getInstance(), posts.get(0)));
+        posts.get(0).replyList.get(0).replies.add(new Reply(6, 0, users.get(1), "대댓글입니당3.", Calendar.getInstance(), posts.get(0)));
+
+        posts.get(0).replyList.add(new Reply(2, -1, users.get(0), "타이완 남바뚜", Calendar.getInstance(), posts.get(0) ));
+        posts.get(0).replyList.add(new Reply(3, -1, users.get(0), "타이완 남바뜨리", Calendar.getInstance(), posts.get(0) ));
 
     }
 }

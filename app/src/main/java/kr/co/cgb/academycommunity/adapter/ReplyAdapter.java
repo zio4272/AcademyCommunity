@@ -3,6 +3,7 @@ package kr.co.cgb.academycommunity.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,15 +76,18 @@ public class ReplyAdapter extends ArrayAdapter<Reply> {
             mainReplyAddTxt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int originalReplyNum = data.getReplyId();
-
+                    int mainReply = data.getReplyId();
+                    Log.d("오리지날", mainReply+"" );
                 }
             });
-        }
 
-        else {
+        } else {
             mainReplyLayout.setVisibility(View.GONE);
             subReplyLayout.setVisibility(View.VISIBLE);
+
+            subReplyUserNameTxt.setText(data.getUserWriterData().getUserName());
+            subReplyContentTxt.setText(data.getReplyContent());
+
         }
         return row;
     }

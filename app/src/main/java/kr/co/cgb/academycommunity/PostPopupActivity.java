@@ -1,6 +1,7 @@
 package kr.co.cgb.academycommunity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,33 +51,51 @@ public class PostPopupActivity extends BaseActivity {
     @Override
     public void setupEvents() {
 
+//        sendBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String inputString = replyEdt.getText().toString();
+//
+//                int parentId = Integer.parseInt(replyEdt.getText().toString());
+//
+//                int index = replyList.size();
+//
+//                if (parentId != -1) {
+//
+//
+//                    for (int i = 0; i < replyList.size(); i++) {
+//                        Reply data  = replyList.get(i);
+//                        if (parentId == data.getReplyId()){
+//                            index = i;
+//                        }
+//                        else if (parentId == data.getParentId()) {
+//                            index = i;
+//                        }
+//                    }
+//                }
+//
+//                if (parentId == -1){
+////                    replyList.add(index, new Reply(replyList.size() + 1, parentId, GlobalData.loginUserData.getUserName(), inputString, Calendar.getInstance(),));
+//                }
+//
+//            }
+//        });
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String inputString = replyEdt.getText().toString();
+                String input = replyEdt.getText().toString();
+                Log.d("확인", input);
+//                int index = replyList.size();
 
-                int parentId = Integer.parseInt(replyEdt.getText().toString());
+//                int parentId = Integer.parseInt(replyEdt.getTag().toString());
 
-                int index = replyList.size();
+                replyList.add(new Reply(replyList.size() + 1 , -1 , GlobalData.loginUserData, input, Calendar.getInstance(), position));
 
-                if (parentId != -1) {
+                mAdapter.notifyDataSetChanged();
 
+                replyListView.setSelection(mAdapter.getCount() - 1);
 
-                    for (int i = 0; i < replyList.size(); i++) {
-                        Reply data  = replyList.get(i);
-                        if (parentId == data.getReplyId()){
-                            index = i;
-                        }
-                        else if (parentId == data.getParentId()) {
-                            index = i;
-                        }
-                    }
-                }
-
-                if (parentId == -1){
-//                    replyList.add(index, new Reply(replyList.size() + 1, parentId, GlobalData.loginUserData.getUserName(), inputString, Calendar.getInstance(),));
-                }
-
+                replyEdt.setText("");
             }
         });
 
@@ -85,7 +104,15 @@ public class PostPopupActivity extends BaseActivity {
     @Override
     public void setValues() {
 
-        replyList.addAll(position.replyList);
+        for (Reply mainReply : position.replyList) {
+            replyList.add(mainReply);
+
+            for (Reply subReply : mainReply.replies) {
+                replyList.add(subReply);
+
+            }
+        }
+
         mAdapter = new ReplyAdapter(mContext, replyList);
         replyListView.setAdapter(mAdapter);
 
