@@ -268,13 +268,34 @@
                 android:textColor="#000000"
                 android:textStyle="bold"/>
 
-            <TextView
-                android:id="@+id/subReplyContentTxt"
-                android:layout_width="wrap_content"
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="댓글의 내용이 들어올 자리"
-                android:textSize="12sp"
-                android:layout_marginTop="3dp"/>
+                android:orientation="horizontal">
+
+                <TextView
+                    android:visibility="gone"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:id="@+id/subReplyTagNameTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="이름"
+                    android:textSize="12sp"
+                    android:layout_marginTop="3dp"/>
+
+                <TextView
+                    android:layout_marginLeft="2dp"
+                    android:id="@+id/subReplyContentTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="댓글의 내용이 들어올 자리"
+                    android:textSize="12sp"
+                    android:layout_marginTop="3dp"/>
+
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"

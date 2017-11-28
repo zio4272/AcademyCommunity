@@ -18,6 +18,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import kr.co.cgb.academycommunity.adapter.ReplyAdapter;
 import kr.co.cgb.academycommunity.data.Post;
 import kr.co.cgb.academycommunity.data.Reply;
+import kr.co.cgb.academycommunity.data.User;
 import kr.co.cgb.academycommunity.util.GlobalData;
 import kr.co.cgb.academycommunity.util.TimeAgoUtil;
 
@@ -26,6 +27,8 @@ public class PostPopupActivity extends BaseActivity {
     ReplyAdapter mAdapter;
     List<Reply> replyList = new ArrayList<>();
     public int selectedReply = -1;
+    public int selectSubReply;
+
 
     private android.widget.ImageView profileImg;
     private android.widget.TextView lectureNameTxt;
@@ -37,6 +40,7 @@ public class PostPopupActivity extends BaseActivity {
     private android.widget.EditText replyEdt;
     private android.widget.Button sendBtn;
     Post position;
+    public User tagUser = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,23 +63,40 @@ public class PostPopupActivity extends BaseActivity {
                 String input = replyEdt.getText().toString();
                 Log.d("확인", input);
 
+                int nextId = replyList.size() + 1;
+
                 if (selectedReply != -1) {
 
                     for (Reply reply : position.replyList) {
-                        reply.replies.add(new Reply(replyList.size() + 1, selectedReply, GlobalData.loginUserData, input, Calendar.getInstance(), position));
+                        if (reply.getReplyId() == selectedReply) {
+                            reply.replies.add(new Reply(nextId, selectedReply, GlobalData.loginUserData, input, Calendar.getInstance(), position, tagUser));
+                        }
 
                     }
 
                 } else {
-                    position.replyList.add(new Reply(replyList.size() + 1, selectedReply, GlobalData.loginUserData, input, Calendar.getInstance(), position));
+                    position.replyList.add(new Reply(nextId, selectedReply, GlobalData.loginUserData, input, Calendar.getInstance(), position, tagUser));
                 }
-                replyList.clear();
+
                 replyData();
 
 
                 selectedReply = -1;
                 mAdapter.notifyDataSetChanged();
-                replyListView.setSelection(mAdapter.getCount() - 1);
+
+                int index = 0;
+                for (Reply reply : replyList) {
+                    if (reply.getReplyId() == nextId) {
+                        break;
+                    } else {
+                        index++;
+                    }
+
+                }
+                if (index > 0) {
+                    replyListView.setSelection(index);
+                }
+
 
                 replyEdt.setText("");
             }
@@ -84,6 +105,7 @@ public class PostPopupActivity extends BaseActivity {
     }
 
     void replyData() {
+        replyList.clear();
         for (Reply mainReply : position.replyList) {
             replyList.add(mainReply);
 

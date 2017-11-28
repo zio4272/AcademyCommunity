@@ -21,11 +21,12 @@ public class Reply implements Serializable {
     public Post post; // 어떤 게시물의 댓글인지 파악.
     public List<Reply> replies = new ArrayList<>();
 
+    public User tagUserName = null;
 
     public Reply() {
     }
 
-    public Reply(int replyId, int parentId, User userWriterData, String replyContent, Calendar createdAt, Post post) {
+    public Reply(int replyId, int parentId, User userWriterData, String replyContent, Calendar createdAt, Post post, User tagUserName) {
         this.replyId = replyId;
         this.parentId = parentId;
         this.userWriterData = userWriterData;
@@ -33,8 +34,8 @@ public class Reply implements Serializable {
         this.createdAt = createdAt;
         this.post = post;
         this.replies = replies;
+        this.tagUserName = tagUserName;
     }
-
 
     public int getReplyId() {
         return replyId;
@@ -90,5 +91,13 @@ public class Reply implements Serializable {
 
     public void setReplies(List<Reply> replies) {
         this.replies = replies;
+    }
+
+    public User getTagUserName() {
+        return tagUserName;
+    }
+
+    public void setTagUserName(User tagUserName) {
+        this.tagUserName = tagUserName;
     }
 }
