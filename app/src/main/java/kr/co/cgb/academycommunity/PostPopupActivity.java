@@ -25,6 +25,7 @@ public class PostPopupActivity extends BaseActivity {
 
     ReplyAdapter mAdapter;
     List<Reply> replyList = new ArrayList<>();
+    public int selectedReply = -1;
 
     private android.widget.ImageView profileImg;
     private android.widget.TextView lectureNameTxt;
@@ -51,45 +52,27 @@ public class PostPopupActivity extends BaseActivity {
     @Override
     public void setupEvents() {
 
-//        sendBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String inputString = replyEdt.getText().toString();
-//
-//                int parentId = Integer.parseInt(replyEdt.getText().toString());
-//
-//                int index = replyList.size();
-//
-//                if (parentId != -1) {
-//
-//
-//                    for (int i = 0; i < replyList.size(); i++) {
-//                        Reply data  = replyList.get(i);
-//                        if (parentId == data.getReplyId()){
-//                            index = i;
-//                        }
-//                        else if (parentId == data.getParentId()) {
-//                            index = i;
-//                        }
-//                    }
-//                }
-//
-//                if (parentId == -1){
-////                    replyList.add(index, new Reply(replyList.size() + 1, parentId, GlobalData.loginUserData.getUserName(), inputString, Calendar.getInstance(),));
-//                }
-//
-//            }
-//        });
+
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String input = replyEdt.getText().toString();
                 Log.d("확인", input);
-//                int index = replyList.size();
 
-//                int parentId = Integer.parseInt(replyEdt.getTag().toString());
+                if (selectedReply != -1) {
 
-                replyList.add(new Reply(replyList.size() + 1 , -1 , GlobalData.loginUserData, input, Calendar.getInstance(), position));
+                    for (Reply reply : position.replyList) {
+                        reply.replies.clear();
+                        reply.replies.add(new Reply(replyList.size() + 1, selectedReply, GlobalData.loginUserData, input, Calendar.getInstance(), position));
+
+                    }
+
+                } else {
+                    position.replyList.clear();
+                    position.replyList.add(new Reply(replyList.size() + 1, selectedReply, GlobalData.loginUserData, input, Calendar.getInstance(), position));
+                }
+
+                replyData();
 
                 mAdapter.notifyDataSetChanged();
 
@@ -101,9 +84,7 @@ public class PostPopupActivity extends BaseActivity {
 
     }
 
-    @Override
-    public void setValues() {
-
+    void replyData() {
         for (Reply mainReply : position.replyList) {
             replyList.add(mainReply);
 
@@ -113,6 +94,13 @@ public class PostPopupActivity extends BaseActivity {
             }
         }
 
+
+    }
+
+    @Override
+    public void setValues() {
+
+        replyData();
         mAdapter = new ReplyAdapter(mContext, replyList);
         replyListView.setAdapter(mAdapter);
 

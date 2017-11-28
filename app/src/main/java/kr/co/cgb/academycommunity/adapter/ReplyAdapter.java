@@ -16,6 +16,7 @@ import org.w3c.dom.Text;
 
 import java.util.List;
 
+import kr.co.cgb.academycommunity.PostPopupActivity;
 import kr.co.cgb.academycommunity.R;
 import kr.co.cgb.academycommunity.data.Post;
 import kr.co.cgb.academycommunity.data.Reply;
@@ -78,6 +79,8 @@ public class ReplyAdapter extends ArrayAdapter<Reply> {
                 public void onClick(View view) {
                     int mainReply = data.getReplyId();
                     Log.d("오리지날", mainReply+"" );
+
+                    ((PostPopupActivity)mContext).selectedReply = mainReply;
                 }
             });
 
