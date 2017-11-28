@@ -62,20 +62,19 @@ public class PostPopupActivity extends BaseActivity {
                 if (selectedReply != -1) {
 
                     for (Reply reply : position.replyList) {
-                        reply.replies.clear();
                         reply.replies.add(new Reply(replyList.size() + 1, selectedReply, GlobalData.loginUserData, input, Calendar.getInstance(), position));
 
                     }
 
                 } else {
-                    position.replyList.clear();
                     position.replyList.add(new Reply(replyList.size() + 1, selectedReply, GlobalData.loginUserData, input, Calendar.getInstance(), position));
                 }
-
+                replyList.clear();
                 replyData();
 
-                mAdapter.notifyDataSetChanged();
 
+                selectedReply = -1;
+                mAdapter.notifyDataSetChanged();
                 replyListView.setSelection(mAdapter.getCount() - 1);
 
                 replyEdt.setText("");
