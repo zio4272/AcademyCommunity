@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,10 +67,19 @@ public class PostAdapter extends ArrayAdapter<Post> {
             Glide.with(mContext).load(data.getUserWriterData().getUserProfileUrl()).into(profileImg);
 
             writerNameTxt.setText(data.getUserWriterData().getUserName());
-            contentTxt.setText(data.getPostContent());
+
 
             String minuteAgo = TimeAgoUtil.getTimeAgoString(data.getCreatedAt());
             writeTimeTxt.setText(minuteAgo);
+
+//            글자수 25 제한 뒤는 ...으로 표기
+            if (data.getPostContent().length() > 25) {
+                String contentHTML = data.getPostContent().substring(0,25) + "...";
+                contentTxt.setText(Html.fromHtml(contentHTML));
+            }
+            else {
+                contentTxt.setText(data.getPostContent());
+            }
 
 
 
