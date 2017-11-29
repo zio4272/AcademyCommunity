@@ -37,6 +37,7 @@ public class User implements Serializable {
         this.userMyInfo = userMyInfo;
         this.birthDay = birthDay;
         this.isTeacher = isTeacher;
+        this.listenLecture = listenLecture;
     }
 
     public int getId() {
@@ -117,5 +118,13 @@ public class User implements Serializable {
 
     public void setTeacher(boolean teacher) {
         isTeacher = teacher;
+    }
+
+    public List<Lecture> getListenLecture() {
+        return listenLecture;
+    }
+
+    public void setListenLecture(List<Lecture> listenLecture) {
+        this.listenLecture = listenLecture;
     }
 }
