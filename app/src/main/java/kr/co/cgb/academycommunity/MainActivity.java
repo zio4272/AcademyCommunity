@@ -8,7 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
+
+import org.json.JSONObject;
+
+import kr.co.cgb.academycommunity.util.ServerUtil;
 
 public class MainActivity extends BaseActivity {
 
@@ -44,6 +49,8 @@ public class MainActivity extends BaseActivity {
                 AlertDialog.Builder loginPopup = new AlertDialog.Builder(mContext);
                 LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
                 View layout = inflater.inflate(R.layout.popup_login_item, null);
+                final EditText idEdt = (EditText) layout.findViewById(R.id.idEdt);
+                final EditText pwEdt = (EditText) layout.findViewById(R.id.pwEdt);
 
                 loginPopup.setTitle("로그인하시겠습니까?");
                 loginPopup.setView(layout);
@@ -52,6 +59,12 @@ public class MainActivity extends BaseActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
+                        ServerUtil.login(mContext, idEdt.getText().toString(), pwEdt.getText().toString(), new ServerUtil.JsonResponseHandler() {
+                            @Override
+                            public void onResponse(JSONObject json) {
+
+                            }
+                        });
                         Intent intent = new Intent(mContext, IndexActivity.class);
                         startActivity(intent);
 

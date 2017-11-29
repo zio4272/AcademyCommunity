@@ -1,5 +1,8 @@
 package kr.co.cgb.academycommunity.data;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -38,7 +41,32 @@ public class User implements Serializable {
         this.birthDay = birthDay;
         this.isTeacher = isTeacher;
         this.listenLecture = listenLecture;
+
+
     }
+
+    public static User getUserFromJson(JSONObject jsonObject) {
+        User u = new User();
+
+        try {
+            u.id = jsonObject.getInt("id");
+            u.userLoginId = jsonObject.getString("userId");
+            u.userLoginPw = jsonObject.getString("userPw");
+            u.userName = jsonObject.getString("username");
+            u.userPhoneNum = jsonObject.getString("userphonenum");
+            u.userGender = jsonObject.getInt("usergender");
+            u.userProfileUrl = jsonObject.getString("userprofileimg");
+            u.userMyInfo = jsonObject.getString("usermyinfo");
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        return u;
+    }
+
 
     public int getId() {
         return id;

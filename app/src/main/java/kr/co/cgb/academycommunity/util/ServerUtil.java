@@ -25,9 +25,53 @@ public class ServerUtil {
     }
 
 
+    public static void idCheck(final Context context, final String loginId, final JsonResponseHandler handler) {
+//        기능에 따라 매번 주소를 다르게 적어줘야함.
+        String url = BASE_URL + "cgb/user_id_check";
+
+//        기능을 사용하기 위해 필요한 데이터를 담는 부분.
+
+        Map<String, String> data = new HashMap<String, String>();
+        data.put("login_id", loginId);
+
+
+        AsyncHttpRequest.get(context, url, data, true, new AsyncHttpRequest.HttpResponseHandler() {
+
+            @Override
+            public boolean onPrepare() {
+                return true;
+            }
+
+            @Override
+            public void onResponse(String response) {
+                System.out.println(response);
+                try {
+                    JSONObject json = new JSONObject(response);
+
+                    if (handler != null)
+                        handler.onResponse(json);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+
+            @Override
+            public void onCancelled() {
+
+            }
+
+        });
+    }
+
+
     public static void login(final Context context, final String loginId, final String loginPw, final JsonResponseHandler handler) {
 //        기능에 따라 매번 주소를 다르게 적어줘야함.
-        String url = BASE_URL + "tje/login_user";
+        String url = BASE_URL + "cgb/login_user";
 
 //        기능을 사용하기 위해 필요한 데이터를 담는 부분.
 
@@ -70,9 +114,9 @@ public class ServerUtil {
     }
 
 
-    public static void signup(final Context context, final String loginId, final String loginPw, final String username, final int gender, final String phonenum, final String profileurl, final String myinfo, final boolean isteacher, final JsonResponseHandler handler) {
+    public static void signup(final Context context, final String loginId, final String loginPw, final String username, final int gender, final String phonenum, final String profileurl, final String myinfo, final JsonResponseHandler handler) {
 //        기능에 따라 매번 주소를 다르게 적어줘야함.
-        String url = BASE_URL + "tje/get_signup_user";
+        String url = BASE_URL + "cgb/get_signup_user";
 
 //        기능을 사용하기 위해 필요한 데이터를 담는 부분.
 
@@ -82,9 +126,9 @@ public class ServerUtil {
         data.put("user_name", username);
         data.put("user_gender", gender + "");
         data.put("user_phonenum", phonenum);
-        data.put("user_profileimg", profileurl);
+        data.put("user_profileimg", null);
         data.put("user_myinfo", myinfo);
-        data.put("user_isteacher", isteacher + "");
+//        data.put("user_isteacher", isteacher + "");
 
 
         AsyncHttpRequest.get(context, url, data, true, new AsyncHttpRequest.HttpResponseHandler() {

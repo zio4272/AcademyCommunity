@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import kr.co.cgb.academycommunity.util.ServerUtil;
@@ -155,15 +156,26 @@ public class SignupActivity extends BaseActivity {
         idCheckBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String inputId = idEdt.getText().toString();
-                if (inputId.equals("user")) { // 서버연동해야함
-                    Toast.makeText(mContext, "이미 사용중인 아이디입니다.", Toast.LENGTH_SHORT).show();
-                } else if (inputId.length() == 0) {
-                    Toast.makeText(mContext, "아이디를 입력해주세요.", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(mContext, "사용해도 좋습니다.", Toast.LENGTH_SHORT).show();
-                    isIdOk = true;
-                }
+
+                final String inputId = idEdt.getText().toString();
+
+                ServerUtil.idCheck(mContext, inputId, new ServerUtil.JsonResponseHandler() {
+                    @Override
+                    public void onResponse(JSONObject json) {
+                        json.toString();
+
+                    }
+                });
+
+//                String inputId = idEdt.getText().toString();
+//                if (inputId.equals("user")) { // 서버연동해야함
+//                    Toast.makeText(mContext, "이미 사용중인 아이디입니다.", Toast.LENGTH_SHORT).show();
+//                } else if (inputId.length() == 0) {
+//                    Toast.makeText(mContext, "아이디를 입력해주세요.", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(mContext, "사용해도 좋습니다.", Toast.LENGTH_SHORT).show();
+//                    isIdOk = true;
+//                }
             }
         });
 
@@ -186,11 +198,9 @@ public class SignupActivity extends BaseActivity {
                     Toast.makeText(mContext, "성별을 선택해주세요.", Toast.LENGTH_SHORT).show();
                 } else if (inputPw.length() >= 4 && inputPw.equals(inputCheckPw) && isIdOk) {
 
-                    ServerUtil.signup(mContext, idEdt.getText().toString(), pwEdt.getText().toString(), nameEdt.getText().toString(), gender, phoneEdt.getText().toString(), null, MyInfoEdt.getText().toString(), false, new ServerUtil.JsonResponseHandler() {
+                    ServerUtil.signup(mContext, idEdt.getText().toString(), pwEdt.getText().toString(), nameEdt.getText().toString(), gender, phoneEdt.getText().toString(), null, MyInfoEdt.getText().toString(), new ServerUtil.JsonResponseHandler() {
                         @Override
                         public void onResponse(JSONObject json) {
-
-                            Log.d("확인좀요", json+"");
 
                         }
                     });
