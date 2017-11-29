@@ -42,6 +42,18 @@ public class GlobalData {
         posts.clear();
         posts.add(new Post(0, "타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~", 4, users.get(0)));
         posts.add(new Post(1, "아 왜..", 5, users.get(1)));
+        posts.add(new Post(0, "타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~", 4, users.get(0)));
+        posts.add(new Post(1, "아 왜..", 5, users.get(1)));
+        posts.add(new Post(0, "타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~", 4, users.get(0)));
+        posts.add(new Post(1, "아 왜..", 5, users.get(1)));
+        posts.add(new Post(0, "타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~", 4, users.get(0)));
+        posts.add(new Post(1, "아 왜..", 5, users.get(1)));
+        posts.add(new Post(0, "타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~", 4, users.get(0)));
+        posts.add(new Post(1, "아 왜..", 5, users.get(1)));
+        posts.add(new Post(0, "타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~", 4, users.get(0)));
+        posts.add(new Post(1, "아 왜..", 5, users.get(1)));
+        posts.add(new Post(0, "타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~타이완 남바완~", 4, users.get(0)));
+        posts.add(new Post(1, "아 왜..", 5, users.get(1)));
 
         posts.get(0).replyList.add(new Reply(1, -1, users.get(0), "타이완 남바완", Calendar.getInstance(), posts.get(0), users.get(1)));
 

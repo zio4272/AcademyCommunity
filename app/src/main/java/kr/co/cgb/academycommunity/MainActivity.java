@@ -68,7 +68,7 @@ public class MainActivity extends BaseActivity {
 
                                 try {
                                     if (loginIdStr.equals(json.getJSONObject("result").getString("loginId")) && loginPwStr.equals(json.getJSONObject("result").getString("loginPw"))){
-                                        Toast.makeText(mContext, "로그인 가능한 아이디 입니다.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(mContext, "로그인 되었습니다..", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(mContext, IndexActivity.class);
                                         startActivity(intent);
                                     }
