@@ -1,7 +1,6 @@
 package kr.co.cgb.academycommunity.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Html;
@@ -15,14 +14,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import kr.co.cgb.academycommunity.R;
 import kr.co.cgb.academycommunity.data.Post;
-import kr.co.cgb.academycommunity.util.GlobalData;
 import kr.co.cgb.academycommunity.util.TimeAgoUtil;
 
 /**
@@ -64,7 +60,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
             Post data = mList.get(position);
 
 
-            Glide.with(mContext).load(data.getUserWriterData().getUserProfileUrl()).into(profileImg);
+            Glide.with(mContext).load(data.getUserWriterData().getUserProfileImg()).into(profileImg);
 
             writerNameTxt.setText(data.getUserWriterData().getUserName());
 

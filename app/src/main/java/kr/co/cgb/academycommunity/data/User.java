@@ -15,31 +15,31 @@ import java.util.List;
 public class User implements Serializable {
 
     private int id;
-    private String userLoginId;
-    private String userLoginPw;
+    private String loginId;
+    private String loginPw;
     private String userName;
     private String userPhoneNum;
     private int userGender; // 0 남자 , 1 여자
-    private String userProfileUrl;
+    private String userProfileImg;
     private String userMyInfo;
     private Calendar birthDay;
-    private boolean isTeacher;  // 강사인지 아닌지 여부 (추후 출결 관리)
+    private boolean UserIsTeacher;  // 강사인지 아닌지 여부 (추후 출결 관리)
     public List<Lecture> listenLecture = new ArrayList<>();
 
     public User() {
     }
 
-    public User(int id, String userLoginId, String userLoginPw, String userName, String userPhoneNum, int userGender, String userProfileUrl, String userMyInfo, Calendar birthDay, boolean isTeacher) {
+    public User(int id, String loginId, String loginPw, String userName, String userPhoneNum, int userGender, String userProfileImg, String userMyInfo, Calendar birthDay, boolean UserIsTeacher) {
         this.id = id;
-        this.userLoginId = userLoginId;
-        this.userLoginPw = userLoginPw;
+        this.loginId = loginId;
+        this.loginPw = loginPw;
         this.userName = userName;
         this.userPhoneNum = userPhoneNum;
         this.userGender = userGender;
-        this.userProfileUrl = userProfileUrl;
+        this.userProfileImg = userProfileImg;
         this.userMyInfo = userMyInfo;
         this.birthDay = birthDay;
-        this.isTeacher = isTeacher;
+        this.UserIsTeacher = UserIsTeacher;
         this.listenLecture = listenLecture;
 
 
@@ -50,12 +50,12 @@ public class User implements Serializable {
 
         try {
             u.id = jsonObject.getInt("id");
-            u.userLoginId = jsonObject.getString("userId");
-            u.userLoginPw = jsonObject.getString("userPw");
+            u.loginId = jsonObject.getString("userId");
+            u.loginPw = jsonObject.getString("userPw");
             u.userName = jsonObject.getString("username");
             u.userPhoneNum = jsonObject.getString("userphonenum");
             u.userGender = jsonObject.getInt("usergender");
-            u.userProfileUrl = jsonObject.getString("userprofileimg");
+            u.userProfileImg = jsonObject.getString("userprofileimg");
             u.userMyInfo = jsonObject.getString("usermyinfo");
 
 
@@ -76,20 +76,20 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getUserLoginId() {
-        return userLoginId;
+    public String getLoginId() {
+        return loginId;
     }
 
-    public void setUserLoginId(String userLoginId) {
-        this.userLoginId = userLoginId;
+    public void setLoginId(String loginId) {
+        this.loginId = loginId;
     }
 
-    public String getUserLoginPw() {
-        return userLoginPw;
+    public String getLoginPw() {
+        return loginPw;
     }
 
-    public void setUserLoginPw(String userLoginPw) {
-        this.userLoginPw = userLoginPw;
+    public void setLoginPw(String loginPw) {
+        this.loginPw = loginPw;
     }
 
     public String getUserName() {
@@ -116,12 +116,12 @@ public class User implements Serializable {
         this.userGender = userGender;
     }
 
-    public String getUserProfileUrl() {
-        return userProfileUrl;
+    public String getUserProfileImg() {
+        return userProfileImg;
     }
 
-    public void setUserProfileUrl(String userProfileUrl) {
-        this.userProfileUrl = userProfileUrl;
+    public void setUserProfileImg(String userProfileImg) {
+        this.userProfileImg = userProfileImg;
     }
 
     public String getUserMyInfo() {
@@ -140,12 +140,12 @@ public class User implements Serializable {
         this.birthDay = birthDay;
     }
 
-    public boolean isTeacher() {
-        return isTeacher;
+    public boolean isUserIsTeacher() {
+        return UserIsTeacher;
     }
 
-    public void setTeacher(boolean teacher) {
-        isTeacher = teacher;
+    public void setUserIsTeacher(boolean userIsTeacher) {
+        UserIsTeacher = userIsTeacher;
     }
 
     public List<Lecture> getListenLecture() {

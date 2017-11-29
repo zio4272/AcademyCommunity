@@ -29,11 +29,11 @@ public class ContextUtil {
 
 
         pref.edit().putInt(USER_ID, user.getId()).apply();
-        pref.edit().putString(USER_LOGIN_ID, user.getUserLoginId());
+        pref.edit().putString(USER_LOGIN_ID, user.getLoginId());
         pref.edit().putString(USER_NAME, user.getUserName()).apply();
         pref.edit().putInt(USER_GENDER, user.getUserGender()).apply();
         pref.edit().putString(USER_PHONE_NUM, user.getUserPhoneNum()).apply();
-        pref.edit().putString(USER_PROFILE_IMG, user.getUserProfileUrl()).apply();
+        pref.edit().putString(USER_PROFILE_IMG, user.getUserProfileImg()).apply();
         pref.edit().putString(USER_MY_INFO, user.getUserMyInfo()).apply();
     }
 
@@ -47,7 +47,7 @@ public class ContextUtil {
 //            사용자의 숫자 아이디가 1이상이므로, 로그인이 되어있다고 판단.
 
             loginUser.setId(pref.getInt(USER_ID, 0));
-            loginUser.setUserLoginId(pref.getString(USER_LOGIN_ID, ""));
+            loginUser.setLoginId(pref.getString(USER_LOGIN_ID, ""));
             loginUser.setUserName(pref.getString(USER_NAME, ""));
 
 
@@ -67,7 +67,7 @@ public class ContextUtil {
 
             loginUser.setUserGender(pref.getInt(USER_GENDER, 0));
             loginUser.setUserPhoneNum(pref.getString(USER_PHONE_NUM, ""));
-            loginUser.setUserProfileUrl(pref.getString(USER_PROFILE_IMG, ""));
+            loginUser.setUserProfileImg(pref.getString(USER_PROFILE_IMG, ""));
             loginUser.setUserMyInfo(pref.getString(USER_MY_INFO, ""));
 
 

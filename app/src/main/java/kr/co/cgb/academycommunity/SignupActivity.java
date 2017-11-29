@@ -162,7 +162,17 @@ public class SignupActivity extends BaseActivity {
                 ServerUtil.idCheck(mContext, inputId, new ServerUtil.JsonResponseHandler() {
                     @Override
                     public void onResponse(JSONObject json) {
-                        json.toString();
+                        try {
+                            if (json.getString("result").equals("중복입니다") ){
+                                Toast.makeText(mContext, "이미 존재하는 아이디 입니다.", Toast.LENGTH_SHORT).show();
+                            }
+                            else if (json.getString("result").equals("사용가능합니다.")){
+                                Toast.makeText(mContext, "사용 가능한 아이디 입니다.", Toast.LENGTH_SHORT).show();
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
                     }
                 });
@@ -201,6 +211,7 @@ public class SignupActivity extends BaseActivity {
                     ServerUtil.signup(mContext, idEdt.getText().toString(), pwEdt.getText().toString(), nameEdt.getText().toString(), gender, phoneEdt.getText().toString(), null, MyInfoEdt.getText().toString(), new ServerUtil.JsonResponseHandler() {
                         @Override
                         public void onResponse(JSONObject json) {
+                            json.toString();
 
                         }
                     });
