@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import kr.co.cgb.academycommunity.util.ServerUtil;
@@ -59,16 +60,31 @@ public class MainActivity extends BaseActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
-                        ServerUtil.login(mContext, idEdt.getText().toString(), pwEdt.getText().toString(), new ServerUtil.JsonResponseHandler() {
+                        final String loginIdStr = idEdt.getText().toString();
+                        final String loginPwStr = pwEdt.getText().toString();
+                        ServerUtil.login(mContext, loginIdStr, loginPwStr, new ServerUtil.JsonResponseHandler() {
                             @Override
                             public void onResponse(JSONObject json) {
 
+                                try {
+                                    if (loginIdStr.equals(json.getJSONObject("result").getString("loginId")) && loginPwStr.equals(json.getJSONObject("result").getString("loginPw"))){
+                                        Toast.makeText(mContext, "로그인 가능한 아이디 입니다.", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(mContext, IndexActivity.class);
+                                        startActivity(intent);
+                                    }
+                                    else if (json.getString("result").equals("로그인실패")){
+                                        Toast.makeText(mContext, "아이디 또는 비밀번호를 확인 해주세요.", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
                             }
                         });
-                        Intent intent = new Intent(mContext, IndexActivity.class);
-                        startActivity(intent);
 
-                        Toast.makeText(mContext, "로그인성공", Toast.LENGTH_SHORT).show();
+
+
 
                     }
                 });

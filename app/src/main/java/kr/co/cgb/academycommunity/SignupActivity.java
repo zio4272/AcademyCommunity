@@ -163,11 +163,11 @@ public class SignupActivity extends BaseActivity {
                     @Override
                     public void onResponse(JSONObject json) {
                         try {
-                            if (json.getString("result").equals("중복입니다") ){
+                            if (json.getString("result").equals("중복입니다")) {
                                 Toast.makeText(mContext, "이미 존재하는 아이디 입니다.", Toast.LENGTH_SHORT).show();
-                            }
-                            else if (json.getString("result").equals("사용가능합니다.")){
+                            } else if (json.getString("result").equals("사용가능합니다.")) {
                                 Toast.makeText(mContext, "사용 가능한 아이디 입니다.", Toast.LENGTH_SHORT).show();
+                                isIdOk = true;
 
                             }
                         } catch (JSONException e) {
@@ -211,13 +211,13 @@ public class SignupActivity extends BaseActivity {
                     ServerUtil.signup(mContext, idEdt.getText().toString(), pwEdt.getText().toString(), nameEdt.getText().toString(), gender, phoneEdt.getText().toString(), null, MyInfoEdt.getText().toString(), new ServerUtil.JsonResponseHandler() {
                         @Override
                         public void onResponse(JSONObject json) {
-                            json.toString();
 
                         }
                     });
 
                     Intent intent = new Intent(mContext, IndexActivity.class);
                     startActivity(intent);
+                    finish();
                     Toast.makeText(mContext, "회원가입 성공", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(mContext, "회원가입에 실패했습니다.", Toast.LENGTH_SHORT).show();
