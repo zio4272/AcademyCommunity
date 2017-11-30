@@ -160,7 +160,7 @@ public class ServerUtil {
     }
 
 
-    public static void signup(final Context context, final String loginId, final String loginPw, final String username, final int gender, final String phonenum, final String profileurl, final String myinfo, final JsonResponseHandler handler) {
+    public static void signup(final Context context, final String loginId, final String loginPw, final String username, final int gender, final String phonenum, final String profileurl, final String myinfo, final int lectureId, final JsonResponseHandler handler) {
 //        기능에 따라 매번 주소를 다르게 적어줘야함.
         String url = BASE_URL + "cgb/get_signup_user";
 
@@ -174,6 +174,7 @@ public class ServerUtil {
         data.put("user_phonenum", phonenum);
         data.put("user_profileimg", profileurl);
         data.put("user_myinfo", myinfo);
+        data.put("lecture_id", lectureId+"");
 //        data.put("user_isteacher", isteacher + "");
 
 

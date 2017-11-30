@@ -23,7 +23,7 @@ import kr.co.cgb.academycommunity.util.ServerUtil;
 public class SignupActivity extends BaseActivity {
 
     boolean isIdOk = false;
-
+    int lectureNum = 0;
     private android.widget.EditText idEdt;
     private android.widget.TextView idCheckBtn;
     private android.widget.EditText pwEdt;
@@ -209,7 +209,8 @@ public class SignupActivity extends BaseActivity {
                     Toast.makeText(mContext, "성별을 선택해주세요.", Toast.LENGTH_SHORT).show();
                 } else if (inputPw.length() >= 4 && inputPw.equals(inputCheckPw) && isIdOk) {
 
-                    ServerUtil.signup(mContext, idEdt.getText().toString(), pwEdt.getText().toString(), nameEdt.getText().toString(), gender, phoneEdt.getText().toString(), null, MyInfoEdt.getText().toString(), new ServerUtil.JsonResponseHandler() {
+
+                    ServerUtil.signup(mContext, idEdt.getText().toString(), pwEdt.getText().toString(), nameEdt.getText().toString(), gender, phoneEdt.getText().toString(), null, MyInfoEdt.getText().toString(), lectureNum, new ServerUtil.JsonResponseHandler() {
                         @Override
                         public void onResponse(JSONObject json) {
 
@@ -231,7 +232,7 @@ public class SignupActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(mContext, "클릭된 줄 :" + i, Toast.LENGTH_SHORT).show();
-
+                lectureNum = i;
             }
 
             @Override
