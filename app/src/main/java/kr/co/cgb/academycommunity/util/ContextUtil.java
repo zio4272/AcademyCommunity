@@ -25,15 +25,6 @@ public class ContextUtil {
     private static final String USER_MY_INFO = "USER_MY_INFO";
     private static final String USER_ISTEACHER = "USER_ISTEACHER";
 
-    private static final String POST_ID = "POST_ID";
-    private static final String POST_CONTENT = "POST_CONTENT";
-    private static final String POST_DATE = "POST_DATE";
-    private static final String POST_WRITER = "POST_WRITER";
-
-
-
-
-
 
     public static void login(Context context, User user) {
         SharedPreferences pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
@@ -48,7 +39,7 @@ public class ContextUtil {
         pref.edit().putString(USER_MY_INFO, user.getUserMyInfo()).apply();
     }
 
-    public static User getLoginUserInfo (Context context) {
+    public static User getLoginUserInfo(Context context) {
         User loginUser = new User();
 
         SharedPreferences pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
@@ -82,8 +73,7 @@ public class ContextUtil {
             loginUser.setUserMyInfo(pref.getString(USER_MY_INFO, ""));
 
 
-        }
-        else {
+        } else {
 //            사용자 숫자 아이디가 0이거나 그보다 작으므로, 로그아웃 상태라고 판단.
 //            로그아웃일 경우 : 사용자 정보에 null
             loginUser = null;
@@ -91,19 +81,6 @@ public class ContextUtil {
 
 
         return loginUser;
-    }
-
-    public static Post getPost (Context context) {
-        Post getPost = new Post();
-
-        SharedPreferences pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
-
-        getPost.setId(pref.getInt(POST_ID, 0));
-        getPost.setPostContent(pref.getString(POST_CONTENT, ""));
-        getPost.setPostDate(pref.getString(POST_DATE, ""));
-
-
-        return getPost;
     }
 
 

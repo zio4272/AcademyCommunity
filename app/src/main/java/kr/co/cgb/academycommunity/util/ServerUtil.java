@@ -172,7 +172,7 @@ public class ServerUtil {
         data.put("user_name", username);
         data.put("user_gender", gender + "");
         data.put("user_phonenum", phonenum);
-        data.put("user_profileimg", null);
+        data.put("user_profileimg", profileurl);
         data.put("user_myinfo", myinfo);
 //        data.put("user_isteacher", isteacher + "");
 

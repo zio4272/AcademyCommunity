@@ -50,13 +50,13 @@ public class User implements Serializable {
 
         try {
             u.id = jsonObject.getInt("id");
-            u.loginId = jsonObject.getString("userId");
-            u.loginPw = jsonObject.getString("userPw");
-            u.userName = jsonObject.getString("username");
-            u.userPhoneNum = jsonObject.getString("userphonenum");
-            u.userGender = jsonObject.getInt("usergender");
-            u.userProfileImg = jsonObject.getString("userprofileimg");
-            u.userMyInfo = jsonObject.getString("usermyinfo");
+            u.loginId = jsonObject.getString("loginId");
+            u.loginPw = jsonObject.getString("loginPw");
+            u.userName = jsonObject.getString("userName");
+            u.userPhoneNum = jsonObject.getString("userPhoneNum");
+            u.userGender = jsonObject.getInt("userGender");
+            u.userProfileImg = jsonObject.getString("userProfileImg");
+            u.userMyInfo = jsonObject.getString("userMyInfo");
 
 
         } catch (JSONException e) {

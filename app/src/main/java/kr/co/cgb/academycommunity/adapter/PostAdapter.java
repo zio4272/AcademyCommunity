@@ -63,7 +63,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
             Post data = mList.get(position);
 
 
-//            Glide.with(mContext).load(data.getUserWriterData().getUserProfileImg()).into(profileImg);
+            Glide.with(mContext).load(data.getUserWriterData().getUserProfileImg()).into(profileImg);
 
               writerNameTxt.setText(data.getUserWriterData().getUserName());
 

@@ -12,6 +12,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +24,7 @@ import kr.co.cgb.academycommunity.R;
 import kr.co.cgb.academycommunity.adapter.PostAdapter;
 import kr.co.cgb.academycommunity.data.Post;
 import kr.co.cgb.academycommunity.util.GlobalData;
+import kr.co.cgb.academycommunity.util.ServerUtil;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
@@ -42,12 +47,39 @@ public class PostFragment extends Fragment {
         return v;
     }
 
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setupEvents();
         setValues();
         GlobalData.initData();
+        getPostFromJson();
+    }
+
+    void getPostFromJson() {
+        ServerUtil.getPost(getActivity(), new ServerUtil.JsonResponseHandler() {
+            @Override
+            public void onResponse(JSONObject json) {
+
+                try {
+                    postList.clear();
+                    JSONArray jsonArray = json.getJSONArray("result");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        Post post = Post.getPostFromJson(jsonArray.getJSONObject(i));
+                        postList.add(post);
+//                        TODO - userProfileImg 없다고 뜨는거 해결 해야함
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                mAdapter.notifyDataSetChanged();
+
+            }
+        });
+
     }
 
     private void setValues() {
