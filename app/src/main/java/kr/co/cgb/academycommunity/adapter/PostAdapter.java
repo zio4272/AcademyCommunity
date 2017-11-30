@@ -14,6 +14,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import org.json.JSONObject;
+import org.json.JSONStringer;
+
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -60,9 +63,9 @@ public class PostAdapter extends ArrayAdapter<Post> {
             Post data = mList.get(position);
 
 
-            Glide.with(mContext).load(data.getUserWriterData().getUserProfileImg()).into(profileImg);
+//            Glide.with(mContext).load(data.getUserWriterData().getUserProfileImg()).into(profileImg);
 
-            writerNameTxt.setText(data.getUserWriterData().getUserName());
+              writerNameTxt.setText(data.getUserWriterData().getUserName());
 
 //            String minuteAgo = TimeAgoUtil.getTimeAgoString(data.getPostDate());
 //            writeTimeTxt.setText(minuteAgo);

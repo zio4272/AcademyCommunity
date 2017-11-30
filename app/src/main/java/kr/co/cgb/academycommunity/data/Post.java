@@ -19,19 +19,19 @@ public class Post implements Serializable {
     private String postContent;
     private String postDate;
 
-    public static User userWriterData;
+    public User userWriterData;
 
     public List<Reply> replyList = new ArrayList<>();
 
     public static Post getPostFromJson(JSONObject jsonObject) {
         Post p = new Post();
-        userWriterData = new User();
+
 
         try {
             p.id = jsonObject.getInt("id");
             p.postContent = jsonObject.getString("postContent");
             p.postDate = jsonObject.getString("postDate");
-            userWriterData.setUserName(jsonObject.getString("userName"));
+            p.userWriterData = User.getUserFromJson(jsonObject);
 
 
         } catch (JSONException e) {

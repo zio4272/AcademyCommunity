@@ -3,6 +3,9 @@ package kr.co.cgb.academycommunity.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import org.json.JSONObject;
+
+import kr.co.cgb.academycommunity.data.Post;
 import kr.co.cgb.academycommunity.data.User;
 
 /**
@@ -21,6 +24,14 @@ public class ContextUtil {
     private static final String USER_PROFILE_IMG = "USER_PROFILE_IMG";
     private static final String USER_MY_INFO = "USER_MY_INFO";
     private static final String USER_ISTEACHER = "USER_ISTEACHER";
+
+    private static final String POST_ID = "POST_ID";
+    private static final String POST_CONTENT = "POST_CONTENT";
+    private static final String POST_DATE = "POST_DATE";
+    private static final String POST_WRITER = "POST_WRITER";
+
+
+
 
 
 
@@ -80,6 +91,19 @@ public class ContextUtil {
 
 
         return loginUser;
+    }
+
+    public static Post getPost (Context context) {
+        Post getPost = new Post();
+
+        SharedPreferences pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
+
+        getPost.setId(pref.getInt(POST_ID, 0));
+        getPost.setPostContent(pref.getString(POST_CONTENT, ""));
+        getPost.setPostDate(pref.getString(POST_DATE, ""));
+
+
+        return getPost;
     }
 
 

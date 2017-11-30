@@ -9,7 +9,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.json.JSONObject;
+
 import kr.co.cgb.academycommunity.adapter.IndexViewPagerAdapter;
+import kr.co.cgb.academycommunity.util.ServerUtil;
 
 public class IndexActivity extends BaseActivity {
 
@@ -54,6 +57,13 @@ public class IndexActivity extends BaseActivity {
 
     @Override
     public void setValues() {
+
+        ServerUtil.getPost(mContext, new ServerUtil.JsonResponseHandler() {
+            @Override
+            public void onResponse(JSONObject json) {
+
+            }
+        });
 
 
         mainViewPager.setAdapter(new IndexViewPagerAdapter(getSupportFragmentManager()));
