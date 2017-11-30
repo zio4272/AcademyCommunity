@@ -1,5 +1,8 @@
 package kr.co.cgb.academycommunity.data;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.util.Calendar;
 
@@ -15,6 +18,7 @@ public class Lecture implements Serializable {
     private Calendar endDate;
 
     private User isTeacherData;
+
 
     public Lecture() {
     }

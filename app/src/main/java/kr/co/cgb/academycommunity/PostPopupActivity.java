@@ -19,8 +19,8 @@ import kr.co.cgb.academycommunity.adapter.ReplyAdapter;
 import kr.co.cgb.academycommunity.data.Post;
 import kr.co.cgb.academycommunity.data.Reply;
 import kr.co.cgb.academycommunity.data.User;
+import kr.co.cgb.academycommunity.util.ContextUtil;
 import kr.co.cgb.academycommunity.util.GlobalData;
-import kr.co.cgb.academycommunity.util.TimeAgoUtil;
 
 public class PostPopupActivity extends BaseActivity {
 
@@ -39,14 +39,14 @@ public class PostPopupActivity extends BaseActivity {
     private TextView listenLectureTxt;
     private android.widget.EditText replyEdt;
     private android.widget.Button sendBtn;
-    Post position;
+    Post post;
     public User tagUser = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_popup);
-        position = (Post) getIntent().getSerializableExtra("postdata");
+        post = (Post) getIntent().getSerializableExtra("postdata");
         bindViews();
         setupEvents();
         setValues();
@@ -67,16 +67,16 @@ public class PostPopupActivity extends BaseActivity {
 
                 if (selectedReply != -1) {
 
-                    for (Reply reply : position.replyList) {
+                    for (Reply reply : post.replyList) {
                         if (reply.getReplyId() == selectedReply) {
-                            reply.replies.add(new Reply(nextId, selectedReply, GlobalData.loginUserData, input, Calendar.getInstance(), position, tagUser));
+                            reply.replies.add(new Reply(nextId, selectedReply, GlobalData.loginUserData, input, Calendar.getInstance(), post, tagUser));
 
                         }
 
                     }
 
                 } else {
-                    position.replyList.add(new Reply(nextId, selectedReply, GlobalData.loginUserData, input, Calendar.getInstance(), position, tagUser));
+                    post.replyList.add(new Reply(nextId, selectedReply, GlobalData.loginUserData, input, Calendar.getInstance(), post, tagUser));
                 }
 
                 replyData();
@@ -107,7 +107,7 @@ public class PostPopupActivity extends BaseActivity {
 
     void replyData() {
         replyList.clear();
-        for (Reply mainReply : position.replyList) {
+        for (Reply mainReply : post.replyList) {
             replyList.add(mainReply);
 
             for (Reply subReply : mainReply.replies) {
@@ -127,11 +127,14 @@ public class PostPopupActivity extends BaseActivity {
         replyListView.setAdapter(mAdapter);
 
 //       TODO - 이미지가 없을 경우 NO IMAGE 출력
-        Glide.with(mContext).load(position.getUserWriterData().getUserProfileImg()).into(profileImg);
-//        listenLectureTxt.setText(position.getUserWriterData().); TODO - 서버 연동 후 작업
-        writerNameTxt.setText(position.getUserWriterData().getUserName());
-        contentTxt.setText(position.getPostContent());
-//        String minuteAge = TimeAgoUtil.getTimeAgoString(position.getPostDate());
+        Glide.with(mContext).load(post.getUserWriterData().getUserProfileImg()).into(profileImg);
+
+
+
+        listenLectureTxt.setText(post.userWriterData.getUserName());
+        writerNameTxt.setText(post.getUserWriterData().getUserName());
+        contentTxt.setText(post.getPostContent());
+//        String minuteAge = TimeAgoUtil.getTimeAgoString(post.getPostDate());
 //        writeTimeTxt.setText(minuteAge);
 
 

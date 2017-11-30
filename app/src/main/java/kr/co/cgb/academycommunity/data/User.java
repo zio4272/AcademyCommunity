@@ -24,12 +24,12 @@ public class User implements Serializable {
     private String userMyInfo;
     private Calendar birthDay;
     private boolean UserIsTeacher;  // 강사인지 아닌지 여부 (추후 출결 관리)
-    public List<Lecture> listenLecture = new ArrayList<>();
+    public Lecture listenLecture;
 
     public User() {
     }
 
-    public User(int id, String loginId, String loginPw, String userName, String userPhoneNum, int userGender, String userProfileImg, String userMyInfo, Calendar birthDay, boolean UserIsTeacher) {
+    public User(int id, String loginId, String loginPw, String userName, String userPhoneNum, int userGender, String userProfileImg, String userMyInfo, Calendar birthDay, boolean userIsTeacher, Lecture listenLecture) {
         this.id = id;
         this.loginId = loginId;
         this.loginPw = loginPw;
@@ -39,10 +39,8 @@ public class User implements Serializable {
         this.userProfileImg = userProfileImg;
         this.userMyInfo = userMyInfo;
         this.birthDay = birthDay;
-        this.UserIsTeacher = UserIsTeacher;
+        UserIsTeacher = userIsTeacher;
         this.listenLecture = listenLecture;
-
-
     }
 
     public static User getUserFromJson(JSONObject jsonObject) {
@@ -148,11 +146,11 @@ public class User implements Serializable {
         UserIsTeacher = userIsTeacher;
     }
 
-    public List<Lecture> getListenLecture() {
+    public Lecture getListenLecture() {
         return listenLecture;
     }
 
-    public void setListenLecture(List<Lecture> listenLecture) {
+    public void setListenLecture(Lecture listenLecture) {
         this.listenLecture = listenLecture;
     }
 }
