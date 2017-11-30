@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -222,6 +223,19 @@ public class SignupActivity extends BaseActivity {
                 } else {
                     Toast.makeText(mContext, "회원가입에 실패했습니다.", Toast.LENGTH_SHORT).show();
                 }
+
+            }
+        });
+
+        lectureListSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(mContext, "클릭된 줄 :" + i, Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });

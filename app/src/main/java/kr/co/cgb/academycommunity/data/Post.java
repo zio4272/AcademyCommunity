@@ -1,6 +1,10 @@
 package kr.co.cgb.academycommunity.data;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -13,21 +17,41 @@ public class Post implements Serializable {
 
     private int id;
     private String postContent;
-    private int createdAt;
+    private String postDate;
 
-    private User userWriterData;
+    public static User userWriterData;
 
     public List<Reply> replyList = new ArrayList<>();
+
+    public static Post getPostFromJson(JSONObject jsonObject) {
+        Post p = new Post();
+        userWriterData = new User();
+
+        try {
+            p.id = jsonObject.getInt("id");
+            p.postContent = jsonObject.getString("postContent");
+            p.postDate = jsonObject.getString("postDate");
+            userWriterData.setUserName(jsonObject.getString("userName"));
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        return p;
+    }
+
 
 
 
     public Post() {
     }
 
-    public Post(int id, String postContent, int createdAt, User userWriterData) {
+    public Post(int id, String postContent, String postDate, User userWriterData) {
         this.id = id;
         this.postContent = postContent;
-        this.createdAt = createdAt;
+        this.postDate = postDate;
         this.userWriterData = userWriterData;
     }
 
@@ -47,12 +71,12 @@ public class Post implements Serializable {
         this.postContent = postContent;
     }
 
-    public int getCreatedAt() {
-        return createdAt;
+    public String getPostDate() {
+        return postDate;
     }
 
-    public void setCreatedAt(int createdAt) {
-        this.createdAt = createdAt;
+    public void setPostDate(String postDate) {
+        this.postDate = postDate;
     }
 
     public User getUserWriterData() {

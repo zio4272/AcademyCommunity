@@ -131,8 +131,8 @@ public class PostPopupActivity extends BaseActivity {
 //        listenLectureTxt.setText(position.getUserWriterData().); TODO - 서버 연동 후 작업
         writerNameTxt.setText(position.getUserWriterData().getUserName());
         contentTxt.setText(position.getPostContent());
-        String minuteAge = TimeAgoUtil.getTimeAgoString(position.getCreatedAt());
-        writeTimeTxt.setText(minuteAge);
+//        String minuteAge = TimeAgoUtil.getTimeAgoString(position.getPostDate());
+//        writeTimeTxt.setText(minuteAge);
 
 
     }

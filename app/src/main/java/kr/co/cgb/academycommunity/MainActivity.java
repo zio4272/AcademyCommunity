@@ -72,6 +72,7 @@ public class MainActivity extends BaseActivity {
                                         Intent intent = new Intent(mContext, IndexActivity.class);
                                         startActivity(intent);
                                     }
+//                                    TODO - 로그인 실패시 토스트가 안뜸, 확인 해야함.
                                     else if (json.getString("result").equals("로그인실패")){
                                         Toast.makeText(mContext, "아이디 또는 비밀번호를 확인 해주세요.", Toast.LENGTH_SHORT).show();
                                     }

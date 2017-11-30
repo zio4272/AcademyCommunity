@@ -52,6 +52,6 @@ public class NotifyAdapter extends ArrayAdapter<Notify> {
 
     @Override
     public int getCount() {
-        return 5;
+        return 15;
     }
 }

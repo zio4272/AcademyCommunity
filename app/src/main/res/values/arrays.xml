@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="lecture">
-        <item >강의를 선택 해주세요.</item>
-        <item >자바(Java)기반 안드로이드 어플리케이션</item>
-        <item >강의2</item>
-        <item >강의3</item>
+        <item >전체보기</item>
+        <item >자바(Java)기반 안드로이드 개발자</item>
+        <item >이승헌의 배그특강</item>
+        <item >최종환의 배그가 가장 쉬웠어요</item>
         <item >강의4</item>
         <item >강의5</item>
     </string-array>
