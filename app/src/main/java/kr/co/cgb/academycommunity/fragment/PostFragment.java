@@ -1,15 +1,14 @@
 package kr.co.cgb.academycommunity.fragment;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.test.mock.MockContext;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -20,13 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.cgb.academycommunity.PostPopupActivity;
+import kr.co.cgb.academycommunity.PostWriteActivity;
 import kr.co.cgb.academycommunity.R;
 import kr.co.cgb.academycommunity.adapter.PostAdapter;
 import kr.co.cgb.academycommunity.data.Post;
 import kr.co.cgb.academycommunity.util.GlobalData;
 import kr.co.cgb.academycommunity.util.ServerUtil;
-
-import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 /**
  * Created by the on 2017-11-22.
@@ -37,11 +35,13 @@ public class PostFragment extends Fragment {
     PostAdapter mAdapter;
     private android.widget.ListView postListView;
     List<Post> postList = new ArrayList<>();
+    private android.widget.ImageView postWriteImg;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.post_fragment_item, container, false);
+        this.postWriteImg = (ImageView) v.findViewById(R.id.postWriteImg);
         this.postListView = (ListView) v.findViewById(R.id.postListView);
 
         return v;
@@ -94,6 +94,14 @@ public class PostFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getActivity(), PostPopupActivity.class);
                 intent.putExtra("postdata", GlobalData.posts.get(i));
+                startActivity(intent);
+            }
+        });
+
+        postWriteImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), PostWriteActivity.class);
                 startActivity(intent);
             }
         });

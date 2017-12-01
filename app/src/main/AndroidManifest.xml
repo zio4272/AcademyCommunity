@@ -3,7 +3,7 @@
     package="kr.co.cgb.academycommunity">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -29,7 +29,9 @@
             android:name=".StudentDetailViewActivity"
             android:theme="@style/mytheme" />
         <activity android:name=".SearchActivity" />
-        <activity android:name=".SettingActivity"></activity>
+        <activity android:name=".SettingActivity" />
+        <activity android:name=".PostWriteActivity"
+            android:theme="@style/mytheme" ></activity>
     </application>
 
 </manifest>
