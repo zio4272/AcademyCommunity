@@ -51,6 +51,8 @@ public class PostAdapter extends ArrayAdapter<Post> {
         if (row == null) {
             row = inf.inflate(R.layout.post_list_item, null);
 
+
+
         }
 
         LinearLayout postLayout = (LinearLayout) row.findViewById(R.id.postLayout);

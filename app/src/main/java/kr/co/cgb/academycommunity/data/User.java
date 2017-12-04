@@ -1,5 +1,7 @@
 package kr.co.cgb.academycommunity.data;
 
+import com.bumptech.glide.Glide;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -53,7 +55,9 @@ public class User implements Serializable {
             u.userName = jsonObject.getString("userName");
             u.userPhoneNum = jsonObject.getString("userPhoneNum");
             u.userGender = jsonObject.getInt("userGender");
-            u.userProfileImg = jsonObject.getString("userProfileImg");
+            if (jsonObject.isNull("userProfileImg")) {
+                u.userProfileImg = jsonObject.getString("userProfileImg");
+            }
             u.userMyInfo = jsonObject.getString("userMyInfo");
 
 

@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -131,7 +133,7 @@ public class PostPopupActivity extends BaseActivity {
 
 
 
-        listenLectureTxt.setText(post.userWriterData.getUserName());
+        listenLectureTxt.setText(post.getUserWriterData().getListenLecture().getLectureName());
         writerNameTxt.setText(post.getUserWriterData().getUserName());
         contentTxt.setText(post.getPostContent());
 //        String minuteAge = TimeAgoUtil.getTimeAgoString(post.getPostDate());
