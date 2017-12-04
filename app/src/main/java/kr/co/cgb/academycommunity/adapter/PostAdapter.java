@@ -77,8 +77,8 @@ public class PostAdapter extends ArrayAdapter<Post> {
 
         writerNameTxt.setText(data.getUserWriterData().getUserName());
 
-//            String minuteAgo = TimeAgoUtil.getTimeAgoString(data.getPostDate());
-//            writeTimeTxt.setText(minuteAgo);
+            String minuteAgo = TimeAgoUtil.getTimeAgoString(data.getPostDate());
+            writeTimeTxt.setText(minuteAgo);
 
 //            글자수 25 제한 뒤는 ...으로 표기
         if (data.getPostContent().length() > 10) {

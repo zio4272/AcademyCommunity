@@ -23,6 +23,7 @@ import kr.co.cgb.academycommunity.data.Reply;
 import kr.co.cgb.academycommunity.data.User;
 import kr.co.cgb.academycommunity.util.ContextUtil;
 import kr.co.cgb.academycommunity.util.GlobalData;
+import kr.co.cgb.academycommunity.util.TimeAgoUtil;
 
 public class PostPopupActivity extends BaseActivity {
 
@@ -139,8 +140,9 @@ public class PostPopupActivity extends BaseActivity {
         listenLectureTxt.setText(post.userWriterData.listenLecture.getLectureName());
         writerNameTxt.setText(post.getUserWriterData().getUserName());
         contentTxt.setText(post.getPostContent());
-//        String minuteAge = TimeAgoUtil.getTimeAgoString(post.getPostDate());
-//        writeTimeTxt.setText(minuteAge);
+        String minuteAge = TimeAgoUtil.getTimeAgoString(post.getPostDate());
+        writeTimeTxt.setText(minuteAge);
+
 
 
     }
