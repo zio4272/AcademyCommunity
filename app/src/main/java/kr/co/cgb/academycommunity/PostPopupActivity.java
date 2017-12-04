@@ -128,9 +128,12 @@ public class PostPopupActivity extends BaseActivity {
         mAdapter = new ReplyAdapter(mContext, replyList);
         replyListView.setAdapter(mAdapter);
 
-//       TODO - 이미지가 없을 경우 NO IMAGE 출력
-        Glide.with(mContext).load(post.getUserWriterData().getUserProfileImg()).into(profileImg);
-
+        String profileStr = post.getUserWriterData().getUserProfileImg();
+        if (profileStr.equals("noImage")) {
+            profileImg.setImageResource(R.drawable.noimage);
+        } else {
+            Glide.with(mContext).load(post.getUserWriterData().getUserProfileImg()).into(profileImg);
+        }
 
 
         listenLectureTxt.setText(post.userWriterData.listenLecture.getLectureName());

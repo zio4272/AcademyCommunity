@@ -66,8 +66,14 @@ public class PostAdapter extends ArrayAdapter<Post> {
         Post data = mList.get(position);
 
 
+        String profileStr = data.getUserWriterData().getUserProfileImg();
+        if (profileStr.equals("noImage")) {
+            profileImg.setImageResource(R.drawable.noimage);
+        }
+        else {
+            Glide.with(mContext).load(data.getUserWriterData().getUserProfileImg()).into(profileImg);
+        }
 
-        Glide.with(mContext).load(data.getUserWriterData().getUserProfileImg()).into(profileImg);
 
         writerNameTxt.setText(data.getUserWriterData().getUserName());
 
