@@ -1,9 +1,11 @@
 package kr.co.cgb.academycommunity;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +13,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.security.Permission;
+import java.util.ArrayList;
 
 import kr.co.cgb.academycommunity.util.ServerUtil;
 
@@ -30,6 +38,7 @@ public class MainActivity extends BaseActivity {
         setValues();
 
     }
+
 
     @Override
     public void setupEvents() {
@@ -67,13 +76,13 @@ public class MainActivity extends BaseActivity {
                             public void onResponse(JSONObject json) {
 
                                 try {
-                                    if (loginIdStr.equals(json.getJSONObject("result").getString("loginId")) && loginPwStr.equals(json.getJSONObject("result").getString("loginPw"))){
+                                    if (loginIdStr.equals(json.getJSONObject("result").getString("loginId")) && loginPwStr.equals(json.getJSONObject("result").getString("loginPw"))) {
                                         Toast.makeText(mContext, "로그인 되었습니다..", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(mContext, IndexActivity.class);
                                         startActivity(intent);
                                     }
 //                                    TODO - 로그인 실패시 토스트가 안뜸, 확인 해야함.
-                                    else if (json.getString("result").equals("로그인실패")){
+                                    else if (json.getString("result").equals("로그인실패")) {
                                         Toast.makeText(mContext, "아이디 또는 비밀번호를 확인 해주세요.", Toast.LENGTH_SHORT).show();
                                     }
 
@@ -83,8 +92,6 @@ public class MainActivity extends BaseActivity {
 
                             }
                         });
-
-
 
 
                     }
@@ -102,7 +109,25 @@ public class MainActivity extends BaseActivity {
     @Override
     public void setValues() {
 
+        TedPermission.with(mContext)
+                .setPermissionListener(new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted() {
+
+                    }
+
+                    @Override
+                    public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+
+                    }
+                })
+                .setDeniedMessage("권한 설정 해야함..흐흐흐")
+                .setPermissions(Manifest.permission_group.PHONE)
+                .check();
+
+
     }
+
 
     @Override
     public void bindViews() {
