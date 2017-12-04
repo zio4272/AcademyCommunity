@@ -19,6 +19,21 @@ public class Lecture implements Serializable {
 
     private User isTeacherData;
 
+    public static Lecture getLectureFromJson(JSONObject jsonObject) {
+        Lecture l = new Lecture();
+
+        try {
+            l.id = jsonObject.getInt("id");
+            l.lectureName = jsonObject.getString("lectureName");
+//            l.startDate = Calendar.getInstance();
+//            l.endDate = Calendar.getInstance();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return l;
+    }
+
 
     public Lecture() {
     }

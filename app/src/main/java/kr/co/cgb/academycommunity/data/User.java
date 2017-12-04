@@ -59,7 +59,9 @@ public class User implements Serializable {
                 u.userProfileImg = jsonObject.getString("userProfileImg");
             }
             u.userMyInfo = jsonObject.getString("userMyInfo");
-
+//            u.listenLecture = new Lecture();
+//            u.listenLecture.setLectureName(jsonObject.getString("lectureName"));
+            u.listenLecture = Lecture.getLectureFromJson(jsonObject);
 
         } catch (JSONException e) {
             e.printStackTrace();
