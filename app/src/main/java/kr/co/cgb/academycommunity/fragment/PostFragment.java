@@ -82,6 +82,13 @@ public class PostFragment extends Fragment {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getPostFromJson();
+    }
+
+
     private void setValues() {
         postList = GlobalData.posts;
         mAdapter = new PostAdapter(getContext(), postList);

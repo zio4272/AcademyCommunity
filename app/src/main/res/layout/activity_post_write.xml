@@ -17,7 +17,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/replyEdt"
+            android:id="@+id/postEdt"
             android:hint="내용을 입력해 주세요"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
