@@ -51,36 +51,36 @@ public class PostAdapter extends ArrayAdapter<Post> {
         if (row == null) {
             row = inf.inflate(R.layout.post_list_item, null);
 
+        }
 
-            LinearLayout postLayout = (LinearLayout) row.findViewById(R.id.postLayout);
-            CircleImageView profileImg = (CircleImageView) row.findViewById(R.id.profileImg);
-            ImageView profileINoImg = (ImageView) row.findViewById(R.id.profileINoImg);
-            TextView writerNameTxt = (TextView) row.findViewById(R.id.writerNameTxt);
-            TextView writeTimeTxt = (TextView) row.findViewById(R.id.writeTimeTxt);
-            TextView contentTxt = (TextView) row.findViewById(R.id.contentTxt);
-
-
-            Post data = mList.get(position);
+        LinearLayout postLayout = (LinearLayout) row.findViewById(R.id.postLayout);
+        CircleImageView profileImg = (CircleImageView) row.findViewById(R.id.profileImg);
+        ImageView profileINoImg = (ImageView) row.findViewById(R.id.profileINoImg);
+        TextView writerNameTxt = (TextView) row.findViewById(R.id.writerNameTxt);
+        TextView writeTimeTxt = (TextView) row.findViewById(R.id.writeTimeTxt);
+        TextView contentTxt = (TextView) row.findViewById(R.id.contentTxt);
 
 
-            Glide.with(mContext).load(data.getUserWriterData().getUserProfileImg()).into(profileImg);
+        Post data = mList.get(position);
 
-              writerNameTxt.setText(data.getUserWriterData().getUserName());
+
+        Glide.with(mContext).load(data.getUserWriterData().getUserProfileImg()).into(profileImg);
+
+        writerNameTxt.setText(data.getUserWriterData().getUserName());
 
 //            String minuteAgo = TimeAgoUtil.getTimeAgoString(data.getPostDate());
 //            writeTimeTxt.setText(minuteAgo);
 
 //            글자수 25 제한 뒤는 ...으로 표기
-            if (data.getPostContent().length() > 10) {
-                String contentHTML = data.getPostContent().substring(0, 10) + "...";
-                contentTxt.setText(Html.fromHtml(contentHTML));
-            } else {
-                contentTxt.setText(data.getPostContent());
-            }
-
-
+        if (data.getPostContent().length() > 10) {
+            String contentHTML = data.getPostContent().substring(0, 10) + "...";
+            contentTxt.setText(Html.fromHtml(contentHTML));
+        } else {
+            contentTxt.setText(data.getPostContent());
         }
         return row;
     }
+
+
 
 }
