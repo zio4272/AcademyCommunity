@@ -40,9 +40,7 @@ public class PhoneStateReceiver extends BroadcastReceiver {
         try {
             System.out.println("Receiver start");
             String state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
-            String incomingNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
-
-
+            final String incomingNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
 
 
 //            User user = (User) intent.getSerializableExtra("user");
@@ -56,20 +54,27 @@ public class PhoneStateReceiver extends BroadcastReceiver {
 //                else {
 //                    Toast.makeText(context, "모르는 번호 입니다.", Toast.LENGTH_SHORT).show();
 //                }
+
                 ServerUtil.getUserByPhoneNum(context, incomingNumber, new ServerUtil.JsonResponseHandler() {
                     @Override
                     public void onResponse(JSONObject json) {
 //                        {"result":{"loginId":"admin","loginPw":"1111","userMyInfo":"안녕하세요 운영자입니다.","userGender":0,"userProfileImg":"","id":14,"userName":"김현철","userPhoneNum":"01051424272","lectureId":1}}
                         Log.d("json", json.toString());
+                        try {
+                            String name = json.getJSONObject("result").getString("userName");
+                            String lecture = json.getJSONObject("result").getString("lectureName");
+
+                            Intent mIntent = new Intent(context.getApplicationContext(), CallRecevierActivity.class);
+                            mIntent.putExtra("phonenum", incomingNumber);
+                            mIntent.putExtra("name", name);
+                            mIntent.putExtra("lecture", lecture);
+                            mIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            context.startActivity(mIntent);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
-
-
-                Intent mIntent = new Intent(context.getApplicationContext(), CallRecevierActivity.class);
-                mIntent.putExtra("phonenum", incomingNumber);
-//                mIntent.putExtra("name", user.getUserName());
-                mIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(mIntent);
 
 
             }

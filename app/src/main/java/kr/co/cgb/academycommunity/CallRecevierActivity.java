@@ -1,13 +1,8 @@
 package kr.co.cgb.academycommunity;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
-
-import org.json.JSONObject;
-
-import kr.co.cgb.academycommunity.data.User;
-import kr.co.cgb.academycommunity.util.ServerUtil;
 
 public class CallRecevierActivity extends BaseActivity {
 
@@ -17,6 +12,9 @@ public class CallRecevierActivity extends BaseActivity {
     private android.widget.TextView phoneNumTxt;
     String receivePhoneNum;
     String receiveName;
+    String lectureName;
+    private android.widget.ImageView profileImg;
+    private TextView lectureTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +22,7 @@ public class CallRecevierActivity extends BaseActivity {
         setContentView(R.layout.activity_call_recevier);
         receivePhoneNum = (String) getIntent().getSerializableExtra("phonenum");
         receiveName = (String) getIntent().getSerializableExtra("name");
+        lectureName = (String) getIntent().getSerializableExtra("lecture");
         act = this;
         bindViews();
         setupEvents();
@@ -38,7 +37,8 @@ public class CallRecevierActivity extends BaseActivity {
     @Override
     public void setValues() {
         phoneNumTxt.setText(receivePhoneNum);
-//        nameTxt.setText(receiveName);
+        nameTxt.setText(receiveName);
+        lectureTxt.setText(lectureName);
 
 
     }
@@ -46,7 +46,9 @@ public class CallRecevierActivity extends BaseActivity {
     @Override
     public void bindViews() {
         this.phoneNumTxt = (TextView) findViewById(R.id.phoneNumTxt);
+        this.lectureTxt = (TextView) findViewById(R.id.lectureTxt);
         this.nameTxt = (TextView) findViewById(R.id.nameTxt);
+        this.profileImg = (ImageView) findViewById(R.id.profileImg);
 
     }
 }
