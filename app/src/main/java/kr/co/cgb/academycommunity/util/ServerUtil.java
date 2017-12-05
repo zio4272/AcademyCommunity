@@ -17,7 +17,7 @@ public class ServerUtil {
 
     private static final String TAG = ServerUtil.class.getSimpleName();
 
-    private final static String BASE_URL = "http://13.124.157.160:8080/"; // 라이브서버
+    private final static String BASE_URL = "http://192.168.20.119:8080/cgb/"; // 라이브서버
 //    private final static String BASE_URL = "http://share-tdd.com/"; // 개발서버
 
     //    JSON 처리 부분 인터페이스.
@@ -25,10 +25,54 @@ public class ServerUtil {
         void onResponse(JSONObject json);
     }
 
+    public static void getAllUsers(final Context context, final JsonResponseHandler handler) {
+//        기능에 따라 매번 주소를 다르게 적어줘야함.
+        String url = BASE_URL + "get_all_users";
+
+//        기능을 사용하기 위해 필요한 데이터를 담는 부분.
+
+        Map<String, String> data = new HashMap<String, String>();
+
+
+
+
+        AsyncHttpRequest.get(context, url, data, true, new AsyncHttpRequest.HttpResponseHandler() {
+
+            @Override
+            public boolean onPrepare() {
+                return true;
+            }
+
+            @Override
+            public void onResponse(String response) {
+                System.out.println(response);
+                try {
+                    JSONObject json = new JSONObject(response);
+
+                    if (handler != null)
+                        handler.onResponse(json);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+
+            @Override
+            public void onCancelled() {
+
+            }
+
+        });
+    }
+
 
     public static void getUserByPhoneNum(final Context context, final String phoneNum, final JsonResponseHandler handler) {
 //        기능에 따라 매번 주소를 다르게 적어줘야함.
-        String url = BASE_URL + "AcademyCommunity/get_user_by_phone_num";
+        String url = BASE_URL + "get_user_by_phone_num";
 
 //        기능을 사용하기 위해 필요한 데이터를 담는 부분.
 
@@ -73,7 +117,7 @@ public class ServerUtil {
 
     public static void write_post(final Context context, final String post, final int writer, final JsonResponseHandler handler) {
 //        기능에 따라 매번 주소를 다르게 적어줘야함.
-        String url = BASE_URL + "AcademyCommunity/write_post";
+        String url = BASE_URL + "write_post";
 
 //        기능을 사용하기 위해 필요한 데이터를 담는 부분.
 
@@ -118,7 +162,7 @@ public class ServerUtil {
 
     public static void getPost(final Context context, final JsonResponseHandler handler) {
 //        기능에 따라 매번 주소를 다르게 적어줘야함.
-        String url = BASE_URL + "AcademyCommunity/get_post";
+        String url = BASE_URL + "get_post";
 
 //        기능을 사용하기 위해 필요한 데이터를 담는 부분.
 
@@ -162,7 +206,7 @@ public class ServerUtil {
 
     public static void idCheck(final Context context, final String loginId, final JsonResponseHandler handler) {
 //        기능에 따라 매번 주소를 다르게 적어줘야함.
-        String url = BASE_URL + "AcademyCommunity/user_id_check";
+        String url = BASE_URL + "user_id_check";
 
 //        기능을 사용하기 위해 필요한 데이터를 담는 부분.
 
@@ -206,7 +250,7 @@ public class ServerUtil {
 
     public static void login(final Context context, final String loginId, final String loginPw, final JsonResponseHandler handler) {
 //        기능에 따라 매번 주소를 다르게 적어줘야함.
-        String url = BASE_URL + "AcademyCommunity/login_user";
+        String url = BASE_URL + "login_user";
 
 //        기능을 사용하기 위해 필요한 데이터를 담는 부분.
 
@@ -251,7 +295,7 @@ public class ServerUtil {
 
     public static void signup(final Context context, final String loginId, final String loginPw, final String username, final int gender, final String phonenum, final String profileurl, final String myinfo, final int lectureId, final JsonResponseHandler handler) {
 //        기능에 따라 매번 주소를 다르게 적어줘야함.
-        String url = BASE_URL + "AcademyCommunity/get_signup_user";
+        String url = BASE_URL + "get_signup_user";
 
 //        기능을 사용하기 위해 필요한 데이터를 담는 부분.
 

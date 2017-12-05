@@ -16,6 +16,8 @@ import kr.co.cgb.academycommunity.util.GlobalData;
 
 public class StudentDetailViewActivity extends BaseActivity {
 
+    User user;
+
 
     private de.hdodenhof.circleimageview.CircleImageView profileimage;
     private android.widget.TextView nameTxt;
@@ -30,6 +32,7 @@ public class StudentDetailViewActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_detail_view);
+        user = (User) getIntent().getSerializableExtra("userdata");
         bindViews();
         setupEvents();
         setValues();
@@ -44,7 +47,15 @@ public class StudentDetailViewActivity extends BaseActivity {
     @Override
     public void setValues() {
 
-        nameTxt.setText("앙앙앙");
+        nameTxt.setText(user.getUserName());
+        myInfoTxt.setText(user.getUserMyInfo());
+        String profileStr = user.getUserProfileImg();
+        if (profileStr.equals("noImage")) {
+            profileimage.setImageResource(R.drawable.noimage);
+        } else {
+            Glide.with(mContext).load(user.getUserProfileImg()).into(profileimage);
+            phoneNumTxt.setText(user.getUserPhoneNum());
+        }
 
     }
 

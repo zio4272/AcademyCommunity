@@ -28,23 +28,6 @@ public class User implements Serializable {
     private boolean UserIsTeacher;  // 강사인지 아닌지 여부 (추후 출결 관리)
     public Lecture listenLecture;
 
-    public User() {
-    }
-
-    public User(int id, String loginId, String loginPw, String userName, String userPhoneNum, int userGender, String userProfileImg, String userMyInfo, Calendar birthDay, boolean userIsTeacher, Lecture listenLecture) {
-        this.id = id;
-        this.loginId = loginId;
-        this.loginPw = loginPw;
-        this.userName = userName;
-        this.userPhoneNum = userPhoneNum;
-        this.userGender = userGender;
-        this.userProfileImg = userProfileImg;
-        this.userMyInfo = userMyInfo;
-        this.birthDay = birthDay;
-        UserIsTeacher = userIsTeacher;
-        this.listenLecture = listenLecture;
-    }
-
     public static User getUserFromJson(JSONObject jsonObject) {
         User u = new User();
 
@@ -73,6 +56,25 @@ public class User implements Serializable {
 
         return u;
     }
+
+
+    public User() {
+    }
+
+    public User(int id, String loginId, String loginPw, String userName, String userPhoneNum, int userGender, String userProfileImg, String userMyInfo, Calendar birthDay, boolean userIsTeacher, Lecture listenLecture) {
+        this.id = id;
+        this.loginId = loginId;
+        this.loginPw = loginPw;
+        this.userName = userName;
+        this.userPhoneNum = userPhoneNum;
+        this.userGender = userGender;
+        this.userProfileImg = userProfileImg;
+        this.userMyInfo = userMyInfo;
+        this.birthDay = birthDay;
+        UserIsTeacher = userIsTeacher;
+        this.listenLecture = listenLecture;
+    }
+
 
 
     public int getId() {
