@@ -81,7 +81,7 @@
             android:padding="10dp" />
 
         <EditText
-            android:inputType="phone"
+            android:inputType="number"
             android:id="@+id/phoneEdt"
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -133,7 +133,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#E1E1E1"
-                android:entries="@array/lecture" />
+                android:entries="@array/sign_up_lecture" />
 
         </LinearLayout>
 

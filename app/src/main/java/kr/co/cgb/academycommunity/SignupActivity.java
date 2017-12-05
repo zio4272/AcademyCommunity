@@ -108,51 +108,6 @@ public class SignupActivity extends BaseActivity {
             }
         });
 
-        nameEdt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String changeStr = charSequence.toString();
-                Log.d("변경된글자", changeStr);
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        phoneEdt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String changeStr = charSequence.toString();
-                Log.d("변경된글자", changeStr);
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-//        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-//
-//            }
-//        });
-
 
         idCheckBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,15 +133,7 @@ public class SignupActivity extends BaseActivity {
                     }
                 });
 
-//                String inputId = idEdt.getText().toString();
-//                if (inputId.equals("user")) { // 서버연동해야함
-//                    Toast.makeText(mContext, "이미 사용중인 아이디입니다.", Toast.LENGTH_SHORT).show();
-//                } else if (inputId.length() == 0) {
-//                    Toast.makeText(mContext, "아이디를 입력해주세요.", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    Toast.makeText(mContext, "사용해도 좋습니다.", Toast.LENGTH_SHORT).show();
-//                    isIdOk = true;
-//                }
+
             }
         });
 
@@ -199,16 +146,13 @@ public class SignupActivity extends BaseActivity {
                 int gender = 0;
                 if (manRadioBtn.isChecked()) {
                     gender = 0;
-                    Toast.makeText(mContext, "남자선택" + gender, Toast.LENGTH_SHORT).show();
                 } else if (womanRadioBtn.isChecked()) {
                     gender = 1;
-                    Toast.makeText(mContext, "여자선택" + gender, Toast.LENGTH_SHORT).show();
                 }
 
                 if (!manRadioBtn.isChecked() && !womanRadioBtn.isChecked()) {
                     Toast.makeText(mContext, "성별을 선택해주세요.", Toast.LENGTH_SHORT).show();
-                } else if (inputPw.length() >= 4 && inputPw.equals(inputCheckPw) && isIdOk) {
-
+                } else if (inputPw.length() >= 1 && inputPw.equals(inputCheckPw) && isIdOk && lectureNum != 0) {
 
                     ServerUtil.signup(mContext, idEdt.getText().toString(), pwEdt.getText().toString(), nameEdt.getText().toString(), gender, phoneEdt.getText().toString(), null, MyInfoEdt.getText().toString(), lectureNum, new ServerUtil.JsonResponseHandler() {
                         @Override
@@ -222,7 +166,7 @@ public class SignupActivity extends BaseActivity {
                     finish();
                     Toast.makeText(mContext, "회원가입 성공", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(mContext, "회원가입에 실패했습니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "회원가입에 실패했습니다.\n 누락된 정보가 있는지 확인 해주세요", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -231,7 +175,7 @@ public class SignupActivity extends BaseActivity {
         lectureListSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(mContext, "클릭된 줄 :" + i, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(mContext, "클릭된 줄 :" + i, Toast.LENGTH_SHORT).show();
                 lectureNum = i;
             }
 

@@ -76,8 +76,8 @@ public class PhoneStateReceiver extends BroadcastReceiver {
                     }
                 });
 
-
             }
+
             if ((state.equals(TelephonyManager.EXTRA_STATE_OFFHOOK))) {
                 Toast.makeText(context, "Call Received State", Toast.LENGTH_SHORT).show();
             }
