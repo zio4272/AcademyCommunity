@@ -41,6 +41,10 @@ public class PhoneStateReceiver extends BroadcastReceiver {
             System.out.println("Receiver start");
             String state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
             String incomingNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
+
+
+
+
 //            User user = (User) intent.getSerializableExtra("user");
 
             if (state.equals(TelephonyManager.EXTRA_STATE_RINGING)) {
@@ -57,7 +61,6 @@ public class PhoneStateReceiver extends BroadcastReceiver {
                     public void onResponse(JSONObject json) {
 //                        {"result":{"loginId":"admin","loginPw":"1111","userMyInfo":"안녕하세요 운영자입니다.","userGender":0,"userProfileImg":"","id":14,"userName":"김현철","userPhoneNum":"01051424272","lectureId":1}}
                         Log.d("json", json.toString());
-
                     }
                 });
 

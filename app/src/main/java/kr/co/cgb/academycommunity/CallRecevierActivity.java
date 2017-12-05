@@ -1,9 +1,13 @@
 package kr.co.cgb.academycommunity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
+import org.json.JSONObject;
+
 import kr.co.cgb.academycommunity.data.User;
+import kr.co.cgb.academycommunity.util.ServerUtil;
 
 public class CallRecevierActivity extends BaseActivity {
 
@@ -34,7 +38,8 @@ public class CallRecevierActivity extends BaseActivity {
     @Override
     public void setValues() {
         phoneNumTxt.setText(receivePhoneNum);
-        nameTxt.setText(receiveName);
+//        nameTxt.setText(receiveName);
+
 
     }
 
