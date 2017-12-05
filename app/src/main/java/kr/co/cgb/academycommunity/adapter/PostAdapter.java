@@ -75,7 +75,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
         }
 
 
-        writerNameTxt.setText(data.getUserWriterData().getUserName());
+        writerNameTxt.setText(data.userWriterData.getUserName());
 
             String minuteAgo = TimeAgoUtil.getTimeAgoString(data.getPostDate());
             writeTimeTxt.setText(minuteAgo);
