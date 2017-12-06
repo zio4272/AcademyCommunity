@@ -25,6 +25,51 @@ public class ServerUtil {
         void onResponse(JSONObject json);
     }
 
+
+    public static void getAllLectures(final Context context, final JsonResponseHandler handler) {
+//        기능에 따라 매번 주소를 다르게 적어줘야함.
+        String url = BASE_URL + "get_all_lectures";
+
+//        기능을 사용하기 위해 필요한 데이터를 담는 부분.
+
+        Map<String, String> data = new HashMap<String, String>();
+
+
+
+
+        AsyncHttpRequest.get(context, url, data, true, new AsyncHttpRequest.HttpResponseHandler() {
+
+            @Override
+            public boolean onPrepare() {
+                return true;
+            }
+
+            @Override
+            public void onResponse(String response) {
+                System.out.println(response);
+                try {
+                    JSONObject json = new JSONObject(response);
+
+                    if (handler != null)
+                        handler.onResponse(json);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+
+            @Override
+            public void onCancelled() {
+
+            }
+
+        });
+    }
+
     public static void getAllUsers(final Context context, final JsonResponseHandler handler) {
 //        기능에 따라 매번 주소를 다르게 적어줘야함.
         String url = BASE_URL + "get_all_users";

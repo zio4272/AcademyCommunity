@@ -21,7 +21,9 @@ import java.util.List;
 
 import kr.co.cgb.academycommunity.R;
 import kr.co.cgb.academycommunity.StudentDetailViewActivity;
+import kr.co.cgb.academycommunity.adapter.LectureFilterSpinnerAdapter;
 import kr.co.cgb.academycommunity.adapter.UserAdapter;
+import kr.co.cgb.academycommunity.data.Lecture;
 import kr.co.cgb.academycommunity.data.User;
 import kr.co.cgb.academycommunity.util.ServerUtil;
 
@@ -31,6 +33,10 @@ import kr.co.cgb.academycommunity.util.ServerUtil;
 
 public class UserFragment extends Fragment {
 
+//    private Spinner filterSpinner;
+//    List<Lecture> filterList = new ArrayList<>();
+//    LectureFilterSpinnerAdapter lectureFilterSpinnerAdapter;
+
     int lectureNum = 0;
 
     UserAdapter mAdapter;
@@ -39,12 +45,18 @@ public class UserFragment extends Fragment {
     private GridView userListView;
     private android.widget.Spinner userListenLectureSpinner;
 
+    List<User> filterUserList = new ArrayList<>();
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.user_fragment_item, container, false);
         this.userListenLectureSpinner = (Spinner) v.findViewById(R.id.userListenLectureSpinner);
         this.userListView = (GridView) v.findViewById(R.id.userListView);
+
+
+//        lectureFilterSpinnerAdapter = new LectureFilterSpinnerAdapter(getContext(), filterList);
+//        userListenLectureSpinner.setAdapter(lectureFilterSpinnerAdapter);
 
         return v;
     }
@@ -55,6 +67,7 @@ public class UserFragment extends Fragment {
         setupEvents();
         setValues();
         getUsersFromJson();
+
     }
 
     private void getUsersFromJson() {
@@ -82,11 +95,33 @@ public class UserFragment extends Fragment {
 
     }
 
+    private void getLectureFromJson() {
+
+        ServerUtil.getAllLectures(getContext(), new ServerUtil.JsonResponseHandler() {
+            @Override
+            public void onResponse(JSONObject json) {
+                try {
+
+                    JSONArray jsonArray = json.getJSONArray("result");
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                mAdapter.notifyDataSetChanged();
+            }
+
+
+        });
+
+
+    }
+
 
     @Override
     public void onResume() {
         super.onResume();
         getUsersFromJson();
+        getLectureFromJson();
     }
 
 
@@ -111,8 +146,11 @@ public class UserFragment extends Fragment {
         userListenLectureSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getContext(), "선택됨 : " + i, Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(getContext(), "선택됨 : " + l, Toast.LENGTH_SHORT).show();
                 lectureNum = i;
+
+
             }
 
             @Override
