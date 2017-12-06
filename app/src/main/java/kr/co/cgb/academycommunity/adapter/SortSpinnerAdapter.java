@@ -15,17 +15,17 @@ import kr.co.cgb.academycommunity.R;
 import kr.co.cgb.academycommunity.data.Lecture;
 
 /**
- * Created by PC on 2017-12-05.
+ * Created by PC on 2017-12-06.
  */
 
-public class LectureFilterSpinnerAdapter extends ArrayAdapter<Lecture> {
+public class SortSpinnerAdapter extends ArrayAdapter<Lecture> {
+
     Context mContext;
     List<Lecture> mList;
     LayoutInflater inf;
 
-
-    public LectureFilterSpinnerAdapter(Context context, List<Lecture> list) {
-        super(context, R.layout.lecture_filter_spinner_item, list);
+    public SortSpinnerAdapter(Context context, List<Lecture> list) {
+        super(context, R.layout.sort_spinner_list_item, list);
         mContext = context;
         mList = list;
         inf = LayoutInflater.from(mContext);
@@ -36,12 +36,12 @@ public class LectureFilterSpinnerAdapter extends ArrayAdapter<Lecture> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View row = convertView;
         if (row == null) {
-            row = inf.inflate(R.layout.lecture_filter_spinner_item, null);
+            row = inf.inflate(R.layout.sort_spinner_display_item, null);
         }
 
         Lecture data = mList.get(position);
 
-        TextView sortTypeTxt = (TextView) row.findViewById(R.id.lectureFilterTxt);
+        TextView sortTypeTxt = (TextView) row.findViewById(R.id.sortTypeTxt);
 
         sortTypeTxt.setText(data.getLectureName());
 
@@ -52,18 +52,16 @@ public class LectureFilterSpinnerAdapter extends ArrayAdapter<Lecture> {
     public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View row = convertView;
         if (row == null) {
-            row = inf.inflate(R.layout.lecture_filter_spinner_item, null);
+            row = inf.inflate(R.layout.sort_spinner_list_item, null);
         }
 
 
         Lecture data = mList.get(position);
 
-        TextView sortTypeTxt = (TextView) row.findViewById(R.id.lectureFilterTxt);
+        TextView sortTypeTxt = (TextView) row.findViewById(R.id.sortTypeTxt);
 
         sortTypeTxt.setText(data.getLectureName());
 
         return row;
     }
-
-
 }

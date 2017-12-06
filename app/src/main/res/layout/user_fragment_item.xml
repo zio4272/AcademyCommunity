@@ -41,14 +41,13 @@
 
 
         <Spinner
-            android:id="@+id/userListenLectureSpinner"
+            android:id="@+id/sortSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@drawable/round_background"
-            android:entries="@array/lecture"
             android:padding="10dp"
-            android:spinnerMode="dropdown" />
+            android:spinnerMode="dropdown"/>
 
 
 
