@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,11 +38,13 @@ public class PostFragment extends Fragment {
     private android.widget.ListView postListView;
     List<Post> postList = new ArrayList<>();
     private android.widget.ImageView postWriteImg;
+    private android.support.v4.widget.SwipeRefreshLayout swipeLayout;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.post_fragment_item, container, false);
+        this.swipeLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipeLayout);
         this.postWriteImg = (ImageView) v.findViewById(R.id.postWriteImg);
         this.postListView = (ListView) v.findViewById(R.id.postListView);
 
@@ -55,6 +59,7 @@ public class PostFragment extends Fragment {
         setValues();
         GlobalData.initData();
         getPostFromJson();
+
     }
 
     void getPostFromJson() {
@@ -110,6 +115,15 @@ public class PostFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), PostWriteActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getPostFromJson();
+                Toast.makeText(getActivity(), "새로고침합니다.", Toast.LENGTH_SHORT).show();
+                swipeLayout.setRefreshing(false);
             }
         });
     }

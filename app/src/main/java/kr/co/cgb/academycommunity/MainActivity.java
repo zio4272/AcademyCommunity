@@ -83,7 +83,7 @@ public class MainActivity extends BaseActivity {
                                 try {
                                     if (json.getBoolean("result")) {
                                         if (loginIdStr.equals(json.getJSONObject("userlist").getString("loginId")) && loginPwStr.equals(json.getJSONObject("userlist").getString("loginPw"))) {
-                                            Toast.makeText(mContext, "로그인 되었습니다..", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(mContext, "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(mContext, IndexActivity.class);
                                             JSONObject user = json.getJSONObject("userlist");
                                             ContextUtil.login(mContext, User.getUserFromJson(user));

@@ -154,8 +154,6 @@ public class UserFragment extends Fragment {
         sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-                Toast.makeText(getContext(), "선택됨 : " + l, Toast.LENGTH_SHORT).show();
                 lectureNum = i;
                 sortUserList.clear();
 
