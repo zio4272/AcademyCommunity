@@ -52,7 +52,6 @@ public class PostAdapter extends ArrayAdapter<Post> {
             row = inf.inflate(R.layout.post_list_item, null);
 
 
-
         }
 
         LinearLayout postLayout = (LinearLayout) row.findViewById(R.id.postLayout);
@@ -69,16 +68,15 @@ public class PostAdapter extends ArrayAdapter<Post> {
         String profileStr = data.getUserWriterData().getUserProfileImg();
         if (profileStr.equals("noImage")) {
             profileImg.setImageResource(R.drawable.noimage);
-        }
-        else {
+        } else {
             Glide.with(mContext).load(data.getUserWriterData().getUserProfileImg()).into(profileImg);
         }
 
 
         writerNameTxt.setText(data.userWriterData.getUserName());
 
-            String minuteAgo = TimeAgoUtil.getTimeAgoString(data.getPostDate());
-            writeTimeTxt.setText(minuteAgo);
+        String minuteAgo = TimeAgoUtil.getTimeAgoString(data.getPostDate());
+        writeTimeTxt.setText(minuteAgo);
 
 //            글자수 25 제한 뒤는 ...으로 표기
         if (data.getPostContent().length() > 10) {
@@ -89,7 +87,6 @@ public class PostAdapter extends ArrayAdapter<Post> {
         }
         return row;
     }
-
 
 
 }

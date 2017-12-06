@@ -28,7 +28,7 @@ public class Post implements Serializable {
 
 
         try {
-            p.id = jsonObject.getInt("id");
+            p.id = jsonObject.getInt("lectureId");
             p.postContent = jsonObject.getString("postContent");
             p.postDate = jsonObject.getInt("postDate");
             p.userWriterData = User.getUserFromJson(jsonObject);

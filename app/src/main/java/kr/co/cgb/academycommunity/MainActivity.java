@@ -25,6 +25,8 @@ import org.json.JSONObject;
 import java.security.Permission;
 import java.util.ArrayList;
 
+import kr.co.cgb.academycommunity.data.User;
+import kr.co.cgb.academycommunity.util.ContextUtil;
 import kr.co.cgb.academycommunity.util.ServerUtil;
 
 public class MainActivity extends BaseActivity {
@@ -83,6 +85,8 @@ public class MainActivity extends BaseActivity {
                                         if (loginIdStr.equals(json.getJSONObject("userlist").getString("loginId")) && loginPwStr.equals(json.getJSONObject("userlist").getString("loginPw"))) {
                                             Toast.makeText(mContext, "로그인 되었습니다..", Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(mContext, IndexActivity.class);
+                                            JSONObject user = json.getJSONObject("userlist");
+                                            ContextUtil.login(mContext, User.getUserFromJson(user));
                                             startActivity(intent);
                                         }
                                     }

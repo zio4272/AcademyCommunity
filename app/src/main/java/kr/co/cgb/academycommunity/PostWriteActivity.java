@@ -15,6 +15,8 @@ import org.json.JSONObject;
 import java.util.Calendar;
 
 import kr.co.cgb.academycommunity.data.User;
+import kr.co.cgb.academycommunity.util.ContextUtil;
+import kr.co.cgb.academycommunity.util.GlobalData;
 import kr.co.cgb.academycommunity.util.ServerUtil;
 
 public class PostWriteActivity extends BaseActivity {
@@ -38,11 +40,13 @@ public class PostWriteActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
 
-//                TODO 글쓰기 전송 서버 연동
-                ServerUtil.write_post(mContext, postEdt.getText().toString(),1, new ServerUtil.JsonResponseHandler() {
+
+                User loginUser = ContextUtil.getLoginUserInfo(mContext);
+
+
+                ServerUtil.write_post(mContext, postEdt.getText().toString(), loginUser.getId() , new ServerUtil.JsonResponseHandler() {
                     @Override
                     public void onResponse(JSONObject json) {
-
                         AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
                         alert.setTitle("등록하시겠습니까?");
                         alert.setNegativeButton("취소", null );
