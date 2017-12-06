@@ -38,6 +38,11 @@ public class Lecture implements Serializable {
     public Lecture() {
     }
 
+    public Lecture (boolean isAll) {
+        this.id = 0;
+        this.lectureName = "전체 회원 보기";
+    }
+
     public Lecture(int id, String lectureName, Calendar startDate, Calendar endDate, User isTeacherData) {
         this.id = id;
         this.lectureName = lectureName;

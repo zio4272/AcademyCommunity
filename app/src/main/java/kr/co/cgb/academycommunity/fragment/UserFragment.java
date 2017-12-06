@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,7 @@ public class UserFragment extends Fragment {
     UserAdapter mAdapter;
     private android.widget.ListView postListView;
     List<User> userList = new ArrayList<>();
+    List<User> sortUserList = new ArrayList<>();
     private GridView userListView;
     private android.widget.Spinner sortSpinner;
 
@@ -76,6 +78,7 @@ public class UserFragment extends Fragment {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         User users = User.getUserFromJson(jsonArray.getJSONObject(i));
                         userList.add(users);
+                        sortUserList.addAll(userList);
                     }
 
                 } catch (JSONException e) {
@@ -97,6 +100,7 @@ public class UserFragment extends Fragment {
             public void onResponse(JSONObject json) {
                 try {
                     sortList.clear();
+                    sortList.add(new Lecture(true));
                     JSONArray jsonArray = json.getJSONArray("result");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         Lecture lecture = Lecture.getLectureFromJson(jsonArray.getJSONObject(i));
@@ -105,7 +109,7 @@ public class UserFragment extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                mAdapter.notifyDataSetChanged();
+                sortSpinnerAdapter.notifyDataSetChanged();
             }
 
 
@@ -127,7 +131,7 @@ public class UserFragment extends Fragment {
     private void setValues() {
 
 
-        mAdapter = new UserAdapter(getContext(), userList);
+        mAdapter = new UserAdapter(getContext(), sortUserList);
         userListView.setAdapter(mAdapter);
 
 
@@ -142,7 +146,7 @@ public class UserFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getContext(), StudentDetailViewActivity.class);
-                intent.putExtra("userdata", userList.get(i));
+                intent.putExtra("userdata", sortUserList.get(i));
                 startActivity(intent);
             }
         });
@@ -153,7 +157,22 @@ public class UserFragment extends Fragment {
 
                 Toast.makeText(getContext(), "선택됨 : " + l, Toast.LENGTH_SHORT).show();
                 lectureNum = i;
+                sortUserList.clear();
 
+                if (i == 0) {
+                    sortUserList.addAll(userList);
+                }
+                else {
+                    for (User u : userList) {
+                        Log.d("강의", u.listenLecture.getId()+ "");
+                        if (sortList.get(i).getLectureName().equals(u.listenLecture.getLectureName())) {
+                            sortUserList.add(u);
+                        }
+                    }
+
+                }
+
+                mAdapter.notifyDataSetChanged();
 
             }
 

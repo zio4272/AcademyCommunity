@@ -64,4 +64,5 @@ public class SortSpinnerAdapter extends ArrayAdapter<Lecture> {
 
         return row;
     }
+
 }
