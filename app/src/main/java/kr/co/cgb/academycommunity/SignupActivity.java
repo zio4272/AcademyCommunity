@@ -1,7 +1,12 @@
 package kr.co.cgb.academycommunity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -9,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -18,9 +24,14 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+
 import kr.co.cgb.academycommunity.util.ServerUtil;
 
 public class SignupActivity extends BaseActivity {
+
+    final int REQ_FOR_CAMERA = 1;
+    final int REQ_FOR_GALLERY = 2;
 
     boolean isIdOk = false;
     int lectureNum = 0;
@@ -37,6 +48,8 @@ public class SignupActivity extends BaseActivity {
     private android.widget.Button okBtn;
     private TextView pwMessageTxt;
     private android.widget.RadioGroup radioGroup;
+    private android.widget.ImageView userProfileImg;
+    private TextView profileImgUploadTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -185,6 +198,79 @@ public class SignupActivity extends BaseActivity {
             }
         });
 
+        profileImgUploadTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String[] items = {"사진찍기", "앨범에서 선택", "사진 삭제", "취소"};
+
+                AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
+                alert.setItems(items, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        if (i == 0) { // 카메라
+                            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            startActivityForResult(takePictureIntent, REQ_FOR_CAMERA);
+                        } else if (i == 1) { // 앨범
+                            Intent intent = new Intent();
+                            intent.setType("image/*");
+                            intent.setAction(Intent.ACTION_GET_CONTENT);
+                            startActivityForResult(intent, REQ_FOR_GALLERY);
+                        }
+
+                    }
+                });
+
+                alert.show();
+
+            }
+        });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQ_FOR_CAMERA) {
+            if (resultCode == RESULT_OK) {
+//                찍힌 사진을 가지고, 프로필 사진으로 설정
+
+//                결과물 intent가 가진 모든 데이터를 받아오자 : getExtras => Bundle 변수.
+                Bundle extra = data.getExtras();
+//                extra 내부에는 사진으로 촬영한 그림파일 자체. Bitmap
+                Bitmap profileBitmap = (Bitmap) extra.get("data");
+                userProfileImg.setImageBitmap(profileBitmap);
+
+            }
+        } else if (requestCode == REQ_FOR_GALLERY) {
+            if (resultCode == RESULT_OK) {
+//                갤러리에서 선택된 사진을 프사로 설정.
+
+                Uri uri = data.getData();
+//                갤러리를 통해 받아온것? 선택된 사진이 어디에 있는지 위치 정보.
+
+//                경로를 찾아가서 해당 사진 파일을 Bitmap으로 받아와야함.
+//                MediaStore 클래스가 사진 파일 => 비트맵으로 변환해서 가져옴.
+
+//                try : 한번 시도해봐. try 내부는 언제 에러가 터질지 모르는 부분. (예외 발생 가능 지점)
+                //                uri 통해서 사진파일로 찾아감.
+//                사진파일 있으면, 비트맵으로 변환. (변환을 해주는 객체 : getContentResolver())
+//                그냥 이 문장만 쓰면 에러가 남. 왜? 예외처리 필요.
+                Bitmap myBitmap = null;
+                try {
+                    myBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                    userProfileImg.setImageBitmap(myBitmap);
+
+                } catch (IOException e) {
+                    Toast.makeText(mContext, "사진을 불러오는 중에 에러가 발생했습니다.", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+
+
+            }
+        }
 
     }
 
@@ -213,6 +299,8 @@ public class SignupActivity extends BaseActivity {
     public void bindViews() {
         this.okBtn = (Button) findViewById(R.id.okBtn);
         this.MyInfoEdt = (EditText) findViewById(R.id.MyInfoEdt);
+        this.profileImgUploadTxt = (TextView) findViewById(R.id.profileImgUploadTxt);
+        this.userProfileImg = (ImageView) findViewById(R.id.userProfileImg);
         this.lectureListSpinner = (Spinner) findViewById(R.id.lectureListSpinner);
         this.radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         this.womanRadioBtn = (RadioButton) findViewById(R.id.womanRadioBtn);
