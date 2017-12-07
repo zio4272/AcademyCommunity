@@ -122,7 +122,7 @@ public class PostFragment extends Fragment {
             @Override
             public void onRefresh() {
                 getPostFromJson();
-                Toast.makeText(getActivity(), "새로고침합니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "새로고침되었습니다.", Toast.LENGTH_SHORT).show();
                 swipeLayout.setRefreshing(false);
             }
         });

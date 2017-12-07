@@ -17,7 +17,7 @@ public class ServerUtil {
 
     private static final String TAG = ServerUtil.class.getSimpleName();
 
-    private final static String BASE_URL = "http://192.168.20.119:8080/cgb/"; // 라이브서버
+    private final static String BASE_URL = "http://192.168.219.105:8080/cgb/"; // 라이브서버
 //    private final static String BASE_URL = "http://share-tdd.com/"; // 개발서버
 
     //    JSON 처리 부분 인터페이스.
