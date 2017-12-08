@@ -44,7 +44,7 @@ public class PostWriteActivity extends BaseActivity {
                 User loginUser = ContextUtil.getLoginUserInfo(mContext);
 
 
-                ServerUtil.write_post(mContext, postEdt.getText().toString(), loginUser.getId() , new ServerUtil.JsonResponseHandler() {
+                ServerUtil.write_post(mContext, postEdt.getText().toString(), loginUser.getId() , new ServerUtil.JsonResponseHandler()  {
                     @Override
                     public void onResponse(JSONObject json) {
                         AlertDialog.Builder alert = new AlertDialog.Builder(mContext);

@@ -68,6 +68,7 @@ public class IndexActivity extends BaseActivity {
 
         mainViewPager.setAdapter(new IndexViewPagerAdapter(getSupportFragmentManager()));
         mainViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        mainViewPager.setOffscreenPageLimit(4);
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mainViewPager));
 
         tabLayout.setupWithViewPager(mainViewPager);

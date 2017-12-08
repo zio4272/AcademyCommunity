@@ -140,8 +140,12 @@ public class PostPopupActivity extends BaseActivity {
         listenLectureTxt.setText(post.userWriterData.listenLecture.getLectureName());
          writerNameTxt.setText(post.getUserWriterData().getUserName());
         contentTxt.setText(post.getPostContent());
-        String minuteAge = TimeAgoUtil.getTimeAgoString(post.getPostDate());
-        writeTimeTxt.setText(minuteAge);
+
+        Calendar now = Calendar.getInstance();
+        long time = now.getTimeInMillis() - post.getPostDate().getTimeInMillis();
+        int minute = (int) (time / 1000 / 60);
+        String minuteAgo = TimeAgoUtil.getTimeAgoString(minute);
+        writeTimeTxt.setText(minuteAgo);
 
 
 

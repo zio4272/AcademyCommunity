@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.bumptech.glide.Glide;
 import org.json.JSONObject;
 import org.json.JSONStringer;
 
+import java.util.Calendar;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -75,10 +77,19 @@ public class PostAdapter extends ArrayAdapter<Post> {
 
         writerNameTxt.setText(data.userWriterData.getUserName());
 
-        String minuteAgo = TimeAgoUtil.getTimeAgoString(data.getPostDate());
+        Calendar now = Calendar.getInstance();
+        Log.d("현재시간", now +"");
+       long time = now.getTimeInMillis() - data.getPostDate().getTimeInMillis();
+        Log.d("시간계산", time+"");
+
+        Log.d("작성된 시간",data.getPostDate().getTimeInMillis() +"");
+
+       int minute = (int) (time / 1000 / 60);
+       Log.d("시간나누기", minute +"");
+        String minuteAgo = TimeAgoUtil.getTimeAgoString(minute);
         writeTimeTxt.setText(minuteAgo);
 
-//            글자수 25 제한 뒤는 ...으로 표기
+//            글자수 10 제한 뒤는 ...으로 표기
         if (data.getPostContent().length() > 10) {
             String contentHTML = data.getPostContent().substring(0, 10) + "...";
             contentTxt.setText(Html.fromHtml(contentHTML));

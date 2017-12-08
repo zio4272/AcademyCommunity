@@ -17,7 +17,7 @@ public class Post implements Serializable {
 
     private int id;
     private String postContent;
-    private int postDate;
+    private Calendar postDate = Calendar.getInstance();
 
     public User userWriterData;
 
@@ -30,7 +30,8 @@ public class Post implements Serializable {
         try {
             p.id = jsonObject.getInt("lectureId");
             p.postContent = jsonObject.getString("postContent");
-            p.postDate = jsonObject.getInt("postDate");
+            long time = jsonObject.getLong("postDate");
+            p.postDate.setTimeInMillis(time);
             p.userWriterData = User.getUserFromJson(jsonObject);
 
 
@@ -42,17 +43,15 @@ public class Post implements Serializable {
         return p;
     }
 
-
-
-
     public Post() {
     }
 
-    public Post(int id, String postContent, int postDate, User userWriterData) {
+    public Post(int id, String postContent, Calendar postDate, User userWriterData, List<Reply> replyList) {
         this.id = id;
         this.postContent = postContent;
         this.postDate = postDate;
         this.userWriterData = userWriterData;
+        this.replyList = replyList;
     }
 
     public int getId() {
@@ -71,11 +70,11 @@ public class Post implements Serializable {
         this.postContent = postContent;
     }
 
-    public int getPostDate() {
+    public Calendar getPostDate() {
         return postDate;
     }
 
-    public void setPostDate(int postDate) {
+    public void setPostDate(Calendar postDate) {
         this.postDate = postDate;
     }
 
@@ -86,6 +85,7 @@ public class Post implements Serializable {
     public void setUserWriterData(User userWriterData) {
         this.userWriterData = userWriterData;
     }
+
     public List<Reply> getReplyList() {
         return replyList;
     }
