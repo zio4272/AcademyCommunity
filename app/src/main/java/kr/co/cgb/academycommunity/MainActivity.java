@@ -43,7 +43,7 @@ public class MainActivity extends BaseActivity {
         bindViews();
         setupEvents();
         setValues();
-        FirebaseMessaging.getInstance().subscribeToTopic("news");
+//        FirebaseMessaging.getInstance().subscribeToTopic("news");
         FirebaseInstanceId.getInstance().getToken();
 
 
