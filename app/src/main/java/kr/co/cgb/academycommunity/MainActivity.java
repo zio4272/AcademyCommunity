@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,8 @@ import kr.co.cgb.academycommunity.util.ServerUtil;
 
 public class MainActivity extends BaseActivity {
 
+    MainActivity act;
+
     private android.widget.Button signupBtn;
     private Button loginBtn;
 
@@ -46,7 +49,9 @@ public class MainActivity extends BaseActivity {
 //        FirebaseMessaging.getInstance().subscribeToTopic("news");
         FirebaseInstanceId.getInstance().getToken();
 
+        String token = FirebaseInstanceId.getInstance().getToken();
 
+//        Log.d("token값", token);
     }
 
 
@@ -122,6 +127,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void setValues() {
+
+        act = this;
 
 
         TedPermission.with(mContext)
