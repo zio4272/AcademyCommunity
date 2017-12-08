@@ -1,6 +1,7 @@
 package kr.co.cgb.academycommunity.util;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -338,7 +339,7 @@ public class ServerUtil {
     }
 
 
-    public static void signup(final Context context, final String loginId, final String loginPw, final String username, final int gender, final String phonenum, final String profileurl, final String myinfo, final int lectureId, final String deviceToken, final JsonResponseHandler handler) {
+    public static void signup(final Context context, final String loginId, final String loginPw, final String username, final int gender, final String phonenum, Bitmap bitmap, final String myinfo, final int lectureId, final JsonResponseHandler handler) {
 //        기능에 따라 매번 주소를 다르게 적어줘야함.
         String url = BASE_URL + "get_signup_user";
 
@@ -350,15 +351,12 @@ public class ServerUtil {
         data.put("user_name", username);
         data.put("user_gender", gender + "");
         data.put("user_phonenum", phonenum);
-        data.put("user_profileimg", profileurl);
         data.put("user_myinfo", myinfo);
         data.put("lecture_id", lectureId+"");
 //        data.put("user_isteacher", isteacher + "");
-        data.put("device_token", deviceToken);
 
 
-        AsyncHttpRequest.get(context, url, data, true, new AsyncHttpRequest.HttpResponseHandler() {
-
+        AsyncHttpRequest.postWithImageFile(context, url, data, bitmap, "", new AsyncHttpRequest.HttpResponseHandler() {
             @Override
             public boolean onPrepare() {
                 return true;
@@ -386,8 +384,8 @@ public class ServerUtil {
             public void onCancelled() {
 
             }
-
         });
+
     }
 
 

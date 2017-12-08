@@ -21,8 +21,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.iid.FirebaseInstanceId;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -32,6 +30,7 @@ import kr.co.cgb.academycommunity.util.ServerUtil;
 
 public class SignupActivity extends BaseActivity {
 
+    Bitmap myBitmap = null;
     final int REQ_FOR_CAMERA = 1;
     final int REQ_FOR_GALLERY = 2;
 
@@ -52,7 +51,6 @@ public class SignupActivity extends BaseActivity {
     private android.widget.RadioGroup radioGroup;
     private android.widget.ImageView userProfileImg;
     private TextView profileImgUploadTxt;
-    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +60,6 @@ public class SignupActivity extends BaseActivity {
         setupEvents();
         setValues();
 
-        token = FirebaseInstanceId.getInstance().getToken();
-
-        Log.d("token값", token);
         setTitle("회원가입");
     }
 
@@ -173,7 +168,7 @@ public class SignupActivity extends BaseActivity {
                     Toast.makeText(mContext, "성별을 선택해주세요.", Toast.LENGTH_SHORT).show();
                 } else if (inputPw.length() >= 1 && inputPw.equals(inputCheckPw) && isIdOk && lectureNum != 0) {
 
-                    ServerUtil.signup(mContext, idEdt.getText().toString(), pwEdt.getText().toString(), nameEdt.getText().toString(), gender, phoneEdt.getText().toString(), null, MyInfoEdt.getText().toString(), lectureNum, token, new ServerUtil.JsonResponseHandler() {
+                    ServerUtil.signup(mContext, idEdt.getText().toString(), pwEdt.getText().toString(), nameEdt.getText().toString(), gender, phoneEdt.getText().toString(), myBitmap, MyInfoEdt.getText().toString(), lectureNum, new ServerUtil.JsonResponseHandler() {
                         @Override
                         public void onResponse(JSONObject json) {
 
@@ -264,7 +259,7 @@ public class SignupActivity extends BaseActivity {
                 //                uri 통해서 사진파일로 찾아감.
 //                사진파일 있으면, 비트맵으로 변환. (변환을 해주는 객체 : getContentResolver())
 //                그냥 이 문장만 쓰면 에러가 남. 왜? 예외처리 필요.
-                Bitmap myBitmap = null;
+
                 try {
                     myBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                     userProfileImg.setImageBitmap(myBitmap);
