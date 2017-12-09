@@ -58,6 +58,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
 
         LinearLayout postLayout = (LinearLayout) row.findViewById(R.id.postLayout);
         CircleImageView profileImg = (CircleImageView) row.findViewById(R.id.profileImg);
+//        ImageView profileImg = (ImageView) row.findViewById(R.id.profileImg);
         ImageView profileINoImg = (ImageView) row.findViewById(R.id.profileINoImg);
         TextView writerNameTxt = (TextView) row.findViewById(R.id.writerNameTxt);
         TextView writeTimeTxt = (TextView) row.findViewById(R.id.writeTimeTxt);
@@ -73,7 +74,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
         } else {
             Glide.with(mContext).load(data.getUserWriterData().getUserProfileImg()).into(profileImg);
         }
-
+        profileImg.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
         writerNameTxt.setText(data.userWriterData.getUserName());
 

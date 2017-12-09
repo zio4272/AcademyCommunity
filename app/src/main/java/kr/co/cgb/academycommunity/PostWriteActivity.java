@@ -41,31 +41,39 @@ public class PostWriteActivity extends BaseActivity {
             public void onClick(View view) {
 
 
-                User loginUser = ContextUtil.getLoginUserInfo(mContext);
 
 
-                ServerUtil.write_post(mContext, postEdt.getText().toString(), loginUser.getId() , new ServerUtil.JsonResponseHandler()  {
+
+                AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
+                alert.setTitle("등록하시겠습니까?");
+                alert.setNegativeButton("취소", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onResponse(JSONObject json) {
-                        AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
-                        alert.setTitle("등록하시겠습니까?");
-                        alert.setNegativeButton("취소", null );
-                        alert.setPositiveButton("등록", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                finish();
-                            }
-                        });
-                        alert.show();
-
-                        Log.d("등록됨" , json.toString());
-
-
-
-
-
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
                     }
                 });
+                alert.setPositiveButton("등록", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        User loginUser = ContextUtil.getLoginUserInfo(mContext);
+                        ServerUtil.write_post(mContext, postEdt.getText().toString(), loginUser.getId() , new ServerUtil.JsonResponseHandler()  {
+                            @Override
+                            public void onResponse(JSONObject json) {
+
+
+                                Log.d("등록됨" , json.toString());
+
+
+
+
+
+                            }
+                        });
+                        finish();
+                    }
+                });
+                alert.show();
+
 
             }
         });

@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:orientation="vertical">
 
 
     <FrameLayout
@@ -15,15 +14,21 @@
             android:id="@+id/postLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/round_background"
             android:orientation="horizontal"
             android:padding="10dp">
+
+
+            <!--<ImageView-->
+                <!--android:id="@+id/profileImg"-->
+                <!--android:layout_width="70dp"-->
+                <!--android:layout_height="70dp"-->
+                <!--android:src="@mipmap/ic_launcher_round"/>-->
 
             <de.hdodenhof.circleimageview.CircleImageView
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/profileImg"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:src="@mipmap/ic_launcher_round"
                 app:civ_border_width="1dp"
                 app:civ_border_color="#E1E1E1"/>
@@ -82,27 +87,6 @@
                         android:singleLine="true"
                         android:text="점심시간에 쌈밥 먹으러 갈 사람?" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:layout_gravity="right"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:src="@mipmap/ic_launcher_round" />
-
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_marginLeft="5dp"
-                            android:src="@mipmap/ic_launcher_round" />
-
-
-                    </LinearLayout>
 
 
                 </FrameLayout>
@@ -111,10 +95,22 @@
             </LinearLayout>
 
 
+
+
         </LinearLayout>
+
+        <TextView
+            android:padding="10dp"
+            android:background="@drawable/round_background"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="right|center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="18"/>
 
 
     </FrameLayout>
+
 
 
 </LinearLayout>

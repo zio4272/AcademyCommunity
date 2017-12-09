@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +54,8 @@ public class UserAdapter extends ArrayAdapter<User> {
 
         userNameTxt.setText(data.getUserName());
 
+        Glide.with(getContext()).load(data.getUserProfileImg()).into(userProfileImg);
+        userProfileImg.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
         return row;
     }
