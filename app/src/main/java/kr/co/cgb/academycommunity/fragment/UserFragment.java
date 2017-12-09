@@ -78,6 +78,7 @@ public class UserFragment extends Fragment {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         User users = User.getUserFromJson(jsonArray.getJSONObject(i));
                         userList.add(users);
+                        sortUserList.clear();
                         sortUserList.addAll(userList);
                     }
 
