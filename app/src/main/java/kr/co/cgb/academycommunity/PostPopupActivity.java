@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ import kr.co.cgb.academycommunity.data.Reply;
 import kr.co.cgb.academycommunity.data.User;
 import kr.co.cgb.academycommunity.util.ContextUtil;
 import kr.co.cgb.academycommunity.util.GlobalData;
+import kr.co.cgb.academycommunity.util.ServerUtil;
 import kr.co.cgb.academycommunity.util.TimeAgoUtil;
 
 public class PostPopupActivity extends BaseActivity {
@@ -53,60 +56,104 @@ public class PostPopupActivity extends BaseActivity {
         bindViews();
         setupEvents();
         setValues();
+        getReplyFromJson();
 
     }
 
     @Override
     public void setupEvents() {
 
-
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String input = replyEdt.getText().toString();
-                Log.d("확인", input);
 
-                int nextId = replyList.size() + 1;
+                User loginUser = ContextUtil.getLoginUserInfo(mContext);
 
-                if (selectedReply != -1) {
+                ServerUtil.write_reply(mContext, -1,loginUser.getUserName(), replyEdt.getText().toString(), post.getId(), new ServerUtil.JsonResponseHandler() {
+                    @Override
+                    public void onResponse(JSONObject json) {
 
-                    for (Reply reply : post.replyList) {
-                        if (reply.getReplyId() == selectedReply) {
-                            reply.replies.add(new Reply(nextId, selectedReply, GlobalData.loginUserData, input, Calendar.getInstance(), post, tagUser));
+                        Log.d("테스트", json.toString());
+                    }
+                });
 
-                        }
+            }
+        });
 
+
+//        sendBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String input = replyEdt.getText().toString();
+//                Log.d("확인", input);
+//
+//                int nextId = replyList.size() + 1;
+//
+//                if (selectedReply != -1) {
+//
+//                    for (Reply reply : post.replyList) {
+//                        if (reply.getReplyId() == selectedReply) {
+//                            reply.replies.add(new Reply(nextId, selectedReply, GlobalData.loginUserData, input, Calendar.getInstance(), post, tagUser));
+//
+//                        }
+//
+//                    }
+//
+//                } else {
+//                    post.replyList.add(new Reply(nextId, selectedReply, GlobalData.loginUserData, input, Calendar.getInstance(), post, tagUser));
+//                }
+//
+//                replyData();
+//
+//
+//                selectedReply = -1;
+//                mAdapter.notifyDataSetChanged();
+//
+//                int index = 0;
+//                for (Reply reply : replyList) {
+//                    if (reply.getReplyId() == nextId) {
+//                        break;
+//                    } else {
+//                        index++;
+//                    }
+//
+//                }
+//                if (index > 0) {
+//                    replyListView.setSelection(index);
+//                }
+//
+//
+//                replyEdt.setText("");
+//            }
+//        });
+
+    }
+
+    void getReplyFromJson() {
+        ServerUtil.getPost(mContext, new ServerUtil.JsonResponseHandler() {
+            @Override
+            public void onResponse(JSONObject json) {
+
+                try {
+                    replyList.clear();
+                    JSONArray jsonArray = json.getJSONArray("result");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        Reply reply = Reply.getReplyFromJson(jsonArray.getJSONObject(i));
+                        replyList.add(reply);
+//                        TODO - userProfileImg 없다고 뜨는거 해결 해야함
                     }
 
-                } else {
-                    post.replyList.add(new Reply(nextId, selectedReply, GlobalData.loginUserData, input, Calendar.getInstance(), post, tagUser));
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
 
-                replyData();
-
-
-                selectedReply = -1;
                 mAdapter.notifyDataSetChanged();
 
-                int index = 0;
-                for (Reply reply : replyList) {
-                    if (reply.getReplyId() == nextId) {
-                        break;
-                    } else {
-                        index++;
-                    }
-
-                }
-                if (index > 0) {
-                    replyListView.setSelection(index);
-                }
-
-
-                replyEdt.setText("");
             }
         });
 
     }
+
 
     void replyData() {
         replyList.clear();

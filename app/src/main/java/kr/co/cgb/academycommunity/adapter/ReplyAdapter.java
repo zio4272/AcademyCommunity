@@ -1,7 +1,6 @@
 package kr.co.cgb.academycommunity.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -13,13 +12,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 import kr.co.cgb.academycommunity.PostPopupActivity;
 import kr.co.cgb.academycommunity.R;
-import kr.co.cgb.academycommunity.data.Post;
 import kr.co.cgb.academycommunity.data.Reply;
 
 /**
@@ -56,8 +52,8 @@ public class ReplyAdapter extends ArrayAdapter<Reply> {
         TextView mainReplyUserNameTxt = (TextView) row.findViewById(R.id.mainReplyUserNameTxt);
         TextView mainReplyContentTxt = (TextView) row.findViewById(R.id.mainReplyContentTxt);
         TextView mainReplyTimeTxt = (TextView) row.findViewById(R.id.mainReplyTimeTxt);
-        TextView mainReplyLikeTxt = (TextView) row.findViewById(R.id.mainReplyLikeTxt);
-        TextView mainReplyAddTxt = (TextView) row.findViewById(R.id.mainReplyAddTxt);
+//        TextView mainReplyLikeTxt = (TextView) row.findViewById(R.id.mainReplyLikeTxt);
+//        TextView mainReplyAddTxt = (TextView) row.findViewById(R.id.mainReplyAddTxt);
 
         LinearLayout subReplyLayout = (LinearLayout) row.findViewById(R.id.subReplyLayout);
         ImageView subReplyProfileImg = (ImageView) row.findViewById(R.id.subReplyProfileImg);
@@ -65,8 +61,8 @@ public class ReplyAdapter extends ArrayAdapter<Reply> {
         final TextView subReplyTagNameTxt = (TextView) row.findViewById(R.id.subReplyTagNameTxt);
         TextView subReplyContentTxt = (TextView) row.findViewById(R.id.subReplyContentTxt);
         TextView subReplyTimeTxt = (TextView) row.findViewById(R.id.subReplyTimeTxt);
-        TextView subReplyLikeTxt = (TextView) row.findViewById(R.id.subReplyLikeTxt);
-        TextView subReplyAddTxt = (TextView) row.findViewById(R.id.subReplyAddTxt);
+//        TextView subReplyLikeTxt = (TextView) row.findViewById(R.id.subReplyLikeTxt);
+//        TextView subReplyAddTxt = (TextView) row.findViewById(R.id.subReplyAddTxt);
 
 
         if (data.getParentId() == -1) {
@@ -74,45 +70,45 @@ public class ReplyAdapter extends ArrayAdapter<Reply> {
             mainReplyLayout.setVisibility(View.VISIBLE);
             subReplyLayout.setVisibility(View.GONE);
 
-            mainReplyUserNameTxt.setText(data.getUserWriterData().getUserName());
-            mainReplyContentTxt.setText(data.getReplyContent());
+            mainReplyUserNameTxt.setText("글쓴이");
+            mainReplyContentTxt.setText("내용");
 
-            mainReplyAddTxt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int mainReply = data.getReplyId();
-                    Log.d("오리지날", mainReply + "");
-//                    subReplyTagNameTxt.setText(data.post.getUserWriterData().getUserName());
-//                    subReplyTagNameTxt.setVisibility(View.VISIBLE);
-                    ((PostPopupActivity) mContext).tagUser =  data.getUserWriterData();
-                    ((PostPopupActivity) mContext).selectedReply = mainReply;
-                }
-            });
+//            mainReplyAddTxt.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    int mainReply = data.getReplyId();
+//                    Log.d("오리지날", mainReply + "");
+////                    subReplyTagNameTxt.setText(data.post.getReplyWriteName().getUserName());
+////                    subReplyTagNameTxt.setVisibility(View.VISIBLE);
+//                    ((PostPopupActivity) mContext).tagUser =  data.getReplyWriteName();
+//                    ((PostPopupActivity) mContext).selectedReply = mainReply;
+//                }
+//            });
 
         } else {
             mainReplyLayout.setVisibility(View.GONE);
             subReplyLayout.setVisibility(View.VISIBLE);
             subReplyTagNameTxt.setVisibility(View.VISIBLE);
 
-            subReplyUserNameTxt.setText(data.getUserWriterData().getUserName());
+            subReplyUserNameTxt.setText(data.getReplyWriteName().getUserName());
             subReplyContentTxt.setText(data.getReplyContent());
 
-            if (data.getUserWriterData() != null) {
-                subReplyTagNameTxt.setText(data.getTagUserName().getUserName());
-            }
+//            if (data.getReplyWriteName() != null) {
+//                subReplyTagNameTxt.setText(data.getTagUserName().getUserName());
+//            }
 
-            subReplyAddTxt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int subReply = data.getReplyId();
-                    Log.d("서브", subReply + "");
-//                subReplyTagNameTxt.setText(data.post.getUserWriterData().getUserName());
-//                subReplyTagNameTxt.setVisibility(View.VISIBLE);
-                    ((PostPopupActivity) mContext).tagUser =  data.getUserWriterData();
-                    ((PostPopupActivity) mContext).selectSubReply = subReply;
-
-                }
-            });
+//            subReplyAddTxt.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    int subReply = data.getReplyId();
+//                    Log.d("서브", subReply + "");
+////                subReplyTagNameTxt.setText(data.post.getReplyWriteName().getUserName());
+////                subReplyTagNameTxt.setVisibility(View.VISIBLE);
+//                    ((PostPopupActivity) mContext).tagUser =  data.getReplyWriteName();
+//                    ((PostPopupActivity) mContext).selectSubReply = subReply;
+//
+//                }
+//            });
         }
 
         return row;

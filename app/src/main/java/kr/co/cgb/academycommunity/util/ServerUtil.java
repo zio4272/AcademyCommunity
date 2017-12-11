@@ -26,6 +26,89 @@ public class ServerUtil {
         void onResponse(JSONObject json);
     }
 
+    public static void get_reply(final Context context,  final JsonResponseHandler handler) {
+        String url = BASE_URL + "get_reply";
+
+        Map<String, String> data = new HashMap<String, String>();
+
+
+        AsyncHttpRequest.get(context, url, data, true, new AsyncHttpRequest.HttpResponseHandler() {
+
+            @Override
+            public boolean onPrepare() {
+                return true;
+            }
+
+            @Override
+            public void onResponse(String response) {
+                System.out.println(response);
+                try {
+                    JSONObject json = new JSONObject(response);
+
+                    if (handler != null)
+                        handler.onResponse(json);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+
+            @Override
+            public void onCancelled() {
+
+            }
+
+        });
+    }
+
+
+    public static void write_reply(final Context context, final int parentId, final String replyWriteName, final String replyContent, final int postId, final JsonResponseHandler handler) {
+        String url = BASE_URL + "write_reply";
+
+        Map<String, String> data = new HashMap<String, String>();
+        data.put("parent_id", parentId + "");
+        data.put("reply_write_name", replyWriteName);
+        data.put("reply_content", replyContent);
+        data.put("post_id", postId + "");
+
+
+        AsyncHttpRequest.get(context, url, data, true, new AsyncHttpRequest.HttpResponseHandler() {
+
+            @Override
+            public boolean onPrepare() {
+                return true;
+            }
+
+            @Override
+            public void onResponse(String response) {
+                System.out.println(response);
+                try {
+                    JSONObject json = new JSONObject(response);
+
+                    if (handler != null)
+                        handler.onResponse(json);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+
+            @Override
+            public void onCancelled() {
+
+            }
+
+        });
+    }
+
 
     public static void getAllLectures(final Context context, final JsonResponseHandler handler) {
         String url = BASE_URL + "get_all_lectures";
