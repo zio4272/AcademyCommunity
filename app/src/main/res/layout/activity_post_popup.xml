@@ -87,15 +87,10 @@
             android:layout_marginTop="10dp"
             android:text="점심시간에 쌈밥 먹으러 가실.?" />
 
-        <TextView
-
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="10dp"
-            android:background="#E1E1E1" />
 
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -124,26 +119,31 @@
 
     </LinearLayout>
 
-    <LinearLayout
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <EditText
+            android:padding="15dp"
+            android:background="@drawable/gray_boader_shadow_box"
             android:id="@+id/replyEdt"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:tag="0" />
 
         <Button
+            android:layout_marginRight="7dp"
+            android:layout_gravity="right|center_vertical"
             android:id="@+id/sendBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="전송" />
+            android:text="등록" />
 
-    </LinearLayout>
+    </FrameLayout>
 
 
 </LinearLayout>

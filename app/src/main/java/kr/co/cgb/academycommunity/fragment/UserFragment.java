@@ -106,6 +106,7 @@ public class UserFragment extends Fragment {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         Lecture lecture = Lecture.getLectureFromJson(jsonArray.getJSONObject(i));
                         sortList.add(lecture);
+
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

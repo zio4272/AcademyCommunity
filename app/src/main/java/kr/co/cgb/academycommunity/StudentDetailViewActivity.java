@@ -36,7 +36,6 @@ public class StudentDetailViewActivity extends BaseActivity {
         bindViews();
         setupEvents();
         setValues();
-        GlobalData.initData();
     }
 
     @Override
@@ -49,6 +48,7 @@ public class StudentDetailViewActivity extends BaseActivity {
 
         nameTxt.setText(user.getUserName());
         myInfoTxt.setText(user.getUserMyInfo());
+
         String profileStr = user.getUserProfileImg();
         if (profileStr.equals("noImage")) {
             profileimage.setImageResource(R.drawable.noimage);

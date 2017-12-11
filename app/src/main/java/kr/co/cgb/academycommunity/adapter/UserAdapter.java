@@ -54,7 +54,12 @@ public class UserAdapter extends ArrayAdapter<User> {
 
         userNameTxt.setText(data.getUserName());
 
-        Glide.with(getContext()).load(data.getUserProfileImg()).into(userProfileImg);
+        String profileStr = data.getUserProfileImg();
+        if (profileStr.equals("noImage")) {
+            userProfileImg.setImageResource(R.drawable.noimage);
+        } else {
+            Glide.with(mContext).load(data.getUserProfileImg()).into(userProfileImg);
+        }
         userProfileImg.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
         return row;

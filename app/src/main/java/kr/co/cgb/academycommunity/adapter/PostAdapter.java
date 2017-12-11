@@ -63,6 +63,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
         TextView writerNameTxt = (TextView) row.findViewById(R.id.writerNameTxt);
         TextView writeTimeTxt = (TextView) row.findViewById(R.id.writeTimeTxt);
         TextView contentTxt = (TextView) row.findViewById(R.id.contentTxt);
+        TextView replyCountTxt = (TextView) row.findViewById(R.id.replyCountTxt);
 
 
         Post data = mList.get(position);
@@ -90,9 +91,9 @@ public class PostAdapter extends ArrayAdapter<Post> {
         String minuteAgo = TimeAgoUtil.getTimeAgoString(minute);
         writeTimeTxt.setText(minuteAgo);
 
-//            글자수 10 제한 뒤는 ...으로 표기
-        if (data.getPostContent().length() > 10) {
-            String contentHTML = data.getPostContent().substring(0, 10) + "...";
+//            글자수 20 제한 뒤는 ...으로 표기
+        if (data.getPostContent().length() > 20) {
+            String contentHTML = data.getPostContent().substring(0, 20) + "...";
             contentTxt.setText(Html.fromHtml(contentHTML));
         } else {
             contentTxt.setText(data.getPostContent());

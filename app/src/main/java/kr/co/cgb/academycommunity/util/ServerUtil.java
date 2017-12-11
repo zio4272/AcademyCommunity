@@ -18,7 +18,7 @@ public class ServerUtil {
 
     private static final String TAG = ServerUtil.class.getSimpleName();
 
-    private final static String BASE_URL = "http://192.168.219.107:8080/cgb/"; // 라이브서버
+    private final static String BASE_URL = "http://192.168.20.119:8080/cgb/"; // 라이브서버
 //    private final static String BASE_URL = "http://share-tdd.com/"; // 개발서버
 
     //    JSON 처리 부분 인터페이스.
@@ -31,8 +31,6 @@ public class ServerUtil {
         String url = BASE_URL + "get_all_lectures";
 
         Map<String, String> data = new HashMap<String, String>();
-
-
 
 
         AsyncHttpRequest.get(context, url, data, true, new AsyncHttpRequest.HttpResponseHandler() {
@@ -72,8 +70,6 @@ public class ServerUtil {
         String url = BASE_URL + "get_all_users";
 
         Map<String, String> data = new HashMap<String, String>();
-
-
 
 
         AsyncHttpRequest.get(context, url, data, true, new AsyncHttpRequest.HttpResponseHandler() {
@@ -117,7 +113,6 @@ public class ServerUtil {
         data.put("phone_num", phoneNum);
 
 
-
         AsyncHttpRequest.get(context, url, data, true, new AsyncHttpRequest.HttpResponseHandler() {
 
             @Override
@@ -157,7 +152,7 @@ public class ServerUtil {
 
         Map<String, String> data = new HashMap<String, String>();
         data.put("post_content", post);
-        data.put("post_writer", writer+"");
+        data.put("post_writer", writer + "");
 
 
         AsyncHttpRequest.get(context, url, data, true, new AsyncHttpRequest.HttpResponseHandler() {
@@ -232,7 +227,6 @@ public class ServerUtil {
 
         });
     }
-
 
 
     public static void idCheck(final Context context, final String loginId, final JsonResponseHandler handler) {
@@ -328,7 +322,7 @@ public class ServerUtil {
         data.put("user_gender", gender + "");
         data.put("user_phonenum", phonenum);
         data.put("user_myinfo", myinfo);
-        data.put("lecture_id", lectureId+"");
+        data.put("lecture_id", lectureId + "");
 //        data.put("user_isteacher", isteacher + "");
 
 
