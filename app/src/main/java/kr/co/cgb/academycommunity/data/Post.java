@@ -28,7 +28,7 @@ public class Post implements Serializable {
 
 
         try {
-            p.id = jsonObject.getInt("lectureId");
+            p.id = jsonObject.getInt("id");
             p.postContent = jsonObject.getString("postContent");
             long time = jsonObject.getLong("postDate");
             p.postDate.setTimeInMillis(time);

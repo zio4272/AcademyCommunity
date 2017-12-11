@@ -26,10 +26,11 @@ public class ServerUtil {
         void onResponse(JSONObject json);
     }
 
-    public static void get_reply(final Context context,  final JsonResponseHandler handler) {
+    public static void get_reply(final Context context, final int postId, final JsonResponseHandler handler) {
         String url = BASE_URL + "get_reply";
 
         Map<String, String> data = new HashMap<String, String>();
+        data.put("post_id", postId+"");
 
 
         AsyncHttpRequest.get(context, url, data, true, new AsyncHttpRequest.HttpResponseHandler() {
@@ -66,7 +67,7 @@ public class ServerUtil {
     }
 
 
-    public static void write_reply(final Context context, final int parentId, final String replyWriteName, final String replyContent, final int postId, final JsonResponseHandler handler) {
+    public static void write_reply(final Context context, final int parentId, final String replyWriteName, final String replyContent, final int postId, final int userId, final JsonResponseHandler handler) {
         String url = BASE_URL + "write_reply";
 
         Map<String, String> data = new HashMap<String, String>();
@@ -74,6 +75,7 @@ public class ServerUtil {
         data.put("reply_write_name", replyWriteName);
         data.put("reply_content", replyContent);
         data.put("post_id", postId + "");
+        data.put("user_id", userId+"");
 
 
         AsyncHttpRequest.get(context, url, data, true, new AsyncHttpRequest.HttpResponseHandler() {
@@ -272,7 +274,7 @@ public class ServerUtil {
     }
 
 
-    public static void getPost(final Context context, final JsonResponseHandler handler) {
+    public static void getPost(final Context context,  final JsonResponseHandler handler) {
         String url = BASE_URL + "get_post";
 
         Map<String, String> data = new HashMap<String, String>();

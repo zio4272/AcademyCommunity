@@ -14,6 +14,8 @@ import kr.co.cgb.academycommunity.data.User;
 
 public class ContextUtil {
 
+    private static User loginUser = null;
+
     private static final String prefName = "AcademyCommunity";
 
     private static final String USER_ID = "USER_ID";
@@ -77,11 +79,28 @@ public class ContextUtil {
 //            사용자 숫자 아이디가 0이거나 그보다 작으므로, 로그아웃 상태라고 판단.
 //            로그아웃일 경우 : 사용자 정보에 null
             loginUser = null;
+
+
         }
 
 
         return loginUser;
     }
+
+    public static void logout(Context context) {
+        loginUser = null;
+        SharedPreferences pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
+
+        pref.edit().putInt(USER_ID, -1).commit();
+        pref.edit().putString(USER_LOGIN_ID, "").commit();
+        pref.edit().putString(USER_NAME, "").commit();
+        pref.edit().putInt(USER_GENDER, -1).commit();
+        pref.edit().putString(USER_PHONE_NUM, "").commit();
+        pref.edit().putString(USER_PROFILE_IMG, "").commit();
+        pref.edit().putString(USER_MY_INFO, "").commit();
+    }
+
+
 
 
 }

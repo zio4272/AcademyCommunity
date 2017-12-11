@@ -3,10 +3,12 @@ package kr.co.cgb.academycommunity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -35,6 +37,8 @@ public class PostPopupActivity extends BaseActivity {
     public int selectedReply = -1;
     public int selectSubReply;
 
+    int parentId = 1;
+
 
     private android.widget.ImageView profileImg;
     private android.widget.TextView lectureNameTxt;
@@ -54,9 +58,9 @@ public class PostPopupActivity extends BaseActivity {
         setContentView(R.layout.activity_post_popup);
         post = (Post) getIntent().getSerializableExtra("postdata");
         bindViews();
+//        setValues();
         setupEvents();
-        setValues();
-        getReplyFromJson();
+//        getReplyFromJson();
 
     }
 
@@ -68,15 +72,31 @@ public class PostPopupActivity extends BaseActivity {
             public void onClick(View view) {
 
                 User loginUser = ContextUtil.getLoginUserInfo(mContext);
+                Log.d("컹컹", loginUser.getId() + "번");
 
-                ServerUtil.write_reply(mContext, -1,loginUser.getUserName(), replyEdt.getText().toString(), post.getId(), new ServerUtil.JsonResponseHandler() {
+                ServerUtil.write_reply(mContext, parentId, loginUser.getUserName(), replyEdt.getText().toString(), post.getId(), loginUser.getId(), new ServerUtil.JsonResponseHandler() {
                     @Override
                     public void onResponse(JSONObject json) {
 
                         Log.d("테스트", json.toString());
+                        if (replyEdt.getText().toString().equals("")) {
+                            Toast.makeText(mContext, "댓글내용을 입력하세요.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            getReplyFromJson();
+                            replyEdt.setText("");
+//                            replyListView.smoothScrollToPosition(mAdapter.getCount() - 1);
+
+                        }
                     }
                 });
 
+            }
+        });
+
+        replyListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                parentId = replyList.get(i).getReplyId();
             }
         });
 
@@ -129,26 +149,31 @@ public class PostPopupActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        post = (Post) getIntent().getSerializableExtra("postdata");
+        setValues();
+    }
+
     void getReplyFromJson() {
-        ServerUtil.getPost(mContext, new ServerUtil.JsonResponseHandler() {
+        ServerUtil.get_reply(mContext, post.getId(), new ServerUtil.JsonResponseHandler() {
             @Override
             public void onResponse(JSONObject json) {
-
                 try {
                     replyList.clear();
                     JSONArray jsonArray = json.getJSONArray("result");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        Reply reply = Reply.getReplyFromJson(jsonArray.getJSONObject(i));
-                        replyList.add(reply);
-//                        TODO - userProfileImg 없다고 뜨는거 해결 해야함
-                    }
 
+                    for (int i = 0; i < jsonArray.length(); i++) {
+
+                        replyList.add(Reply.getReplyFromJson(jsonArray.getJSONObject(i)));
+                    }
+                    mAdapter = new ReplyAdapter(mContext, replyList);
+                    replyListView.setAdapter(mAdapter);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
                 mAdapter.notifyDataSetChanged();
-
             }
         });
 
@@ -171,10 +196,9 @@ public class PostPopupActivity extends BaseActivity {
 
     @Override
     public void setValues() {
+        getReplyFromJson();
 
-        replyData();
-        mAdapter = new ReplyAdapter(mContext, replyList);
-        replyListView.setAdapter(mAdapter);
+//        replyData();
 
         String profileStr = post.getUserWriterData().getUserProfileImg();
         if (profileStr.equals("noImage")) {
@@ -185,7 +209,7 @@ public class PostPopupActivity extends BaseActivity {
 
 
         listenLectureTxt.setText(post.userWriterData.listenLecture.getLectureName());
-         writerNameTxt.setText(post.getUserWriterData().getUserName());
+        writerNameTxt.setText(post.getUserWriterData().getUserName());
         contentTxt.setText(post.getPostContent());
 
         Calendar now = Calendar.getInstance();
@@ -193,7 +217,6 @@ public class PostPopupActivity extends BaseActivity {
         int minute = (int) (time / 1000 / 60);
         String minuteAgo = TimeAgoUtil.getTimeAgoString(minute);
         writeTimeTxt.setText(minuteAgo);
-
 
 
     }

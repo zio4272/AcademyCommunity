@@ -12,11 +12,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
+import java.util.Calendar;
 import java.util.List;
 
 import kr.co.cgb.academycommunity.PostPopupActivity;
 import kr.co.cgb.academycommunity.R;
 import kr.co.cgb.academycommunity.data.Reply;
+import kr.co.cgb.academycommunity.data.User;
+import kr.co.cgb.academycommunity.util.ContextUtil;
+import kr.co.cgb.academycommunity.util.TimeAgoUtil;
 
 /**
  * Created by PC on 2017-11-24.
@@ -47,6 +53,7 @@ public class ReplyAdapter extends ArrayAdapter<Reply> {
 
         final Reply data = mList.get(position);
 
+
         LinearLayout mainReplyLayout = (LinearLayout) row.findViewById(R.id.mainReplyLayout);
         ImageView mainReplyProfileImg = (ImageView) row.findViewById(R.id.mainReplyProfileImg);
         TextView mainReplyUserNameTxt = (TextView) row.findViewById(R.id.mainReplyUserNameTxt);
@@ -65,13 +72,13 @@ public class ReplyAdapter extends ArrayAdapter<Reply> {
 //        TextView subReplyAddTxt = (TextView) row.findViewById(R.id.subReplyAddTxt);
 
 
-        if (data.getParentId() == -1) {
+        if (data.getParentId() == data.getReplyId()) {
             // 댓글인 경우
             mainReplyLayout.setVisibility(View.VISIBLE);
             subReplyLayout.setVisibility(View.GONE);
 
-            mainReplyUserNameTxt.setText("글쓴이");
-            mainReplyContentTxt.setText("내용");
+            mainReplyUserNameTxt.setText(data.getWriteUser().getUserName());
+            mainReplyContentTxt.setText(data.getReplyContent());
 
 //            mainReplyAddTxt.setOnClickListener(new View.OnClickListener() {
 //                @Override
@@ -90,9 +97,10 @@ public class ReplyAdapter extends ArrayAdapter<Reply> {
             subReplyLayout.setVisibility(View.VISIBLE);
             subReplyTagNameTxt.setVisibility(View.VISIBLE);
 
-            subReplyUserNameTxt.setText(data.getReplyWriteName().getUserName());
+            subReplyUserNameTxt.setText(data.getWriteUser().getUserName());
             subReplyContentTxt.setText(data.getReplyContent());
 
+            subReplyTagNameTxt.setText(data.tagUserName.getUserName());
 //            if (data.getReplyWriteName() != null) {
 //                subReplyTagNameTxt.setText(data.getTagUserName().getUserName());
 //            }
@@ -110,6 +118,31 @@ public class ReplyAdapter extends ArrayAdapter<Reply> {
 //                }
 //            });
         }
+
+        String profileStr = data.getWriteUser().getUserProfileImg();
+        if (profileStr.equals("noImage")) {
+            mainReplyProfileImg.setImageResource(R.drawable.noimage);
+            subReplyProfileImg.setImageResource(R.drawable.noimage);
+        } else {
+            Glide.with(mContext).load(data.getWriteUser().getUserProfileImg()).into(mainReplyProfileImg);
+            Glide.with(mContext).load(data.getWriteUser().getUserProfileImg()).into(subReplyProfileImg);
+        }
+        mainReplyProfileImg.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        subReplyProfileImg.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
+        Calendar now = Calendar.getInstance();
+        Log.d("현재시간", now +"");
+        long time = now.getTimeInMillis() - data.getReplyDate().getTimeInMillis();
+        Log.d("시간계산", time+"");
+
+        Log.d("작성된 시간",data.getReplyDate().getTimeInMillis() +"");
+
+        int minute = (int) (time / 1000 / 60);
+        Log.d("시간나누기", minute +"");
+        String minuteAgo = TimeAgoUtil.getTimeAgoString(minute);
+        mainReplyTimeTxt.setText(minuteAgo);
+        subReplyTimeTxt.setText(minuteAgo);
+
 
         return row;
     }

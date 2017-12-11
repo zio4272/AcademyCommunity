@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,7 +74,6 @@ public class PostFragment extends Fragment {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         Post post = Post.getPostFromJson(jsonArray.getJSONObject(i));
                         postList.add(post);
-//                        TODO - userProfileImg 없다고 뜨는거 해결 해야함
                     }
 
                 } catch (JSONException e) {
@@ -106,6 +106,7 @@ public class PostFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getActivity(), PostPopupActivity.class);
                 intent.putExtra("postdata", postList.get(i));
+                Log.d("postingId", postList.get(i).getId()+"");
                 startActivity(intent);
             }
         });

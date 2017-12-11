@@ -15,11 +15,13 @@ import java.util.List;
 public class Reply implements Serializable {
 
     private int replyId;
-//    private int replyType;  // 0 - 댓글 , 1 - 댓글의 댓글
+    //    private int replyType;  // 0 - 댓글 , 1 - 댓글의 댓글
     private int parentId = -1; // -1은 게시물에 달린 댓글 , 그외는 replyId 0~ 댓글에 달린 댓글
-    private User replyWriteName;
+    //    private User replyWriteName;
+//    private String replyWriteName;
     private String replyContent;
     private Calendar replyDate = Calendar.getInstance(); // 작성시간은 무조건 현재시간으로
+    private User writeUser;
 
     public Post post; // 어떤 게시물의 댓글인지 파악.
     public List<Reply> replies = new ArrayList<>();
@@ -32,7 +34,12 @@ public class Reply implements Serializable {
         try {
             r.replyId = jsonObject.getInt("replyId");
             r.parentId = jsonObject.getInt("parentId");
-            r.replyWriteName = User.getUserFromJson(jsonObject);
+//            r.replyWriteName = User.getUserFromJson(jsonObject);
+//            r.replyWriteName = jsonObject.getString("replyWriteName");
+            User u = User.getUserFromJson(jsonObject.getJSONObject("name"));
+            r.writeUser = u;
+            User tagU = User.getUserFromJson(jsonObject.getJSONObject("parent_user"));
+            r.tagUserName = tagU;
             r.replyContent = jsonObject.getString("replyContent");
             long time = jsonObject.getLong("replyDate");
             r.replyDate.setTimeInMillis(time);
@@ -45,15 +52,12 @@ public class Reply implements Serializable {
     public Reply() {
     }
 
-    public Reply(int replyId, int parentId, User replyWriteName, String replyContent, Calendar replyDate, Post post, User tagUserName) {
+    public Reply(int replyId, int parentId, String replyContent, Calendar replyDate, User writeUser) {
         this.replyId = replyId;
         this.parentId = parentId;
-        this.replyWriteName = replyWriteName;
         this.replyContent = replyContent;
         this.replyDate = replyDate;
-        this.post = post;
-        this.replies = replies;
-        this.tagUserName = tagUserName;
+        this.writeUser = writeUser;
     }
 
     public int getReplyId() {
@@ -72,14 +76,6 @@ public class Reply implements Serializable {
         this.parentId = parentId;
     }
 
-    public User getReplyWriteName() {
-        return replyWriteName;
-    }
-
-    public void setReplyWriteName(User replyWriteName) {
-        this.replyWriteName = replyWriteName;
-    }
-
     public String getReplyContent() {
         return replyContent;
     }
@@ -88,12 +84,20 @@ public class Reply implements Serializable {
         this.replyContent = replyContent;
     }
 
-    public Calendar getCreatedAt() {
+    public Calendar getReplyDate() {
         return replyDate;
     }
 
-    public void setCreatedAt(Calendar createdAt) {
-        this.replyDate = createdAt;
+    public void setReplyDate(Calendar replyDate) {
+        this.replyDate = replyDate;
+    }
+
+    public User getWriteUser() {
+        return writeUser;
+    }
+
+    public void setWriteUser(User writeUser) {
+        this.writeUser = writeUser;
     }
 
     public Post getPost() {
