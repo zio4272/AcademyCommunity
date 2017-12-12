@@ -19,26 +19,25 @@
 
 
             <!--<ImageView-->
-                <!--android:id="@+id/profileImg"-->
-                <!--android:layout_width="70dp"-->
-                <!--android:layout_height="70dp"-->
-                <!--android:src="@mipmap/ic_launcher_round"/>-->
+            <!--android:id="@+id/profileImg"-->
+            <!--android:layout_width="70dp"-->
+            <!--android:layout_height="70dp"-->
+            <!--android:src="@mipmap/ic_launcher_round"/>-->
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/profileImg"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:src="@mipmap/ic_launcher_round"
-                app:civ_border_width="1dp"
-                app:civ_border_color="#E1E1E1"/>
+                app:civ_border_color="#E1E1E1"
+                app:civ_border_width="1dp" />
 
             <ImageView
                 android:id="@+id/profileINoImg"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/noimage"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
 
             <LinearLayout
@@ -88,30 +87,42 @@
                         android:text="점심시간에 쌈밥 먹으러 갈 사람?" />
 
 
-
                 </FrameLayout>
 
 
             </LinearLayout>
 
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:background="#F1F1F1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:id="@+id/replyCountTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="0" />
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="댓글"/>
 
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/replyCountTxt"
-            android:padding="10dp"
-            android:background="@drawable/round_background"
-            android:layout_marginRight="10dp"
-            android:layout_gravity="right|center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="18"/>
-
 
     </FrameLayout>
-
 
 
 </LinearLayout>

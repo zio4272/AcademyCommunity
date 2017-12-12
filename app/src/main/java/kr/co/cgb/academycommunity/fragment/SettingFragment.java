@@ -12,7 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.Toast;
 
+import kr.co.cgb.academycommunity.IndexActivity;
 import kr.co.cgb.academycommunity.LoginActivity;
 import kr.co.cgb.academycommunity.MainActivity;
 import kr.co.cgb.academycommunity.R;
@@ -64,9 +66,10 @@ public class SettingFragment extends Fragment {
                         .setMessage("로그아웃 하시겠습니까?")
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
+                                Toast.makeText(getContext(), "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
                                 getActivity().finish();
                                 ContextUtil.logout(getActivity());
-                                Intent intent = new Intent(getContext(), LoginActivity.class);
+                                Intent intent = new Intent(getContext(), MainActivity.class);
                                 startActivity(intent);
                                 getActivity().finish();
                             }
