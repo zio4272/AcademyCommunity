@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -54,6 +55,7 @@ public class SignupActivity extends BaseActivity {
     private android.widget.RadioGroup radioGroup;
     private android.widget.ImageView userProfileImg;
     private TextView profileImgUploadTxt;
+    private android.widget.LinearLayout profileImgUpload;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -204,7 +206,7 @@ public class SignupActivity extends BaseActivity {
             }
         });
 
-        profileImgUploadTxt.setOnClickListener(new View.OnClickListener() {
+        profileImgUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -268,6 +270,8 @@ public class SignupActivity extends BaseActivity {
                 try {
                     myBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                     userProfileImg.setImageBitmap(myBitmap);
+                    userProfileImg.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                    profileImgUploadTxt.setVisibility(View.GONE);
 
                 } catch (IOException e) {
                     Toast.makeText(mContext, "사진을 불러오는 중에 에러가 발생했습니다.", Toast.LENGTH_SHORT).show();
@@ -305,6 +309,7 @@ public class SignupActivity extends BaseActivity {
     public void bindViews() {
         this.okBtn = (Button) findViewById(R.id.okBtn);
         this.MyInfoEdt = (EditText) findViewById(R.id.MyInfoEdt);
+        this.profileImgUpload = (LinearLayout) findViewById(R.id.profileImgUpload);
         this.profileImgUploadTxt = (TextView) findViewById(R.id.profileImgUploadTxt);
         this.userProfileImg = (ImageView) findViewById(R.id.userProfileImg);
         this.lectureListSpinner = (Spinner) findViewById(R.id.lectureListSpinner);
