@@ -397,7 +397,7 @@ public class ServerUtil {
     }
 
 
-    public static void signup(final Context context, final String loginId, final String loginPw, final String username, final int gender, final String phonenum, Bitmap bitmap, final String myinfo, final int lectureId, final JsonResponseHandler handler) {
+    public static void signup(final Context context, final String loginId, final String loginPw, final String username, final int gender, final String phonenum, Bitmap bitmap, final String myinfo, final int lectureId, final String deviceToken,final JsonResponseHandler handler) {
         String url = BASE_URL + "get_signup_user";
 
         Map<String, String> data = new HashMap<String, String>();
@@ -409,6 +409,7 @@ public class ServerUtil {
         data.put("user_myinfo", myinfo);
         data.put("lecture_id", lectureId + "");
 //        data.put("user_isteacher", isteacher + "");
+        data.put("device_token", deviceToken);
 
 
         AsyncHttpRequest.postWithImageFile(context, url, data, bitmap, "", new AsyncHttpRequest.HttpResponseHandler() {

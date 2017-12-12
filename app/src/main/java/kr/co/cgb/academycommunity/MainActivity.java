@@ -48,7 +48,7 @@ public class MainActivity extends BaseActivity {
 
         String token = FirebaseInstanceId.getInstance().getToken();
 
-//        Log.d("token값", token);
+        Log.d("token값", token);
     }
 
 
