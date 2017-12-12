@@ -178,14 +178,14 @@ public class SignupActivity extends BaseActivity {
                     ServerUtil.signup(mContext, idEdt.getText().toString(), pwEdt.getText().toString(), nameEdt.getText().toString(), gender, phoneEdt.getText().toString(), myBitmap, MyInfoEdt.getText().toString(), lectureNum, token, new ServerUtil.JsonResponseHandler() {
                         @Override
                         public void onResponse(JSONObject json) {
-
+                            Intent intent = new Intent(mContext, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                            Toast.makeText(mContext, "회원가입 성공", Toast.LENGTH_SHORT).show();
                         }
                     });
 
-                    Intent intent = new Intent(mContext, IndexActivity.class);
-                    startActivity(intent);
-                    finish();
-                    Toast.makeText(mContext, "회원가입 성공", Toast.LENGTH_SHORT).show();
+
                 } else {
                     Toast.makeText(mContext, "회원가입에 실패했습니다.\n 누락된 정보가 있는지 확인 해주세요", Toast.LENGTH_SHORT).show();
                 }
