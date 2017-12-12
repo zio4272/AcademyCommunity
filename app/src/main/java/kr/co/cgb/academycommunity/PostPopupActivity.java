@@ -26,7 +26,6 @@ import kr.co.cgb.academycommunity.data.Post;
 import kr.co.cgb.academycommunity.data.Reply;
 import kr.co.cgb.academycommunity.data.User;
 import kr.co.cgb.academycommunity.util.ContextUtil;
-import kr.co.cgb.academycommunity.util.GlobalData;
 import kr.co.cgb.academycommunity.util.ServerUtil;
 import kr.co.cgb.academycommunity.util.TimeAgoUtil;
 
@@ -97,6 +96,7 @@ public class PostPopupActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 parentId = replyList.get(i).getReplyId();
+
             }
         });
 
@@ -223,8 +223,8 @@ public class PostPopupActivity extends BaseActivity {
 
     @Override
     public void bindViews() {
-        this.sendBtn = (Button) findViewById(R.id.sendBtn);
         this.replyEdt = (EditText) findViewById(R.id.replyEdt);
+        this.sendBtn = (Button) findViewById(R.id.sendBtn);
         this.replyListView = (ListView) findViewById(R.id.replyListView);
         this.contentTxt = (TextView) findViewById(R.id.contentTxt);
         this.writeTimeTxt = (TextView) findViewById(R.id.writeTimeTxt);

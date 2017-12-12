@@ -24,6 +24,7 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 import kr.co.cgb.academycommunity.R;
 import kr.co.cgb.academycommunity.data.Post;
+import kr.co.cgb.academycommunity.data.Reply;
 import kr.co.cgb.academycommunity.util.TimeAgoUtil;
 
 /**
@@ -98,6 +99,10 @@ public class PostAdapter extends ArrayAdapter<Post> {
         } else {
             contentTxt.setText(data.getPostContent());
         }
+
+        replyCountTxt.setText(data.getReplyCount()+"");
+
+
         return row;
     }
 

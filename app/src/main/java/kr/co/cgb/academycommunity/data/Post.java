@@ -23,6 +23,8 @@ public class Post implements Serializable {
 
     public List<Reply> replyList = new ArrayList<>();
 
+    public int replyCount;
+
     public static Post getPostFromJson(JSONObject jsonObject) {
         Post p = new Post();
 
@@ -92,5 +94,13 @@ public class Post implements Serializable {
 
     public void setReplyList(List<Reply> replyList) {
         this.replyList = replyList;
+    }
+
+    public int getReplyCount() {
+        return replyCount;
+    }
+
+    public void setReplyCount(int replyCount) {
+        this.replyCount = replyCount;
     }
 }

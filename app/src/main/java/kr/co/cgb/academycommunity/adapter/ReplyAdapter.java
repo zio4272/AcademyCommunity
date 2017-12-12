@@ -1,8 +1,10 @@
 package kr.co.cgb.academycommunity.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -131,17 +134,33 @@ public class ReplyAdapter extends ArrayAdapter<Reply> {
         subReplyProfileImg.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
         Calendar now = Calendar.getInstance();
-        Log.d("현재시간", now +"");
         long time = now.getTimeInMillis() - data.getReplyDate().getTimeInMillis();
-        Log.d("시간계산", time+"");
-
-        Log.d("작성된 시간",data.getReplyDate().getTimeInMillis() +"");
-
         int minute = (int) (time / 1000 / 60);
-        Log.d("시간나누기", minute +"");
         String minuteAgo = TimeAgoUtil.getTimeAgoString(minute);
         mainReplyTimeTxt.setText(minuteAgo);
         subReplyTimeTxt.setText(minuteAgo);
+
+//        mainReplyLayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                final String [] reply = {"답글달기", "취소"};
+//
+//                new AlertDialog.Builder(getContext())
+//
+//                         .setItems(reply, new DialogInterface.OnClickListener() {
+//                             @Override
+//                             public void onClick(DialogInterface dialogInterface, int i) {
+//                                 if (i == 1 ){
+//                                     Toast.makeText(mContext, "취소되었습니다.", Toast.LENGTH_SHORT).show();
+//                                 }
+//
+//                             }
+//                         })
+//                        .show();
+//
+//            }
+//        });
 
 
         return row;

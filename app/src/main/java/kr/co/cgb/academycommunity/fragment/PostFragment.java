@@ -73,6 +73,7 @@ public class PostFragment extends Fragment {
                     JSONArray jsonArray = json.getJSONArray("result");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         Post post = Post.getPostFromJson(jsonArray.getJSONObject(i));
+                        post.setReplyCount(jsonArray.getJSONObject(i).getJSONObject("count").getInt("count"));
                         postList.add(post);
                     }
 
