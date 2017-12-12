@@ -1,18 +1,18 @@
 package kr.co.cgb.academycommunity;
 
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import de.hdodenhof.circleimageview.CircleImageView;
-import kr.co.cgb.academycommunity.adapter.UserAdapter;
 import kr.co.cgb.academycommunity.data.User;
-import kr.co.cgb.academycommunity.util.GlobalData;
 
 public class StudentDetailViewActivity extends BaseActivity {
 
@@ -40,7 +40,25 @@ public class StudentDetailViewActivity extends BaseActivity {
 
     @Override
     public void setupEvents() {
+        callNowImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_CALL);
+                intent.setData(Uri.parse("tel:" + user.getUserPhoneNum()));
+                if (ActivityCompat.checkSelfPermission(mContext, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                startActivity(intent);
 
+            }
+        });
     }
 
     @Override
