@@ -73,19 +73,20 @@ public class PostPopupActivity extends BaseActivity {
                 User loginUser = ContextUtil.getLoginUserInfo(mContext);
                 Log.d("컹컹", loginUser.getId() + "번");
 
+                if (replyEdt.getText().toString().equals("")) {
+                    Toast.makeText(mContext, "댓글내용을 입력하세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 ServerUtil.write_reply(mContext, parentId, loginUser.getUserName(), replyEdt.getText().toString(), post.getId(), loginUser.getId(), new ServerUtil.JsonResponseHandler() {
                     @Override
                     public void onResponse(JSONObject json) {
 
                         Log.d("테스트", json.toString());
-                        if (replyEdt.getText().toString().equals("")) {
-                            Toast.makeText(mContext, "댓글내용을 입력하세요.", Toast.LENGTH_SHORT).show();
-                        } else {
-                            getReplyFromJson();
-                            replyEdt.setText("");
+
+                        getReplyFromJson();
+                        replyEdt.setText("");
 //                            replyListView.smoothScrollToPosition(mAdapter.getCount() - 1);
 
-                        }
                     }
                 });
 

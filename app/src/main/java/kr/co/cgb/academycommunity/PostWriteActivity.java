@@ -40,39 +40,37 @@ public class PostWriteActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
 
+                if (postEdt.getText().toString().equals("")) {
+                    Toast.makeText(mContext, "내용을 입력 해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                    AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
+                    alert.setTitle("등록하시겠습니까?");
+                    alert.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            finish();
+                        }
+                    });
+                    alert.setPositiveButton("등록", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            User loginUser = ContextUtil.getLoginUserInfo(mContext);
+                            ServerUtil.write_post(mContext, postEdt.getText().toString(), loginUser.getId(), new ServerUtil.JsonResponseHandler() {
+                                @Override
+                                public void onResponse(JSONObject json) {
 
 
+                                    Log.d("게시물이 등록되었습니다.", json.toString());
 
 
-                AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
-                alert.setTitle("등록하시겠습니까?");
-                alert.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        finish();
-                    }
-                });
-                alert.setPositiveButton("등록", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        User loginUser = ContextUtil.getLoginUserInfo(mContext);
-                        ServerUtil.write_post(mContext, postEdt.getText().toString(), loginUser.getId() , new ServerUtil.JsonResponseHandler()  {
-                            @Override
-                            public void onResponse(JSONObject json) {
+                                }
+                            });
+                            finish();
+                        }
+                    });
+                    alert.show();
 
-
-                                Log.d("등록됨" , json.toString());
-
-
-
-
-
-                            }
-                        });
-                        finish();
-                    }
-                });
-                alert.show();
 
 
             }
